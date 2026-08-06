@@ -140,12 +140,25 @@
   <h2 class="section-title">People</h2>
   {{ with .Params.summary }}<p class="section-sub">{{ . }}</p>{{ end }}
 
-  {{ $members := slice }}
-  {{ range .Pages }}
-    {{ if in (.Params.user_groups | default slice) "Collaborators" }}{{ $members = $members | append . }}{{ end }}
+  {{/* Derived from the authors: fields on the articles and chapters above, so a
+       new paper adds its co-authors here without anyone maintaining a list. */}}
+  {{ $names := slice }}
+  {{ range $scholarship }}
+    {{ range (.Params.authors | default slice) }}
+      {{ if and (ne . site.Params.author) (not (in $names .)) }}{{ $names = $names | append . }}{{ end }}
+    {{ end }}
   {{ end }}
   <div class="people-grid">
-    {{ range sort $members "Title" "asc" }}{{ partial "person_card.html" . }}{{ end }}
+    {{ range sort $names }}
+      {{ $name := . }}
+      {{ $profile := false }}
+      {{ range $people.Pages }}{{ if eq .Title $name }}{{ $profile = . }}{{ end }}{{ end }}
+      {{ if $profile }}
+        {{ partial "person_card.html" $profile }}
+      {{ else }}
+        <div class="person"><div class="person-name">{{ $name }}</div></div>
+      {{ end }}
+    {{ end }}
   </div>
 </section>
 {{ end }}

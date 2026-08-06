@@ -2,7 +2,7 @@
 title: "Kristine Kay"
 superuser: false
 user_groups: ["Collaborators"]
-role: "Department of Political Science, University of California, Berkeley"
+role: "University of California, Berkeley"
 website: "http://polisci.berkeley.edu/people/person/kristine-kay"
 ---
 

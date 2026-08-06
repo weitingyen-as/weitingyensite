@@ -1,19 +1,6 @@
-{{ $initials := "" }}
-{{ range (split .Title " ") }}
-  {{ if and (ne . "") (lt (len $initials) 2) }}{{ $initials = printf "%s%s" $initials (substr . 0 1) }}{{ end }}
-{{ end }}
 <div class="person">
-  <div class="person-avatar" aria-hidden="true">
-    {{ with .Resources.GetMatch "avatar.*" }}
-      <img src="{{ .RelPermalink }}" alt="" loading="lazy" width="46" height="46">
-    {{ else }}
-      {{ upper $initials }}
-    {{ end }}
+  <div class="person-name">
+    {{- with .Params.website }}<a href="{{ . }}" rel="noopener">{{ $.Title }}</a>{{ else }}{{ .Title }}{{ end -}}
   </div>
-  <div>
-    <div class="person-name">
-      {{- with .Params.website }}<a href="{{ . }}" rel="noopener">{{ $.Title }}</a>{{ else }}{{ .Title }}{{ end -}}
-    </div>
-    {{ with .Params.role }}<div class="person-role">{{ . }}</div>{{ end }}
-  </div>
+  {{ with .Params.role }}<div class="person-role">{{ . }}</div>{{ end }}
 </div>
