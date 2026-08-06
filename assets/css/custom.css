@@ -162,6 +162,8 @@ main { min-height: 60vh; }
 /* --------------------------------------------- stacked single-page sections */
 /* Alternating bands give each stacked section an edge without a hard rule. */
 .section { padding: 3.6rem 0; }
+/* the page ends on the last section, so let it breathe at the bottom */
+main > section:last-of-type .section { padding-bottom: 4.6rem; }
 .band { background: var(--color-surface); border-top: 1px solid var(--color-border); border-bottom: 1px solid var(--color-border); }
 .section-title { font-size: 1.85rem; margin: 0 0 .3rem; }
 .section-sub { color: var(--color-text-muted); font-size: .95rem; margin-bottom: 1.8rem; max-width: 68ch; }
@@ -430,25 +432,6 @@ main { min-height: 60vh; }
 .search-results mark { background: var(--color-gold-light); color: inherit; }
 .search-hint { padding: .7rem 1.2rem; font-size: .8rem; color: var(--color-text-faint); }
 
-/* ---------------------------------------------------------------- footer */
-.site-footer {
-  background: #2d2926; color: #e8e0d5;
-  padding: 2.4rem 0 1.6rem; margin-top: 3rem; font-size: .88rem;
-}
-.footer-inner { max-width: var(--max-w); margin: 0 auto; padding: 0 1.4rem; }
-.footer-cols { display: flex; flex-wrap: wrap; gap: 2.5rem; justify-content: space-between; }
-.site-footer h2 { font-size: .74rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: #b3a998; margin: 0 0 .6rem; font-family: var(--font-sans); }
-.site-footer a { color: #e8e0d5; text-decoration: none; }
-.site-footer a:hover { color: #fff; text-decoration: underline; }
-.site-footer ul { list-style: none; margin: 0; padding: 0; }
-.site-footer li { margin-bottom: .3rem; }
-.footer-bottom {
-  display: flex; flex-wrap: wrap; gap: .6rem; justify-content: space-between;
-  margin-top: 2rem; padding-top: 1rem; border-top: 1px solid #423c36;
-  font-size: .78rem; color: #a1968a;
-}
-.footer-credit { margin-left: auto; text-align: right; }
-
 /* ------------------------------------------------------------------- 404 */
 .notfound { padding: 4rem 0; text-align: center; }
 .notfound h1 { font-size: 2.2rem; margin-bottom: .5rem; }
@@ -485,8 +468,6 @@ main { min-height: 60vh; }
   .btn-row { justify-content: center; }
   .featured-image { float: none; width: 160px; margin: 0 auto 1.2rem; }
   .prose td:first-child { width: auto; white-space: normal; }
-  .footer-cols { gap: 1.6rem; }
-  .footer-credit { margin-left: 0; text-align: left; }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -499,6 +480,6 @@ main { min-height: 60vh; }
 }
 
 @media print {
-  .site-header, .site-footer, .filters, .pub-tabs, .search-overlay { display: none !important; }
+  .site-header, .search-overlay { display: none !important; }
   body { background: #fff; font-size: 11pt; }
 }
