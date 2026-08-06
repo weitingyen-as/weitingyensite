@@ -12,4 +12,5 @@ links:
     url: "https://doi.org/10.1111/ssqu.13136"
 doi: "10.1111/ssqu.13136"
 tags: ["welfare state", "economic insecurity", "pensions", "social insurance", "south korea"]
+research_area: "insecurity-and-welfare-states"
 ---

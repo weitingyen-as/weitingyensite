@@ -6,6 +6,7 @@ publication_types: ["book_chapter"]
 publication: "2016 Taiwanese Year Book of International Law, Chapter 5. Taipei"
 abstract: "Taiwan restructured its financial supervisory architecture under external pressure without displacing the political relationships that the old architecture served."
 tags: ["financial regulation", "globalization", "taiwan", "political economy"]
+research_area: "taiwan-politics"
 ---
 
 <!-- NOTE FOR THE SITE OWNER: Listed on the legacy site's publications page but not in the C.V.'s Book Chapters section. Confirm the citation details. -->

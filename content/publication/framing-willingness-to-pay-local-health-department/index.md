@@ -12,4 +12,5 @@ links:
     url: "https://doi.org/10.1215/03616878-12757947"
 doi: "10.1215/03616878-12757947"
 tags: ["public health", "covid-19", "survey experiments", "policy framing", "public opinion"]
+research_area: "pandemic-governance"
 ---

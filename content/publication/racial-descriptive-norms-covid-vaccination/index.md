@@ -14,4 +14,5 @@ links:
     url: "https://www.washingtonpost.com/politics/2021/03/12/what-encourages-black-americans-get-vaccinated-hearing-that-other-black-americans-want-vaccine/"
 doi: "10.1093/poq/nfad017"
 tags: ["public opinion", "vaccination", "covid-19", "survey experiments", "race"]
+research_area: "pandemic-governance"
 ---

@@ -34,8 +34,7 @@
       <p class="hero-inst">{{ .Params.institution }}</p>
       <div class="hero-intro">{{ .Params.intro | markdownify }}</div>
       <div class="btn-row">
-        <a class="btn btn-primary" href="#research-areas">Research</a>
-        <a class="btn btn-outline" href="{{ "files/wei-ting-yen-cv.pdf" | relURL }}">Curriculum Vitae (PDF)</a>
+        <a class="btn btn-primary" href="{{ "files/wei-ting-yen-cv.pdf" | relURL }}" target="_blank" rel="noopener">Curriculum Vitae (PDF)</a>
         <a class="btn btn-outline" href="mailto:{{ site.Params.email }}">Email: {{ site.Params.email }}</a>
       </div>
     </div>
@@ -57,16 +56,14 @@
 <section class="wrap section" id="research-areas">
   <div class="section-rule"></div>
   <h2 class="section-title">Research</h2>
-  <p class="section-sub">{{ len $scholarship }} peer-reviewed articles and book chapters, grouped by what they are about. Open an area to see the work.</p>
 
+  {{/* Each paper names one area in its own front matter, so nothing appears twice. */}}
   {{ range hugo.Data.research_areas.areas }}
     {{ $area := . }}
-    {{ $subs := .subcategories }}
+    {{ $id := .id }}
     {{ $matched := slice }}
     {{ range $scholarship }}
-      {{ $hit := false }}
-      {{ range (.Params.tags | default slice) }}{{ if in $subs . }}{{ $hit = true }}{{ end }}{{ end }}
-      {{ if $hit }}{{ $matched = $matched | append . }}{{ end }}
+      {{ if eq (.Params.research_area | default "others") $id }}{{ $matched = $matched | append . }}{{ end }}
     {{ end }}
     {{ $matched = sort $matched "Date" "desc" }}
 
@@ -84,6 +81,30 @@
       </div>
     </details>
     {{ end }}
+  {{ end }}
+
+  {{/* Collaborators, derived from the authors: fields on the work above, so a new
+       paper brings its co-authors along without anyone maintaining a list. */}}
+  {{ $names := slice }}
+  {{ range $scholarship }}
+    {{ range (.Params.authors | default slice) }}
+      {{ if and (ne . site.Params.author) (not (in $names .)) }}{{ $names = $names | append . }}{{ end }}
+    {{ end }}
+  {{ end }}
+  {{ with $names }}
+    <h3 class="collab-heading" id="collaborators">Collaborators</h3>
+    <div class="people-grid">
+      {{ range sort . }}
+        {{ $name := . }}
+        {{ $profile := false }}
+        {{ with $people }}{{ range .Pages }}{{ if eq .Title $name }}{{ $profile = . }}{{ end }}{{ end }}{{ end }}
+        {{ if $profile }}
+          {{ partial "person_card.html" $profile }}
+        {{ else }}
+          <div class="person"><div class="person-name">{{ $name }}</div></div>
+        {{ end }}
+      {{ end }}
+    </div>
   {{ end }}
 </section>
 
@@ -132,36 +153,6 @@
     {{ end }}
   </div>
 </section>
-
-{{/* --------------------------------------------------------------- people */}}
-{{ with $people }}
-<section class="wrap section" id="people">
-  <div class="section-rule"></div>
-  <h2 class="section-title">People</h2>
-  {{ with .Params.summary }}<p class="section-sub">{{ . }}</p>{{ end }}
-
-  {{/* Derived from the authors: fields on the articles and chapters above, so a
-       new paper adds its co-authors here without anyone maintaining a list. */}}
-  {{ $names := slice }}
-  {{ range $scholarship }}
-    {{ range (.Params.authors | default slice) }}
-      {{ if and (ne . site.Params.author) (not (in $names .)) }}{{ $names = $names | append . }}{{ end }}
-    {{ end }}
-  {{ end }}
-  <div class="people-grid">
-    {{ range sort $names }}
-      {{ $name := . }}
-      {{ $profile := false }}
-      {{ range $people.Pages }}{{ if eq .Title $name }}{{ $profile = . }}{{ end }}{{ end }}
-      {{ if $profile }}
-        {{ partial "person_card.html" $profile }}
-      {{ else }}
-        <div class="person"><div class="person-name">{{ $name }}</div></div>
-      {{ end }}
-    {{ end }}
-  </div>
-</section>
-{{ end }}
 
 {{/* -------------------------------------------------------------- contact */}}
 {{ with $contact }}

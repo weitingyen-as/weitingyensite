@@ -14,6 +14,7 @@ links:
     url: "https://www.cambridge.org/core/blog/tag/journal-of-social-policy/"
 doi: "10.1017/S0047279425101086"
 tags: ["welfare state", "pensions", "territory", "solidarity", "taiwan"]
+research_area: "insecurity-and-welfare-states"
 ---
 
 <!-- NOTE FOR THE SITE OWNER: Popular-science version appeared on the Journal of Social Policy blog; the exact post URL was not on the C.V. -->

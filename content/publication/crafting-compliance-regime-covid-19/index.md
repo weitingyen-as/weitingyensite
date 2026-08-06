@@ -12,4 +12,5 @@ links:
     url: "https://doi.org/10.1111/1758-5899.12967"
 doi: "10.1111/1758-5899.12967"
 tags: ["covid-19", "taiwan", "compliance", "crisis governance", "quarantine"]
+research_area: "pandemic-governance"
 ---

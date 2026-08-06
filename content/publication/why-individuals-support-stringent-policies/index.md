@@ -14,6 +14,7 @@ links:
     url: "https://policyandpoliticsblog.com/"
 doi: "10.1332/030557324X17049690476008"
 tags: ["policy framing", "covid-19", "public opinion", "narrative policy framework", "compliance"]
+research_area: "pandemic-governance"
 ---
 
 <!-- NOTE FOR THE SITE OWNER: Popular-science version appeared on the Policy & Politics journal blog; the exact post URL was not on the C.V. -->

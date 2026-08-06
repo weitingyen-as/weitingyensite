@@ -13,4 +13,5 @@ links:
     url: "https://doi.org/10.1111/aspp.12541"
 doi: "10.1111/aspp.12541"
 tags: ["covid-19", "taiwan", "developmental state", "digital governance", "crisis governance"]
+research_area: "pandemic-governance"
 ---

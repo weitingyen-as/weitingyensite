@@ -75,9 +75,6 @@ menu:
     - name: Public Writing
       url: "/#public-writing"
       weight: 30
-    - name: People
-      url: "/#people"
-      weight: 40
     - name: Contact
       url: "/#contact"
       weight: 50

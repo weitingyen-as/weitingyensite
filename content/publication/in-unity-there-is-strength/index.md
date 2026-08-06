@@ -12,4 +12,5 @@ links:
     url: "https://doi.org/10.1007/978-3-031-42887-6_28"
 doi: "10.1007/978-3-031-42887-6_28"
 tags: ["teaching", "political science profession", "research-led teaching"]
+research_area: "others"
 ---
