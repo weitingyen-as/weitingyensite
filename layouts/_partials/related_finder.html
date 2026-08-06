@@ -1,0 +1,204 @@
+{{/* ---------------------------------------------------------------------------
+     Automatic "See Also" cross-linking.
+
+     Runs at build time on every publication / talk / software page. Nothing is
+     stored on disk, so adding a new paper re-links the whole site on the next
+     build with no maintenance step.
+
+     Priority 1  — explicit related_* front matter always wins
+     Priority 1b — see_also entries ({url,title} external, or {section,slug} internal)
+     Priority 1c — dataverse_url (front matter or found in the abstract)
+     Priority 2  — siblings in the same research area (data/research_areas.json)
+     Priority 3  — scored backfill: +2 title token, +1 shared author, +2 shared tag
+     --------------------------------------------------------------------------- */}}
+
+{{ $ctx := . }}
+{{ $stop := slice "a" "an" "and" "the" "of" "for" "in" "on" "to" "with" "by" "at" "as" "is" "are" "be" "or" "from" "into" "using" "via" "new" "not" "no" "it" "its" "we" "our" "their" "you" "your" "this" "that" "these" "those" "but" "if" "than" "then" "so" "can" "will" "would" "could" "should" "may" "might" "also" "more" "most" "some" "all" "any" "each" "every" "who" "whom" "which" "what" "when" "where" "why" "how" "about" "between" "among" "through" "over" "under" "after" "before" "upon" "across" "per" "vs" "de" "la" "les" "et" "du" }}
+
+{{ $labels := dict
+  "book" "Book" "book_chapter" "Chapter" "chapter" "Chapter" "data" "Dataset"
+  "software" "Software" "patent" "Patent" "court_brief" "Court Brief"
+  "presentation" "Presentation" "op_ed" "Commentary" "review" "Review"
+  "report" "Report" "thesis" "Thesis" "journal_article" "Paper" }}
+
+{{/* ---- tokenise this page's title ---- */}}
+{{ $tokens := slice }}
+{{ range split (lower (replaceRE `[^a-zA-Z0-9\s]` " " $ctx.Title)) " " }}
+  {{ $t := trim . " " }}
+  {{ if and (ge (len $t) 3) (not (in $stop $t)) (not (in $tokens $t)) }}
+    {{ $tokens = $tokens | append $t }}
+  {{ end }}
+{{ end }}
+
+{{ $myAuthors := $ctx.Params.authors | default slice }}
+{{ $myLast := slice }}
+{{ range $myAuthors }}
+  {{ $parts := split . " " }}
+  {{ $myLast = $myLast | append (lower (index $parts (sub (len $parts) 1))) }}
+{{ end }}
+{{ $myTags := $ctx.Params.tags | default slice }}
+
+{{/* ---- candidate pool ---- */}}
+{{ $pool := slice }}
+{{ range (where site.RegularPages "Section" "in" (slice "publication" "talk" "software")) }}
+  {{ if ne .RelPermalink $ctx.RelPermalink }}{{ $pool = $pool | append . }}{{ end }}
+{{ end }}
+
+{{/* ---- research-area siblings ---- */}}
+{{ $areaTags := slice }}
+{{ with hugo.Data.research_areas }}
+  {{ range .areas }}
+    {{ $hit := false }}
+    {{ range .subcategories }}{{ if in $myTags . }}{{ $hit = true }}{{ end }}{{ end }}
+    {{ if $hit }}{{ range .subcategories }}{{ $areaTags = $areaTags | append . }}{{ end }}{{ end }}
+  {{ end }}
+{{ end }}
+
+{{/* ---- Priority 1: explicit picks ---- */}}
+{{ $explicit := slice }}
+{{ $pairs := slice
+  (dict "sec" "publication" "keys" (slice "related_papers" "related_datasets"))
+  (dict "sec" "talk"        "keys" (slice "related_talks"))
+  (dict "sec" "software"    "keys" (slice "related_software")) }}
+{{ range $pairs }}
+  {{ $sec := .sec }}
+  {{ range .keys }}
+    {{ range (index $ctx.Params .) | default slice }}
+      {{ $slug := . }}
+      {{ range $pool }}
+        {{ if and (eq .Section $sec) (eq (path.Base .File.Dir) $slug) }}{{ $explicit = $explicit | append . }}{{ end }}
+      {{ end }}
+    {{ end }}
+  {{ end }}
+{{ end }}
+{{/* legacy singular forms */}}
+{{ range (slice "related_paper" "related_dataset") }}
+  {{ with index $ctx.Params . }}
+    {{ $slug := . }}
+    {{ range $pool }}
+      {{ if and (eq .Section "publication") (eq (path.Base .File.Dir) $slug) }}{{ $explicit = $explicit | append . }}{{ end }}
+    {{ end }}
+  {{ end }}
+{{ end }}
+
+{{/* ---- response / reply / comment papers pin their subject at the top ---- */}}
+{{ $pinned := slice }}
+{{ $lt := lower $ctx.Title }}
+{{ if or (hasPrefix $lt "response to") (hasPrefix $lt "reply to") (hasPrefix $lt "comment on") (hasPrefix $lt "rejoinder") }}
+  {{ $best := 0 }}{{ $bestPage := false }}
+  {{ range $pool }}
+    {{ $n := 0 }}
+    {{ range $tokens }}{{ if in (lower $.Title) . }}{{ end }}{{ end }}
+    {{ $other := lower .Title }}
+    {{ range $tokens }}{{ if in $other . }}{{ $n = add $n 1 }}{{ end }}{{ end }}
+    {{ if gt $n $best }}{{ $best = $n }}{{ $bestPage = . }}{{ end }}
+  {{ end }}
+  {{ if $bestPage }}{{ $pinned = $pinned | append $bestPage }}{{ end }}
+{{ end }}
+
+{{/* ---- book editions sharing a base title ---- */}}
+{{ $baseTitle := lower (replaceRE `,\s*(new|2nd|3rd|4th|second|third|fourth|revised)\s+edition\s*$` "" $lt) }}
+{{ if in ($ctx.Params.publication_types | default slice) "book" }}
+  {{ range $pool }}
+    {{ if in (.Params.publication_types | default slice) "book" }}
+      {{ $ob := lower (replaceRE `,\s*(new|2nd|3rd|4th|second|third|fourth|revised)\s+edition\s*$` "" (lower .Title)) }}
+      {{ if eq $ob $baseTitle }}{{ $pinned = $pinned | append . }}{{ end }}
+    {{ end }}
+  {{ end }}
+{{ end }}
+
+{{/* ---- Priority 3: score the rest ---- */}}
+{{ $threshold := cond (lt (len $explicit) 3) 2 4 }}
+{{ $scored := slice }}
+{{ range $pool }}
+  {{ $p := . }}
+  {{ $score := 0 }}
+  {{ $otherTitle := lower (replaceRE `[^a-zA-Z0-9\s]` " " $p.Title) }}
+  {{ range $tokens }}
+    {{ if in (split $otherTitle " ") . }}{{ $score = add $score 2 }}{{ end }}
+  {{ end }}
+  {{ range ($p.Params.authors | default slice) }}
+    {{ $a := . }}
+    {{ if in $myAuthors $a }}
+      {{ $score = add $score 1 }}
+    {{ else }}
+      {{ $ap := split $a " " }}
+      {{ if in $myLast (lower (index $ap (sub (len $ap) 1))) }}{{ $score = add $score 1 }}{{ end }}
+    {{ end }}
+  {{ end }}
+  {{ range ($p.Params.tags | default slice) }}
+    {{ if in $myTags . }}{{ $score = add $score 2 }}{{ end }}
+    {{ if and (in $areaTags .) (not (in $myTags .)) }}{{ $score = add $score 1 }}{{ end }}
+  {{ end }}
+  {{ if ge $score $threshold }}
+    {{ $scored = $scored | append (dict "page" $p "score" $score "year" (int ($p.Date.Format "2006"))) }}
+  {{ end }}
+{{ end }}
+{{ $scored = sort (sort $scored "year" "desc") "score" "desc" }}
+
+{{/* ---- assemble, dedup by normalised title, cap at 8 ---- */}}
+{{ $ordered := slice }}
+{{ range $pinned }}{{ $ordered = $ordered | append . }}{{ end }}
+{{ range $explicit }}{{ $ordered = $ordered | append . }}{{ end }}
+{{ range $scored }}{{ $ordered = $ordered | append .page }}{{ end }}
+
+{{ $seen := slice (lower (replaceRE `[^a-z0-9]` "" (lower $ctx.Title))) }}
+{{ $final := slice }}
+{{ range $ordered }}
+  {{ $key := lower (replaceRE `[^a-z0-9]` "" (lower .Title)) }}
+  {{ if and (not (in $seen $key)) (lt (len $final) 8) }}
+    {{ $seen = $seen | append $key }}
+    {{ $final = $final | append . }}
+  {{ end }}
+{{ end }}
+
+{{/* ---- external see_also and dataset rows ---- */}}
+{{ $extras := slice }}
+{{ range $ctx.Params.see_also | default slice }}
+  {{ with .url }}{{ $extras = $extras | append (dict "kind" "Link" "title" ($ | default "Related") "url" .) }}{{ end }}
+{{ end }}
+{{ range $ctx.Params.see_also | default slice }}
+  {{ if .url }}{{ else if .slug }}
+    {{ $sec := .section | default "publication" }}{{ $slug := .slug }}
+    {{ range $pool }}
+      {{ if and (eq .Section $sec) (eq (path.Base .File.Dir) $slug) }}
+        {{ $extras = $extras | append (dict "kind" "Paper" "title" .Title "url" .RelPermalink) }}
+      {{ end }}
+    {{ end }}
+  {{ end }}
+{{ end }}
+{{ $dv := $ctx.Params.dataverse_url }}
+{{ if not $dv }}
+  {{ $m := findRE `https?://dataverse\.harvard\.edu[^\s")]*` ($ctx.Params.abstract | default "") 1 }}
+  {{ if $m }}{{ $dv = index $m 0 }}{{ end }}
+{{ end }}
+{{ with $dv }}
+  {{ $extras = $extras | append (dict "kind" "Dataset" "title" ($ctx.Params.dataverse_name | default "Replication data on Harvard Dataverse") "url" .) }}
+{{ end }}
+
+{{ if or $final $extras }}
+<section class="gk-see-also" aria-labelledby="see-also-heading">
+  <h2 id="see-also-heading">See also</h2>
+  <ul>
+    {{ range $extras }}
+      <li><span class="gk-kind">[{{ .kind }}]</span> <a href="{{ .url }}">{{ .title }}</a></li>
+    {{ end }}
+    {{ range $final }}
+      {{ $kind := "Paper" }}
+      {{ $types := .Params.publication_types | default slice }}
+      {{ $matched := false }}
+      {{ range $k, $v := $labels }}
+        {{ if and (not $matched) (in $types $k) }}{{ $kind = $v }}{{ $matched = true }}{{ end }}
+      {{ end }}
+      {{ if not $matched }}
+        {{ if eq .Section "talk" }}{{ $kind = "Presentation" }}{{ else if eq .Section "software" }}{{ $kind = "Software" }}{{ end }}
+      {{ end }}
+      <li>
+        <span class="gk-kind">[{{ $kind }}]</span>
+        <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+        <span class="pub-year">{{ .Date.Format "2006" }}</span>
+      </li>
+    {{ end }}
+  </ul>
+</section>
+{{ end }}

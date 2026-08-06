@@ -1,0 +1,19 @@
+{{ define "main" }}
+<div class="wrap page">
+  {{ partial "breadcrumb.html" . }}
+  <article>
+    <header class="pub-header">
+      <h1>{{ .Title }}</h1>
+      <div class="pub-meta">
+        {{ partial "author_line.html" . }}
+        <span class="pub-year">&middot; {{ .Date.Format "Jan 2, 2006" }}</span>
+        <div class="venue">{{ .Params.event }}</div>
+        {{ with .Params.location }}<div>{{ . }}</div>{{ end }}
+      </div>
+    </header>
+    {{ with .Params.abstract }}<section class="prose" id="abstract"><p>{{ . }}</p></section>{{ end }}
+    {{ with .Content }}<div class="prose">{{ . }}</div>{{ end }}
+  </article>
+  {{ partial "related_finder.html" . }}
+</div>
+{{ end }}

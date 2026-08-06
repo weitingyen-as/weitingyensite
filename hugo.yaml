@@ -1,0 +1,100 @@
+baseURL: "https://weitingyen-as.github.io/weitingyensite/"
+title: "Wei-Ting Yen"
+locale: en-us
+
+module:
+  imports:
+    - path: github.com/HugoBlox/hugo-blox-builder/modules/blox-tailwind
+
+enableRobotsTXT: true
+enableGitInfo: false
+summaryLength: 30
+timeout: 300s
+
+outputs:
+  home: [HTML, RSS, JSON]
+
+markup:
+  goldmark:
+    renderer:
+      unsafe: true
+  highlight:
+    noClasses: false
+
+taxonomies:
+  # Only tags get term pages. publication_types is a filtering key used by the
+  # Writings page, not something a reader should ever land on as a bare term
+  # page reading "journal_article"; categories are unused.
+  tag: tags
+
+permalinks:
+  # :contentbasename is the item's directory name, so the URL is fixed by the
+  # folder and never shifts when a title is edited. Two talks share a title;
+  # :slug would have collided.
+  publication: /publication/:contentbasename/
+  talk: /talk/:contentbasename/
+  software: /software/:contentbasename/
+
+params:
+  # Owner identity — used by the hero, structured data and the footer.
+  author: "Wei-Ting Yen"
+  short_name: "Wei-Ting Yen"
+  institution: "Institute of Political Science, Academia Sinica"
+  email: "wyen@as.edu.tw"
+  description: "Wei-Ting Yen is a political economist at the Institute of Political Science, Academia Sinica, working on welfare states, economic insecurity, and crisis governance in Asia."
+
+  appearance:
+    theme_day: custom
+    theme_night: custom
+    color_mode: light
+    font: native
+    font_size: L
+
+  header:
+    navbar:
+      enable: true
+      show_search: true
+      show_theme_chooser: false
+      show_translations: false
+      logo:
+        text: "WEI-TING YEN"
+
+  features:
+    search:
+      provider: flexsearch
+
+  extensions:
+    css:
+      - css/custom.css
+
+  # Owner choices recorded on the intake form (both boxes left unchecked).
+  mysite:
+    credit: false
+    discovery: false
+
+menu:
+  main:
+    - name: Bio & C.V.
+      url: /bio/
+      weight: 10
+    - name: Writings
+      url: /publication/
+      weight: 20
+    - name: Research Areas
+      url: "/#research-areas"
+      weight: 30
+    - name: Presentations
+      url: /talk/
+      weight: 40
+    - name: People
+      url: /authors/
+      weight: 50
+    - name: Teaching
+      url: /teaching/
+      weight: 60
+    - name: Public Engagement
+      url: /public-engagement/
+      weight: 70
+    - name: Contact
+      url: /contact/
+      weight: 80

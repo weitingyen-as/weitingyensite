@@ -1,0 +1,32 @@
+<header class="site-header" data-pagefind-ignore>
+  <nav class="nav-inner" aria-label="Main">
+    {{/* The brand is always the owner's name and always links home. */}}
+    <a class="nav-brand" href="{{ "" | relURL }}">{{ site.Params.header.navbar.logo.text | default site.Title }}</a>
+
+    <div class="nav-right">
+      <ul class="nav-links" id="nav-links">
+        {{ range site.Menus.main }}
+          {{ $url := .URL }}
+          {{ if hasPrefix $url "/#" }}
+            {{ $url = printf "%s%s" (relURL "") (strings.TrimPrefix "/" $url) }}
+          {{ else }}
+            {{ $url = relURL (strings.TrimPrefix "/" $url) }}
+          {{ end }}
+          <li><a href="{{ $url }}"{{ if $.IsMenuCurrent "main" . }} aria-current="page"{{ end }}>{{ .Name }}</a></li>
+        {{ end }}
+      </ul>
+
+      {{ if site.Params.header.navbar.show_search }}
+        <button class="search-btn" id="search-open" aria-label="Search this site" aria-haspopup="dialog">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+            <circle cx="11" cy="11" r="7"></circle><line x1="16.5" y1="16.5" x2="21" y2="21"></line>
+          </svg>
+        </button>
+      {{ end }}
+
+      <button class="nav-toggle" id="nav-toggle" aria-label="Menu" aria-expanded="false" aria-controls="nav-links">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+</header>

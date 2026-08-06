@@ -1,0 +1,62 @@
+{{ define "main" }}
+<section class="hero">
+  <div class="hero-inner">
+    {{/* Photo left, text right on desktop; stacked and centred at ≤640px. */}}
+    <div class="hero-photo">
+      <img src="{{ (.Params.photo | default "images/wei-ting-yen.jpg") | relURL }}"
+           alt="{{ .Params.photo_alt | default (printf "Portrait of %s" site.Params.author) }}"
+           width="200" height="200">
+    </div>
+    <div class="hero-text">
+      <h1>{{ site.Params.author }}</h1>
+      <p class="hero-role">{{ .Params.role }}</p>
+      <p class="hero-inst">{{ .Params.institution }}</p>
+      <div class="hero-intro">{{ .Params.intro | markdownify }}</div>
+      <div class="btn-row">
+        <a class="btn btn-primary" href="{{ "publication/" | relURL }}">Writings</a>
+        <a class="btn btn-outline" href="{{ "bio/" | relURL }}">Bio &amp; C.V.</a>
+        <a class="btn btn-outline" href="mailto:{{ site.Params.email }}">Email: {{ site.Params.email }}</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+{{ $pubs := where site.RegularPages "Section" "in" (slice "publication" "talk" "software") }}
+
+<section class="areas wrap">
+  <h2 id="research-areas" class="page-title">Research areas</h2>
+  <p class="page-sub">Open an area to see the work it covers.</p>
+
+  {{ range hugo.Data.research_areas.areas }}
+    {{ $area := . }}
+    {{ $subs := .subcategories }}
+    {{ $matched := slice }}
+    {{ range $pubs }}
+      {{ $hit := false }}
+      {{ range (.Params.tags | default slice) }}{{ if in $subs . }}{{ $hit = true }}{{ end }}{{ end }}
+      {{ if $hit }}{{ $matched = $matched | append . }}{{ end }}
+    {{ end }}
+    {{ $matched = sort $matched "Date" "desc" }}
+
+    {{ if $matched }}
+    <details class="area">
+      <summary>
+        {{ $area.name }}
+        <span class="area-count">{{ len $matched }} item{{ if ne (len $matched) 1 }}s{{ end }}</span>
+      </summary>
+      <div class="area-body">
+        <p class="area-blurb">{{ $area.blurb }}</p>
+        <div class="pub-list">
+          {{ range first 5 $matched }}
+            {{ partial "citation_row.html" . }}
+          {{ end }}
+        </div>
+        <p style="margin-top:.9rem">
+          <a class="btn btn-outline" href="{{ printf "publication/#area=%s" $area.id | relURL }}">View all {{ len $matched }} in this area</a>
+        </p>
+      </div>
+    </details>
+    {{ end }}
+  {{ end }}
+</section>
+{{ end }}

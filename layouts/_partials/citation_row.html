@@ -1,0 +1,22 @@
+{{/* One publication / talk rendered as a single dense citation line. */}}
+{{ $labels := dict
+  "book" "Book" "book_chapter" "Chapter" "chapter" "Chapter" "data" "Dataset"
+  "software" "Software" "patent" "Patent" "court_brief" "Court Brief"
+  "presentation" "Presentation" "op_ed" "Commentary" "review" "Review"
+  "report" "Report" "thesis" "Thesis" "journal_article" "Article" }}
+{{ $types := .Params.publication_types | default slice }}
+{{ $kind := "" }}
+{{ range $k, $v := $labels }}{{ if and (not $kind) (in $types $k) }}{{ $kind = $v }}{{ end }}{{ end }}
+{{ if not $kind }}{{ $kind = cond (eq .Section "talk") "Presentation" "Article" }}{{ end }}
+
+<article class="pub-item view-citation">
+  <div class="pub-title">
+    <span class="pub-kind">{{ $kind }}</span><a href="{{ .RelPermalink }}">{{ .Title }}</a>
+  </div>
+  <div class="pub-meta-line">
+    <span class="pub-authors">{{ delimit (.Params.authors | default slice) ", " " and " }}</span>
+    {{ with .Date }}<span class="pub-year">&middot; {{ .Format "2006" }}</span>{{ end }}
+    {{ with .Params.publication }}<span class="pub-venue">&middot; {{ . }}</span>{{ end }}
+  </div>
+  {{ with .Params.award }}<div class="pub-award">{{ . }}</div>{{ end }}
+</article>

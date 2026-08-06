@@ -1,0 +1,11 @@
+{{ define "main" }}
+{{ $items := sort (where site.RegularPages "Section" "software") "Date" "desc" }}
+<div class="wrap page">
+  <div class="section-rule"></div>
+  <h1 class="page-title">{{ .Title }}</h1>
+  <div class="pub-list">
+    {{ range $items }}{{ partial "citation_row.html" . }}{{ end }}
+  </div>
+  {{ if not $items }}<p class="empty-note">Nothing here yet.</p>{{ end }}
+</div>
+{{ end }}

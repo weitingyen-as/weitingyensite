@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="{{ or site.Language.Locale "en" }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }} — {{ site.Title }}{{ end }}</title>
+
+  {{ $desc := or .Description .Summary site.Params.description }}
+  <meta name="description" content="{{ $desc | plainify | truncate 200 }}">
+  <link rel="canonical" href="{{ .Permalink }}">
+
+  <meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}">
+  <meta property="og:title" content="{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }}{{ end }}">
+  <meta property="og:description" content="{{ $desc | plainify | truncate 200 }}">
+  <meta property="og:url" content="{{ .Permalink }}">
+  <meta property="og:site_name" content="{{ site.Title }}">
+  <meta name="twitter:card" content="summary">
+
+  <link rel="icon" href="{{ "favicon.ico" | relURL }}" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="{{ "favicon-32x32.png" | relURL }}">
+  <link rel="apple-touch-icon" href="{{ "apple-touch-icon.png" | relURL }}">
+
+  {{ with resources.Get "css/custom.css" }}
+    {{ $css := . }}
+    {{ if hugo.IsProduction }}{{ $css = $css | minify | fingerprint }}{{ end }}
+    <link rel="stylesheet" href="{{ $css.RelPermalink }}"{{ with $css.Data.Integrity }} integrity="{{ . }}" crossorigin="anonymous"{{ end }}>
+  {{ end }}
+
+  {{/* Opt-in discovery metadata — disabled on this site via params.mysite.discovery. */}}
+  {{ if site.Params.mysite.discovery }}
+    <meta name="generator" content="Created using GaryKing.org/mysite (https://gking.harvard.edu/mysite)">
+    {{ if .IsHome }}
+      <script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":{{ site.Params.author }},"affiliation":{"@type":"Organization","name":{{ site.Params.institution }}},"url":{{ site.BaseURL }},"isBasedOn":"https://gking.harvard.edu/mysite"}</script>
+    {{ end }}
+  {{ end }}
+
+  {{ with .OutputFormats.Get "rss" }}<link rel="alternate" type="application/rss+xml" href="{{ .Permalink }}" title="{{ site.Title }}">{{ end }}
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  {{ partial "site_header.html" . }}
+
+  {{/* Tag and term pages are navigation, not content: indexing them pushes bare
+       keyword pages above the papers they point at. */}}
+  <main id="main"{{ if not (in (slice "taxonomy" "term") .Kind) }} data-pagefind-body{{ end }}>
+    {{ block "main" . }}{{ end }}
+  </main>
+
+  {{ partial "site_footer.html" . }}
+  {{ partial "search_modal.html" . }}
+  {{ partial "site_scripts.html" . }}
+</body>
+</html>

@@ -1,0 +1,15 @@
+{{ define "main" }}
+<div class="wrap page">
+  {{ partial "breadcrumb.html" . }}
+  <article>
+    <div class="section-rule"></div>
+    <h1 class="page-title">{{ .Title }}</h1>
+    {{ with .Params.links }}
+      <div class="btn-row" style="margin:1rem 0 1.6rem">
+        {{ range . }}<a class="btn btn-outline" href="{{ if hasPrefix .url "http" }}{{ .url }}{{ else }}{{ .url | relURL }}{{ end }}">{{ .name }}</a>{{ end }}
+      </div>
+    {{ end }}
+    <div class="prose">{{ .Content }}</div>
+  </article>
+</div>
+{{ end }}

@@ -1,0 +1,28 @@
+{{ define "main" }}
+{{ $name := .Title }}
+{{ $work := slice }}
+{{ range (where site.RegularPages "Section" "in" (slice "publication" "talk" "software")) }}
+  {{ if in (.Params.authors | default slice) $name }}{{ $work = $work | append . }}{{ end }}
+{{ end }}
+{{ $work = sort $work "Date" "desc" }}
+
+<div class="wrap page">
+  {{ partial "breadcrumb.html" . }}
+  <div class="section-rule"></div>
+  <h1 class="page-title">{{ .Title }}</h1>
+  {{ with .Params.role }}<p class="page-sub">{{ . }}</p>{{ end }}
+
+  {{ with .Params.website }}
+    <div class="btn-row" style="margin-bottom:1.6rem">
+      <a class="btn btn-outline" href="{{ . }}" rel="noopener">{{ $.Title }}'s page</a>
+    </div>
+  {{ end }}
+
+  {{ if $work }}
+    <h2>Work with Wei-Ting Yen</h2>
+    <div class="pub-list">
+      {{ range $work }}{{ partial "citation_row.html" . }}{{ end }}
+    </div>
+  {{ end }}
+</div>
+{{ end }}

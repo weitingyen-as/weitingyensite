@@ -1,0 +1,109 @@
+{{/* Pagefind search as a modal overlay. The WASM bundle is fetched on first open,
+     not on page load, and the import path goes through relURL so it resolves under
+     the project's /REPO/ base path rather than the host root. */}}
+<div class="search-overlay" id="search-overlay" role="dialog" aria-modal="true" aria-label="Search this site">
+  <div class="search-panel">
+    <label class="sr-only" for="search-input">Search this site</label>
+    <input type="search" id="search-input" placeholder="Search papers, talks, people…" autocomplete="off" spellcheck="false">
+    <ul class="search-results" id="search-results"></ul>
+    <p class="search-hint" id="search-hint">Press <kbd>Esc</kbd> to close.</p>
+  </div>
+</div>
+
+<script>
+(function () {
+  var overlay  = document.getElementById('search-overlay');
+  var input    = document.getElementById('search-input');
+  var results  = document.getElementById('search-results');
+  var hint     = document.getElementById('search-hint');
+  var openBtn  = document.getElementById('search-open');
+  if (!overlay || !input) return;
+
+  var pagefindPromise = null, lastFocus = null;
+  var PAGEFIND_URL = "{{ "pagefind/pagefind.js" | relURL }}";
+
+  function fallback(query) {
+    var site = window.location.host + "{{ relURL "" }}";
+    return 'https://www.google.com/search?q=' + encodeURIComponent('site:' + site + ' ' + query);
+  }
+
+  // One shared promise: opening the modal starts the load, and a keystroke that
+  // arrives while it is still in flight awaits the same load instead of seeing null.
+  function ensurePagefind() {
+    if (!pagefindPromise) {
+      pagefindPromise = import(PAGEFIND_URL)
+        .then(function (pf) { return pf.options({ excerptLength: 24 }).then(function () { return pf; }); })
+        .catch(function () { return null; });
+    }
+    return pagefindPromise;
+  }
+
+  function openModal() {
+    lastFocus = document.activeElement;
+    overlay.classList.add('open');
+    input.focus();
+    input.select();
+    ensurePagefind();
+  }
+
+  function closeModal() {
+    overlay.classList.remove('open');
+    if (lastFocus && lastFocus.focus) lastFocus.focus();
+  }
+
+  if (openBtn) openBtn.addEventListener('click', openModal);
+
+  overlay.addEventListener('click', function (e) { if (e.target === overlay) closeModal(); });
+
+  document.addEventListener('keydown', function (e) {
+    if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') { e.preventDefault(); openModal(); }
+    if (e.key === 'Escape' && overlay.classList.contains('open')) closeModal();
+  });
+
+  // arrow keys move through the result list
+  overlay.addEventListener('keydown', function (e) {
+    if (e.key !== 'ArrowDown' && e.key !== 'ArrowUp') return;
+    var links = Array.prototype.slice.call(results.querySelectorAll('a'));
+    if (!links.length) return;
+    e.preventDefault();
+    var i = links.indexOf(document.activeElement);
+    if (e.key === 'ArrowDown') links[i < 0 ? 0 : Math.min(i + 1, links.length - 1)].focus();
+    else if (i <= 0) input.focus();
+    else links[i - 1].focus();
+  });
+
+  var timer = null;
+  input.addEventListener('input', function () {
+    clearTimeout(timer);
+    timer = setTimeout(run, 180);
+  });
+
+  async function run() {
+    var q = input.value.trim();
+    results.innerHTML = '';
+    if (!q) { hint.textContent = 'Press Esc to close.'; return; }
+
+    var pf = await ensurePagefind();
+    if (!pf) {
+      hint.innerHTML = 'Search is unavailable on this page. <a href="' + fallback(q) + '" rel="nofollow">Search with Google instead</a>.';
+      return;
+    }
+
+    var search = await pf.search(q);
+    if (!search.results.length) { hint.textContent = 'No results for “' + q + '”.'; return; }
+    hint.textContent = search.results.length + ' result' + (search.results.length === 1 ? '' : 's') + '. Use the arrow keys to move through them.';
+
+    var top = await Promise.all(search.results.slice(0, 10).map(function (r) { return r.data(); }));
+    top.forEach(function (d) {
+      var li = document.createElement('li');
+      var a  = document.createElement('a');
+      a.href = d.url;
+      a.innerHTML = '<span class="sr-title"></span><span class="sr-excerpt"></span>';
+      a.querySelector('.sr-title').textContent = d.meta && d.meta.title ? d.meta.title : d.url;
+      a.querySelector('.sr-excerpt').innerHTML = d.excerpt;
+      li.appendChild(a);
+      results.appendChild(li);
+    });
+  }
+})();
+</script>

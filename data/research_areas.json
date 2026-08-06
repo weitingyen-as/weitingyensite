@@ -1,0 +1,40 @@
+{
+  "areas": [
+    {
+      "id": "welfare-and-insecurity",
+      "name": "Welfare States and Economic Insecurity",
+      "blurb": "Why demand for social protection in Asia's young democracies tracks the stability of people's earnings rather than their level, and what that means for pension systems built for salaried careers.",
+      "subcategories": ["welfare state", "economic insecurity", "pensions", "social insurance", "labor market", "informality", "aging", "universal basic income", "gig economy", "political participation"]
+    },
+    {
+      "id": "crisis-governance",
+      "name": "Pandemic Governance and State Capacity",
+      "blurb": "What Asian governments could actually do during COVID-19, where that capacity came from, and how compliance was produced without abandoning democratic politics.",
+      "subcategories": ["covid-19", "state capacity", "crisis governance", "developmental state", "public health", "compliance", "quarantine", "securitization", "digital governance", "resilience", "civil society", "health policy"]
+    },
+    {
+      "id": "territory-and-solidarity",
+      "name": "Territory, Identity, and Solidarity",
+      "blurb": "Welfare states rest on a bounded community of contributors. When a state's own borders are contested, who citizens are willing to share risk with becomes a live political question.",
+      "subcategories": ["territory", "solidarity", "national identity", "nationalism"]
+    },
+    {
+      "id": "public-opinion",
+      "name": "Public Opinion and Political Behavior",
+      "blurb": "Survey and experimental work on how framing, partisanship, and social norms move public attitudes — on vaccination, on basic income, on foreign labor.",
+      "subcategories": ["public opinion", "survey experiments", "policy framing", "narrative policy framework", "vaccination", "populism", "race", "partisanship", "gender", "migration"]
+    },
+    {
+      "id": "taiwan-politics",
+      "name": "Taiwan and Cross-Strait Politics",
+      "blurb": "Elections, protest movements, and trade attitudes in Taiwan, and how relations with China shape all three.",
+      "subcategories": ["taiwan", "cross-strait relations", "trade preferences", "elections", "social movements", "legislature", "security", "china", "democracy", "political institutions"]
+    },
+    {
+      "id": "profession-and-methods",
+      "name": "The Discipline and Its Methods",
+      "blurb": "Field experiments and survey research on governance in Cambodia and Indonesia, the state of Taiwan studies, and bringing an active research agenda into the classroom.",
+      "subcategories": ["teaching", "political science profession", "taiwan studies", "research methods", "field experiments", "measurement", "bibliometrics", "accountability", "service delivery", "cambodia", "financial regulation", "globalization", "political economy", "bureaucracy", "public engagement"]
+    }
+  ]
+}

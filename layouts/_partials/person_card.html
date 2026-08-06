@@ -1,0 +1,19 @@
+{{/* Avatar (or a monogram when there is no photo), name, affiliation. The name
+     links to the person's own page on this site; that page carries the external link. */}}
+{{ $initials := "" }}
+{{ range (split .Title " ") }}
+  {{ if and (ne . "") (lt (len $initials) 2) }}{{ $initials = printf "%s%s" $initials (substr . 0 1) }}{{ end }}
+{{ end }}
+<div class="person">
+  <div class="person-avatar" aria-hidden="true">
+    {{ with .Resources.GetMatch "avatar.*" }}
+      <img src="{{ .RelPermalink }}" alt="" loading="lazy" width="46" height="46">
+    {{ else }}
+      {{ upper $initials }}
+    {{ end }}
+  </div>
+  <div>
+    <div class="person-name"><a href="{{ .RelPermalink }}">{{ .Title }}</a></div>
+    {{ with .Params.role }}<div class="person-role">{{ . }}</div>{{ end }}
+  </div>
+</div>
