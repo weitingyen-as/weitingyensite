@@ -1,6 +1,14 @@
 ---
 title: "Contact"
 date: 2026-08-06
+cascade:
+  build:
+    render: never
+    list: always
+build:
+  render: never
+  list: always
+
 ---
 
 **Email:** [wyen@as.edu.tw](mailto:wyen@as.edu.tw)

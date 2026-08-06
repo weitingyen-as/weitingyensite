@@ -4,12 +4,18 @@ date: 2026-08-06
 links:
   - name: "Curriculum Vitae (PDF)"
     url: "files/wei-ting-yen-cv.pdf"
+cascade:
+  build:
+    render: never
+    list: always
+build:
+  render: never
+  list: always
+
 ---
 
-Wei-Ting Yen is an Assistant Research Fellow at the Institute of Political Science,
-Academia Sinica. She works on comparative political economy, welfare state
-development, democratic governance, public opinion, and the politics of Taiwan and
-East Asia.
+She works on comparative political economy, welfare state development, democratic
+governance, public opinion, and the politics of Taiwan and East Asia.
 
 Two questions organise her research. The first comes out of her dissertation:
 what actually produces demand for social protection in democracies that
@@ -51,6 +57,9 @@ She is also a co-founder and co-editor of
 [*Who Governs Taiwan* (菜市場政治學)](https://whogovernstw.org/), which explains
 political science research in plain Mandarin to a general audience, and has
 co-edited two of its volumes.
+
+<details class="fold">
+<summary>Appointments, education, grants, honours and service</summary>
 
 ## Appointments
 
@@ -112,6 +121,8 @@ Outside the academy she has been a policy consultant to the Awakening Foundation
 since 2020, and previously worked with the World Bank Group as a short-term
 consultant on the I-SAF impact evaluation and as Co-Principal Investigator of the
 Voice and Action Project impact evaluation in Cambodia.
+
+</details>
 
 <!-- NOTE FOR THE SITE OWNER: this page is a condensed version of your C.V. The full
      C.V. PDF is linked at the top and is the complete record. When you update the C.V.,

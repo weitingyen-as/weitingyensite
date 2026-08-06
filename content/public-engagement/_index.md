@@ -1,9 +1,17 @@
 ---
 title: "Public Engagement"
 date: 2026-08-06
+cascade:
+  build:
+    render: never
+    list: always
+build:
+  render: never
+  list: always
+
 ---
 
-## Who Governs Taiwan (菜市場政治學)
+### Who Governs Taiwan (菜市場政治學)
 
 Wei-Ting Yen is a co-founder and co-editor of
 [*Who Governs Taiwan*](https://whogovernstw.org/), a Mandarin-language site that
@@ -19,9 +27,8 @@ You can also follow the project on its
 [Facebook page](https://www.facebook.com/whogovernstw), or read
 [her author archive](http://whogovernstw.org/category/wei-ting-yen/).
 
-### Articles for Who Governs Taiwan
-
-All in Mandarin.
+<details class="fold">
+<summary>Her 25 articles for Who Governs Taiwan (in Mandarin)</summary>
 
 **2024**
 
@@ -80,22 +87,4 @@ All in Mandarin.
 - [Who Should Bear the Cost of Risk? On the State and Risk Redistribution 〈誰該承擔風險? 論國家與風險重分配〉](http://whogovernstw.org/2014/09/15/wei-ting-yen-2/) — September 2014
 - [Moments of Democracy: An Analysis of the Indonesian Presidential Election 〈民主的關鍵時刻：印尼總統大選分析〉](http://whogovernstw.org/2014/07/10/wei-ting-yen-1/) — July 2014
 
-## Talks and panels for general audiences
-
-- Moderator, "From the 'World's Factory' to the 'World's Risk': How Changes in China's Economy Shape the Global Future," Wednesday Youth Day, Understanding China Series No. 36 — May 2026
-- Panelist, "Survey on 'Relearning Taiwan History': Press Conference and Workshop," Fu Cheng Democracy Research Center, Soochow University — May 2026
-- Debater, "AI vs. Humans: Artificial Intelligence Brings More Benefits Than Harm to Democratic Governance," Taiwan Foundation for Democracy — January 2026
-- Lecturer, "What Is Political Science?," Ministry of Education Program for Cultivating High School Talent in the Humanities and Social Sciences, Changhua Girls High School — December 2025
-- Panelist, "Taiwan's Failure Thesis: Report Release," Taiwan Information Environment Research Center (IORG) — September 2025
-- Lecturer, "How Do Democracies Emerge and Die? A Political Science Workshop Bridging Theory and Practice," National High School Humanities and Social Sciences Talent Program Summer Camp — July 2025
-- Moderator, "Is There a Limit to Free Speech? Chinese Spouses, National Security, and the Test of Taiwan's Democracy," Wednesday Youth Day, Understanding China Series No. 23 — July 2025
-- Moderator, "Prudent Defense or Overreaction? How Should Taiwan Perceive the China Threat," Wednesday Youth Day, Understanding China Series No. 21 — May 2025
-- "Is Authoritarianism Better at Handling COVID-19?," book promotion event for *Who Governs? EP2* — April 2022
-- "Conversations about OUR Community: COVID-19's Continued Impact on Lancaster County," United Way of Lancaster County — June 2021
-- "The Politics of COVID-19: Political Regime, State Capacity, and Crisis Response," Taiwanese Association of America — June 2020
-
-## Commentary in the press
-
-Op-eds and commentary for *Foreign Affairs*, *The Washington Post*, the Brookings
-Institution, *The Diplomat*, and others are listed with her
-[writings](../publication/#op-eds).
+</details>

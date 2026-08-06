@@ -2,7 +2,7 @@
 title: "Who Governs?: Elections Edition"
 date: 2018-03-01
 authors: ["Wei-Ting Yen"]
-publication_types: ["book"]
+publication_types: ["edited_volume"]
 publication: "Editor and contributor. Taipei (in Mandarin)"
 abstract: "An edited volume on democracy and elections written for high school and college students, produced by the Who Governs Taiwan collective."
 links:

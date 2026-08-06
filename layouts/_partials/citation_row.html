@@ -1,22 +1,40 @@
-{{/* One publication / talk rendered as a single dense citation line. */}}
-{{ $labels := dict
-  "book" "Book" "book_chapter" "Chapter" "chapter" "Chapter" "data" "Dataset"
-  "software" "Software" "patent" "Patent" "court_brief" "Court Brief"
-  "presentation" "Presentation" "op_ed" "Commentary" "review" "Review"
-  "report" "Report" "thesis" "Thesis" "journal_article" "Article" }}
+{{/* One publication as a dense citation line. On a single-page site there are no
+     per-paper pages, so the title links to the published version and the other
+     links sit beside it. */}}
 {{ $types := .Params.publication_types | default slice }}
-{{ $kind := "" }}
-{{ range $k, $v := $labels }}{{ if and (not $kind) (in $types $k) }}{{ $kind = $v }}{{ end }}{{ end }}
-{{ if not $kind }}{{ $kind = cond (eq .Section "talk") "Presentation" "Article" }}{{ end }}
+{{ $kind := cond (in $types "book_chapter") "Chapter" "Article" }}
 
-<article class="pub-item view-citation">
+{{/* the canonical published version, then anything else worth offering */}}
+{{ $primary := "" }}
+{{ $rest := slice }}
+{{ range .Params.links }}
+  {{ if and (not $primary) (eq .name "Publisher's Version") }}
+    {{ $primary = .url }}
+  {{ else }}
+    {{ $rest = $rest | append . }}
+  {{ end }}
+{{ end }}
+{{ if not $primary }}
+  {{ with $rest }}{{ $primary = (index . 0).url }}{{ $rest = after 1 $rest }}{{ end }}
+{{ end }}
+
+<li class="pub-item">
   <div class="pub-title">
-    <span class="pub-kind">{{ $kind }}</span><a href="{{ .RelPermalink }}">{{ .Title }}</a>
+    <span class="pub-kind">{{ $kind }}</span>
+    {{- if $primary }}<a href="{{ if hasPrefix $primary "http" }}{{ $primary }}{{ else }}{{ $primary | relURL }}{{ end }}"{{ if hasPrefix $primary "http" }} rel="noopener"{{ end }}>{{ .Title }}</a>{{ else }}{{ .Title }}{{ end -}}
   </div>
   <div class="pub-meta-line">
     <span class="pub-authors">{{ delimit (.Params.authors | default slice) ", " " and " }}</span>
-    {{ with .Date }}<span class="pub-year">&middot; {{ .Format "2006" }}</span>{{ end }}
+    <span class="pub-year">&middot; {{ .Date.Format "2006" }}</span>
     {{ with .Params.publication }}<span class="pub-venue">&middot; {{ . }}</span>{{ end }}
   </div>
+  {{ with .Params.abstract }}<p class="pub-abstract">{{ . }}</p>{{ end }}
+  {{ with $rest }}
+    <div class="pub-links">
+      {{ range . }}
+        <a href="{{ if hasPrefix .url "http" }}{{ .url }}{{ else }}{{ .url | relURL }}{{ end }}"{{ if hasPrefix .url "http" }} rel="noopener"{{ end }}>{{ .name }}</a>
+      {{ end }}
+    </div>
+  {{ end }}
   {{ with .Params.award }}<div class="pub-award">{{ . }}</div>{{ end }}
-</article>
+</li>

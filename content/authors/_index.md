@@ -1,6 +1,14 @@
 ---
 title: "People"
 summary: "Wei-Ting Yen's research is collaborative. These are the people she has written with, and the students whose work she has advised."
+cascade:
+  build:
+    render: never
+    list: always
+build:
+  render: never
+  list: always
+
 ---
 
 <!-- NOTE FOR THE SITE OWNER: this page is generated from the `authors:` fields on your

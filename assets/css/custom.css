@@ -159,6 +159,15 @@ main { min-height: 60vh; }
 .page-title { font-size: 2rem; margin-bottom: .3rem; }
 .page-sub { color: var(--color-text-muted); font-size: .95rem; margin-bottom: 2rem; }
 
+/* --------------------------------------------- stacked single-page sections */
+/* Alternating bands give each stacked section an edge without a hard rule. */
+.section { padding: 3.6rem 0; }
+.band { background: var(--color-surface); border-top: 1px solid var(--color-border); border-bottom: 1px solid var(--color-border); }
+.section-title { font-size: 1.85rem; margin: 0 0 .3rem; }
+.section-sub { color: var(--color-text-muted); font-size: .95rem; margin-bottom: 1.8rem; max-width: 68ch; }
+/* every anchor target clears the fixed navbar */
+#about, #research-areas, #public-writing, #people, #contact { scroll-margin-top: calc(var(--nav-h) + 16px); }
+
 /* ---------------------------------------------------------------- prose */
 .prose { max-width: 72ch; }
 .prose p { margin-bottom: 1.25em; }
@@ -212,12 +221,12 @@ main { min-height: 60vh; }
 .hero-intro p { margin-bottom: .8rem; }
 
 /* ------------------------------------------------------- research areas */
-.areas { padding: 3rem 0 4rem; }
 #research-areas { scroll-margin-top: calc(var(--nav-h) + 16px); }
 .area {
   border: 1px solid var(--color-border); border-radius: var(--radius);
   background: var(--color-surface); margin-bottom: .7rem; overflow: hidden;
 }
+.band .area { background: var(--color-bg); }
 .area > summary {
   list-style: none; cursor: pointer; padding: 1rem 1.25rem;
   display: flex; align-items: baseline; gap: .8rem;
@@ -235,11 +244,46 @@ main { min-height: 60vh; }
 .area-blurb { font-size: .93rem; color: var(--color-text-muted); margin: .9rem 0 .8rem; max-width: 68ch; }
 
 /* --------------------------------------------- dense citation list rows */
-.pub-list { border-top: 1px solid var(--color-border); }
+.pub-list { border-top: 1px solid var(--color-border); list-style: none; margin: 0; padding: 0; counter-reset: pub; }
 .pub-item {
-  padding: .55rem 0; border-bottom: 1px solid var(--color-border);
+  padding: .7rem 0; border-bottom: 1px solid var(--color-border);
   font-size: .93rem; line-height: 1.45;
 }
+.pub-abstract {
+  margin: .35rem 0 0; font-size: .87rem; line-height: 1.5;
+  color: var(--color-text-muted); max-width: 72ch;
+}
+.pub-links { margin-top: .4rem; display: flex; flex-wrap: wrap; gap: .9rem; }
+.pub-links a {
+  font-size: .8rem; font-weight: 600; text-decoration: none;
+  border-bottom: 1px solid currentColor; padding-bottom: 1px;
+}
+
+/* ------------------------------------------- inline fold-away detail block */
+.fold { border: 1px solid var(--color-border); border-radius: var(--radius); background: var(--color-bg); margin: 1.5rem 0; }
+.band .fold { background: var(--color-surface); }
+.fold > summary {
+  list-style: none; cursor: pointer; padding: .8rem 1.1rem;
+  font-size: .82rem; font-weight: 700; letter-spacing: .05em; text-transform: uppercase;
+  color: var(--color-accent); display: flex; align-items: center; gap: .6rem;
+}
+.fold > summary::-webkit-details-marker { display: none; }
+.fold > summary::after { content: "+"; margin-left: auto; font-size: 1.1rem; font-weight: 400; letter-spacing: 0; }
+.fold[open] > summary::after { content: "\2013"; }
+.fold > summary:hover { background: var(--color-accent-light); }
+.fold > *:not(summary) { padding: 0 1.1rem; }
+.fold > *:last-child { padding-bottom: .9rem; }
+.fold h2 { font-size: 1.15rem; margin-top: 1.4rem; }
+.fold h2:first-of-type { margin-top: .6rem; }
+
+/* ------------------------------------------------------- edited volumes */
+.volume-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem; margin-bottom: 2rem; }
+.volume { border: 1px solid var(--color-border); border-left: 3px solid var(--color-gold); border-radius: var(--radius); padding: 1rem 1.2rem; background: var(--color-bg); }
+.volume-kind { font-size: .7rem; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; color: var(--color-gold); margin-bottom: .25rem; }
+.volume-title { font-family: var(--font-serif); font-size: 1.05rem; font-weight: 600; line-height: 1.3; }
+.volume-title a { text-decoration: none; color: var(--color-text); }
+.volume-title a:hover { color: var(--color-accent); text-decoration: underline; }
+.volume-note { font-size: .85rem; color: var(--color-text-muted); margin: .4rem 0 0; }
 .pub-meta-line { font-size: .87rem; color: var(--color-text-muted); line-height: 1.4; }
 .pub-authors { color: var(--color-text-muted); font-size: .87rem; line-height: 1.4; }
 .pub-item .pub-title { font-weight: 600; }

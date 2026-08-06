@@ -21,19 +21,10 @@ markup:
   highlight:
     noClasses: false
 
-taxonomies:
-  # Only tags get term pages. publication_types is a filtering key used by the
-  # Writings page, not something a reader should ever land on as a bare term
-  # page reading "journal_article"; categories are unused.
-  tag: tags
-
-permalinks:
-  # :contentbasename is the item's directory name, so the URL is fixed by the
-  # folder and never shifts when a title is edited. Two talks share a title;
-  # :slug would have collided.
-  publication: /publication/:contentbasename/
-  talk: /talk/:contentbasename/
-  software: /software/:contentbasename/
+# No taxonomies: this is a single page, so there is nowhere for a term page to
+# lead. Tags are still read from front matter to place each paper in a research
+# area (see data/research_areas.json).
+taxonomies: {}
 
 params:
   # Owner identity — used by the hero, structured data and the footer.
@@ -73,28 +64,20 @@ params:
     discovery: false
 
 menu:
+  # Single-page site: every entry is an in-page anchor.
   main:
-    - name: Bio & C.V.
-      url: /bio/
+    - name: About
+      url: "/#about"
       weight: 10
-    - name: Writings
-      url: /publication/
-      weight: 20
-    - name: Research Areas
+    - name: Research
       url: "/#research-areas"
+      weight: 20
+    - name: Public Writing
+      url: "/#public-writing"
       weight: 30
-    - name: Presentations
-      url: /talk/
-      weight: 40
     - name: People
-      url: /authors/
-      weight: 50
-    - name: Teaching
-      url: /teaching/
-      weight: 60
-    - name: Public Engagement
-      url: /public-engagement/
-      weight: 70
+      url: "/#people"
+      weight: 40
     - name: Contact
-      url: /contact/
-      weight: 80
+      url: "/#contact"
+      weight: 50

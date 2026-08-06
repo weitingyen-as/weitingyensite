@@ -2,7 +2,7 @@
 title: "Who Governs? EP2: Democratic Ark"
 date: 2022-03-01
 authors: ["Wei-Ting Yen"]
-publication_types: ["book"]
+publication_types: ["edited_volume"]
 publication: "Editor and contributor. Taipei (in Mandarin)"
 abstract: "The second edited volume from the Who Governs Taiwan collective, explaining political science research on democracy to a general Mandarin-reading audience."
 links:

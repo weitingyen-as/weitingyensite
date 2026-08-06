@@ -1,7 +1,28 @@
 {{ define "main" }}
+{{ $bio     := site.GetPage "/bio" }}
+{{ $public  := site.GetPage "/public-engagement" }}
+{{ $contact := site.GetPage "/contact" }}
+{{ $people  := site.GetPage "/authors" }}
+{{ $pubs    := where site.RegularPages "Section" "publication" }}
+
+{{/* Scholarship shown in the research areas; everything else is public-facing. */}}
+{{ $scholarship := slice }}
+{{ $opeds := slice }}
+{{ $volumes := slice }}
+{{ range $pubs }}
+  {{ $t := .Params.publication_types | default slice }}
+  {{ if or (in $t "journal_article") (in $t "book_chapter") }}
+    {{ $scholarship = $scholarship | append . }}
+  {{ else if in $t "op_ed" }}
+    {{ $opeds = $opeds | append . }}
+  {{ else if in $t "edited_volume" }}
+    {{ $volumes = $volumes | append . }}
+  {{ end }}
+{{ end }}
+
+{{/* ----------------------------------------------------------------- hero */}}
 <section class="hero">
   <div class="hero-inner">
-    {{/* Photo left, text right on desktop; stacked and centred at ≤640px. */}}
     <div class="hero-photo">
       <img src="{{ (.Params.photo | default "images/wei-ting-yen.jpg") | relURL }}"
            alt="{{ .Params.photo_alt | default (printf "Portrait of %s" site.Params.author) }}"
@@ -13,25 +34,36 @@
       <p class="hero-inst">{{ .Params.institution }}</p>
       <div class="hero-intro">{{ .Params.intro | markdownify }}</div>
       <div class="btn-row">
-        <a class="btn btn-primary" href="{{ "publication/" | relURL }}">Writings</a>
-        <a class="btn btn-outline" href="{{ "bio/" | relURL }}">Bio &amp; C.V.</a>
+        <a class="btn btn-primary" href="#research-areas">Research</a>
+        <a class="btn btn-outline" href="{{ "files/wei-ting-yen-cv.pdf" | relURL }}">Curriculum Vitae (PDF)</a>
         <a class="btn btn-outline" href="mailto:{{ site.Params.email }}">Email: {{ site.Params.email }}</a>
       </div>
     </div>
   </div>
 </section>
 
-{{ $pubs := where site.RegularPages "Section" "in" (slice "publication" "talk" "software") }}
+{{/* ---------------------------------------------------------------- about */}}
+{{ with $bio }}
+<section class="band" id="about">
+  <div class="wrap section">
+    <div class="section-rule"></div>
+    <h2 class="section-title">About</h2>
+    <div class="prose">{{ .Content }}</div>
+  </div>
+</section>
+{{ end }}
 
-<section class="areas wrap">
-  <h2 id="research-areas" class="page-title">Research areas</h2>
-  <p class="page-sub">Open an area to see the work it covers.</p>
+{{/* ------------------------------------------------------- research areas */}}
+<section class="wrap section" id="research-areas">
+  <div class="section-rule"></div>
+  <h2 class="section-title">Research</h2>
+  <p class="section-sub">{{ len $scholarship }} peer-reviewed articles and book chapters, grouped by what they are about. Open an area to see the work.</p>
 
   {{ range hugo.Data.research_areas.areas }}
     {{ $area := . }}
     {{ $subs := .subcategories }}
     {{ $matched := slice }}
-    {{ range $pubs }}
+    {{ range $scholarship }}
       {{ $hit := false }}
       {{ range (.Params.tags | default slice) }}{{ if in $subs . }}{{ $hit = true }}{{ end }}{{ end }}
       {{ if $hit }}{{ $matched = $matched | append . }}{{ end }}
@@ -45,18 +77,87 @@
         <span class="area-count">{{ len $matched }} item{{ if ne (len $matched) 1 }}s{{ end }}</span>
       </summary>
       <div class="area-body">
-        <p class="area-blurb">{{ $area.blurb }}</p>
-        <div class="pub-list">
-          {{ range first 5 $matched }}
-            {{ partial "citation_row.html" . }}
-          {{ end }}
-        </div>
-        <p style="margin-top:.9rem">
-          <a class="btn btn-outline" href="{{ printf "publication/#area=%s" $area.id | relURL }}">View all {{ len $matched }} in this area</a>
-        </p>
+        {{ with $area.blurb }}<p class="area-blurb">{{ . }}</p>{{ end }}
+        <ol class="pub-list">
+          {{ range $matched }}{{ partial "citation_row.html" . }}{{ end }}
+        </ol>
       </div>
     </details>
     {{ end }}
   {{ end }}
 </section>
+
+{{/* --------------------------------------------------------- public writing */}}
+<section class="band" id="public-writing">
+  <div class="wrap section">
+    <div class="section-rule"></div>
+    <h2 class="section-title">Public Writing</h2>
+
+    {{ with $volumes }}
+      <div class="volume-row">
+        {{ range sort . "Date" "desc" }}
+          {{ $url := "" }}
+          {{ with .Params.links }}{{ $url = (index . 0).url }}{{ end }}
+          <div class="volume">
+            <div class="volume-kind">Edited volume &middot; {{ .Date.Format "2006" }}</div>
+            <div class="volume-title">
+              {{ if $url }}<a href="{{ $url }}" rel="noopener">{{ .Title }}</a>{{ else }}{{ .Title }}{{ end }}
+            </div>
+            {{ with .Params.abstract }}<p class="volume-note">{{ . }}</p>{{ end }}
+          </div>
+        {{ end }}
+      </div>
+    {{ end }}
+
+    <div class="prose prose-wide">{{ with $public }}{{ .Content }}{{ end }}</div>
+
+    {{ with $opeds }}
+      <h3 id="commentary">Commentary and op-eds</h3>
+      <ol class="pub-list">
+        {{ range sort . "Date" "desc" }}
+          {{ $url := "" }}
+          {{ range .Params.links }}{{ if not $url }}{{ $url = .url }}{{ end }}{{ end }}
+          <li class="pub-item">
+            <div class="pub-title">
+              {{ if $url }}<a href="{{ $url }}" rel="noopener">{{ .Title }}</a>{{ else }}{{ .Title }}{{ end }}
+            </div>
+            <div class="pub-meta-line">
+              <span class="pub-authors">{{ delimit (.Params.authors | default slice) ", " " and " }}</span>
+              <span class="pub-venue">&middot; {{ .Params.publication }}</span>
+              <span class="pub-year">&middot; {{ .Date.Format "Jan 2, 2006" }}</span>
+            </div>
+          </li>
+        {{ end }}
+      </ol>
+    {{ end }}
+  </div>
+</section>
+
+{{/* --------------------------------------------------------------- people */}}
+{{ with $people }}
+<section class="wrap section" id="people">
+  <div class="section-rule"></div>
+  <h2 class="section-title">People</h2>
+  {{ with .Params.summary }}<p class="section-sub">{{ . }}</p>{{ end }}
+
+  {{ $members := slice }}
+  {{ range .Pages }}
+    {{ if in (.Params.user_groups | default slice) "Collaborators" }}{{ $members = $members | append . }}{{ end }}
+  {{ end }}
+  <div class="people-grid">
+    {{ range sort $members "Title" "asc" }}{{ partial "person_card.html" . }}{{ end }}
+  </div>
+</section>
+{{ end }}
+
+{{/* -------------------------------------------------------------- contact */}}
+{{ with $contact }}
+<section class="band" id="contact">
+  <div class="wrap section">
+    <div class="section-rule"></div>
+    <h2 class="section-title">Contact</h2>
+    <div class="prose">{{ .Content }}</div>
+  </div>
+</section>
+{{ end }}
 {{ end }}
