@@ -12,7 +12,7 @@
         <h2>Sections</h2>
         <ul>
           {{ range first 4 site.Menus.main }}
-            <li><a href="{{ if hasPrefix .URL "/#" }}{{ printf "%s%s" (relURL "") (strings.TrimPrefix "/" .URL) }}{{ else }}{{ relURL (strings.TrimPrefix "/" .URL) }}{{ end }}">{{ .Name }}</a></li>
+            <li><a href="{{ .URL }}">{{ .Name }}</a></li>
           {{ end }}
         </ul>
       </div>
@@ -20,7 +20,7 @@
         <h2>More</h2>
         <ul>
           {{ range after 4 site.Menus.main }}
-            <li><a href="{{ if hasPrefix .URL "/#" }}{{ printf "%s%s" (relURL "") (strings.TrimPrefix "/" .URL) }}{{ else }}{{ relURL (strings.TrimPrefix "/" .URL) }}{{ end }}">{{ .Name }}</a></li>
+            <li><a href="{{ .URL }}">{{ .Name }}</a></li>
           {{ end }}
           <li><a href="{{ "files/wei-ting-yen-cv.pdf" | relURL }}">Curriculum Vitae (PDF)</a></li>
         </ul>

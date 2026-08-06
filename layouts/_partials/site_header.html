@@ -5,14 +5,10 @@
 
     <div class="nav-right">
       <ul class="nav-links" id="nav-links">
+        {{/* Hugo has already resolved menu .URL against baseURL — running it
+             through relURL again doubles the /REPO/ prefix and 404s every link. */}}
         {{ range site.Menus.main }}
-          {{ $url := .URL }}
-          {{ if hasPrefix $url "/#" }}
-            {{ $url = printf "%s%s" (relURL "") (strings.TrimPrefix "/" $url) }}
-          {{ else }}
-            {{ $url = relURL (strings.TrimPrefix "/" $url) }}
-          {{ end }}
-          <li><a href="{{ $url }}"{{ if $.IsMenuCurrent "main" . }} aria-current="page"{{ end }}>{{ .Name }}</a></li>
+          <li><a href="{{ .URL }}"{{ if $.IsMenuCurrent "main" . }} aria-current="page"{{ end }}>{{ .Name }}</a></li>
         {{ end }}
       </ul>
 
