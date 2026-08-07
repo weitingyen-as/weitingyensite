@@ -142,10 +142,9 @@ Hashtags are the only way a reader filters your work, so they matter.
   not `Taiwan Politics` or `#taiwanpolitics`. They are case-sensitive.
 - The chip bar orders itself by how many papers carry each tag, most first.
 
-The 14 in use: `PoliticalBehavior` `TaiwanPolitics` `COVID` `Identity`
-`EconomicInsecurity` `Framing` `DevelopmentalState` `SocialInsurance`
-`StateCapacity` `WelfareState` `IssueSecuritization` `Populism` `Teaching`
-`UniversalBasicIncome`
+The 14 in use, in the order the bar shows them (count in brackets):
+
+`TaiwanPolitics` 11 · `PoliticalBehavior` 10 · `COVID` 9 · `Identity` 5 · `EconomicInsecurity` 4 · `Framing` 4 · `DevelopmentalState` 3 · `SocialInsurance` 3 · `StateCapacity` 3 · `WelfareState` 3 · `IssueSecuritization` 2 · `Populism` 1 · `Teaching` 1 · `UniversalBasicIncome` 1
 
 Selecting more than one hashtag **narrows** — a paper must carry all of them.
 Tags that would leave nothing to show are greyed out rather than leading to an
