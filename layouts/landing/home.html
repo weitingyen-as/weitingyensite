@@ -189,43 +189,44 @@
   <div class="wrap section">
     <div class="section-rule"></div>
     <h2 class="section-title">Public Writing</h2>
+    <p class="section-sub">Her public writing makes evidence-based policy arguments about
+    US&ndash;Taiwan&ndash;China relations, and brings political science research to
+    Mandarin-speaking readers.</p>
 
-    {{ with $volumes }}
-      <div class="volume-row">
-        {{ range sort . "Date" "desc" }}
-          {{ $url := "" }}
-          {{ with .Params.links }}{{ $url = (index . 0).url }}{{ end }}
-          <div class="volume">
-            <div class="volume-kind">Edited volume &middot; {{ .Date.Format "2006" }}</div>
-            <div class="volume-title">
-              {{ if $url }}<a href="{{ $url }}" rel="noopener">{{ .Title }}</a>{{ else }}{{ .Title }}{{ end }}
-            </div>
-            {{ with .Params.abstract }}<p class="volume-note">{{ . }}</p>{{ end }}
-          </div>
-        {{ end }}
+    <div class="pw-layout">
+      <div class="prose">{{ with $public }}{{ .Content }}{{ end }}</div>
+      <div class="pw-covers">
+        <a href="https://www.eslite.com/product/1001141162682134504005" target="_blank" rel="noopener">
+          <img src="{{ "images/who-governs-ep2.jpg" | relURL }}" width="440" height="595" loading="lazy"
+               alt="Cover of Who Governs? EP2: Democratic Ark (2022)">
+        </a>
+        <a href="https://www.books.com.tw/products/0010797101" target="_blank" rel="noopener">
+          <img src="{{ "images/who-governs-2018.jpg" | relURL }}" width="440" height="550" loading="lazy"
+               alt="Cover of Who Governs?: Elections Edition (2018)">
+        </a>
       </div>
-    {{ end }}
-
-    <div class="prose prose-wide">{{ with $public }}{{ .Content }}{{ end }}</div>
+    </div>
 
     {{ with $opeds }}
-      <h3 id="commentary">Commentary and op-eds</h3>
-      <ol class="pub-list pub-list--plain">
-        {{ range sort . "Date" "desc" }}
-          {{ $url := "" }}
-          {{ range .Params.links }}{{ if not $url }}{{ $url = .url }}{{ end }}{{ end }}
-          <li class="pub-item">
-            <div class="pub-title">
-              {{ if $url }}<a href="{{ $url }}" rel="noopener">{{ .Title }}</a>{{ else }}{{ .Title }}{{ end }}
-            </div>
-            <div class="pub-meta-line">
-              <span class="pub-authors">{{ delimit (.Params.authors | default slice) ", " " and " }}</span>
-              <span class="pub-venue">&middot; {{ .Params.publication }}</span>
-              <span class="pub-year">&middot; {{ .Date.Format "Jan 2, 2006" }}</span>
-            </div>
-          </li>
-        {{ end }}
-      </ol>
+      <details class="fold" id="commentary">
+        <summary>Commentary and op-eds <span class="fold-n">{{ len . }}</span></summary>
+        <ol class="pub-list pub-list--plain">
+          {{ range sort . "Date" "desc" }}
+            {{ $url := "" }}
+            {{ range .Params.links }}{{ if not $url }}{{ $url = .url }}{{ end }}{{ end }}
+            <li class="pub-item">
+              <div class="pub-title">
+                {{ if $url }}<a href="{{ $url }}" target="_blank" rel="noopener">{{ .Title }}</a>{{ else }}{{ .Title }}{{ end }}
+              </div>
+              <div class="pub-meta-line">
+                <span class="pub-authors">{{ delimit (.Params.authors | default slice) ", " " and " }}</span>
+                <span class="pub-venue">&middot; {{ .Params.publication }}</span>
+                <span class="pub-year">&middot; {{ .Date.Format "Jan 2, 2006" }}</span>
+              </div>
+            </li>
+          {{ end }}
+        </ol>
+      </details>
     {{ end }}
   </div>
 </section>
