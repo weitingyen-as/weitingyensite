@@ -363,7 +363,7 @@ main > section:last-of-type .section { padding-bottom: 4.6rem; }
   display: grid; grid-template-columns: 110px minmax(0, 1fr);
   gap: 2.2rem; align-items: start; max-width: 680px;
 }
-.pw-layout .prose { max-width: none; }
+.pw-layout .prose { max-width: none; text-align: right; }
 .pw-covers { display: flex; flex-direction: column; gap: .625rem; }
 .pw-covers img {
   width: 100%; height: auto; border-radius: var(--radius-sm);
