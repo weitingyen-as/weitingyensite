@@ -34,7 +34,7 @@
       <div class="hero-intro">{{ .Params.intro | markdownify }}</div>
       <div class="btn-row">
         <a class="btn btn-primary" href="{{ "files/wei-ting-yen-cv.pdf" | relURL }}" target="_blank" rel="noopener">Curriculum Vitae (PDF)</a>
-        <a class="btn btn-outline" href="mailto:{{ site.Params.email }}">Email: {{ site.Params.email }}</a>
+        <a class="btn btn-primary" href="mailto:{{ site.Params.email }}">Email: {{ site.Params.email }}</a>
       </div>
     </div>
   </div>
@@ -84,7 +84,7 @@
   </ol>
   <p class="empty-note" id="research-empty" hidden>No publication carries every hashtag you have selected.</p>
   <div class="show-all-wrap">
-    <button type="button" class="btn btn-outline" id="show-all" hidden aria-expanded="false"></button>
+    <button type="button" class="btn btn-primary" id="show-all" hidden aria-expanded="false"></button>
   </div>
 
 </section>
@@ -226,7 +226,7 @@
         {{ end }}
       </ol>
       <div class="show-all-wrap">
-        <button type="button" class="btn btn-outline" id="show-all-opeds" aria-expanded="false"
+        <button type="button" class="btn btn-primary" id="show-all-opeds" aria-expanded="false"
                 aria-controls="oped-list">Show all {{ len . }} pieces</button>
       </div>
 
