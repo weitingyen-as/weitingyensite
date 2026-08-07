@@ -7,39 +7,51 @@
    ========================================================================== */
 
 :root {
-  /* surfaces — warm, never pure white */
-  --color-bg:            #faf6f0;
+  /* ------------------------------------------------------------------------
+     Academia Sinica's institutional palette, sampled from the emblem artwork:
+       #005b94  C100 M70 Y20   deep blue    — primary
+       #0082b4  C80  M70 Y20   mid blue     — secondary, decorative
+       #b8a887  C30  M30 Y50   khaki        — topical labels
+       #d8d0bd  C15  M15 Y25   warm cream   — surfaces and rules
+     Surface and text values are tints of those four, checked against WCAG AA.
+     ------------------------------------------------------------------------ */
+  --color-sinica-blue:     #005b94;
+  --color-sinica-blue-mid: #0082b4;
+  --color-sinica-khaki:    #b8a887;
+  --color-sinica-cream:    #d8d0bd;
+
+  /* surfaces */
+  --color-bg:            #faf9f7;
   --color-surface:       #ffffff;
-  --color-surface-alt:   #f4ebdf;
+  --color-surface-alt:   #f1eee7;
 
   /* text */
-  --color-text:          #241f1b;
-  --color-text-muted:    #6b625a;
-  --color-text-faint:    #8d8378;
+  --color-text:          #23262b;
+  --color-text-muted:    #5e646c;
+  --color-text-faint:    #7d838b;
 
-  /* accent — a deep brick red, the same structural role Harvard crimson plays
-     on the design this site is modelled on */
-  --color-accent:        #9c3d2e;
-  --color-accent-hover:  #7d2f22;
-  --color-accent-light:  #f8e9e4;
-  --color-institution:   #9c3d2e;
+  /* accent — the emblem's deep blue */
+  --color-accent:        #005b94;
+  --color-accent-hover:  #00446f;
+  --color-accent-light:  #e6eff4;
+  --color-institution:   #005b94;
 
   /* links */
-  --color-link:          #9c3d2e;
-  --color-link-hover:    #7d2f22;
+  --color-link:          #005b94;
+  --color-link-hover:    #00446f;
 
-  /* secondary highlight */
-  --color-gold:          #846229;
-  --color-gold-light:    #f9f1de;
+  /* khaki, for hashtags and awards */
+  --color-gold:          #786d58;
+  --color-gold-light:    #f0ece2;
 
-  --color-border:        #e9dfd1;
-  --color-border-strong: #d9ccb8;
-  --color-focus:         #d4a96a;
+  --color-border:        #e8e3d8;
+  --color-border-strong: #d5cdba;
+  --color-focus:         #0082b4;
 
   --radius:      8px;
   --radius-sm:   4px;
-  --shadow:      0 1px 3px rgba(36, 31, 27, .06), 0 1px 2px rgba(36, 31, 27, .04);
-  --shadow-lg:   0 8px 30px rgba(36, 31, 27, .09);
+  --shadow:      0 1px 3px rgba(35, 38, 43, .06), 0 1px 2px rgba(35, 38, 43, .04);
+  --shadow-lg:   0 8px 30px rgba(35, 38, 43, .10);
 
   --max-w:       1060px;
   --nav-h:       60px;
@@ -156,7 +168,8 @@ main { min-height: 60vh; }
 .breadcrumb a:hover { color: var(--color-accent); text-decoration: underline; }
 .breadcrumb span[aria-hidden] { padding: 0 .4rem; color: var(--color-border-strong); }
 
-.section-rule { width: 44px; height: 3px; background: var(--color-accent); border-radius: 2px; margin-bottom: .85rem; }
+.section-rule { width: 44px; height: 3px; border-radius: 2px; margin-bottom: .85rem;
+  background: linear-gradient(90deg, var(--color-sinica-blue) 0%, var(--color-sinica-blue-mid) 100%); }
 .page-title { font-size: 2rem; margin-bottom: .3rem; }
 .page-sub { color: var(--color-text-muted); font-size: .95rem; margin-bottom: 2rem; }
 
@@ -207,7 +220,7 @@ main > section:last-of-type .section { padding-bottom: 4.6rem; }
 .btn-row { display: flex; flex-wrap: wrap; gap: .6rem; }
 
 /* ------------------------------------------------------------------ hero */
-.hero { padding: 3.2rem 0 2.6rem; border-bottom: 1px solid var(--color-border); background: linear-gradient(180deg, #f3e3dc 0%, var(--color-bg) 78%); }
+.hero { padding: 3.2rem 0 2.6rem; border-bottom: 1px solid var(--color-border); background: linear-gradient(180deg, #e8eff4 0%, var(--color-bg) 80%); }
 .hero-inner {
   max-width: var(--max-w); margin: 0 auto; padding: 0 1.4rem;
   display: grid; grid-template-columns: 200px 1fr; gap: 2.8rem; align-items: start;
@@ -296,7 +309,7 @@ main > section:last-of-type .section { padding-bottom: 4.6rem; }
 .pub-tags { display: flex; flex-wrap: wrap; gap: .3rem; margin-left: auto; }
 /* the same pill as the filter bar, so a tag on a card reads as the same object */
 .pub-tag {
-  background: var(--color-gold-light); border: 1px solid #ede0c4;
+  background: var(--color-gold-light); border: 1px solid #e2dbca;
   border-radius: 50px; padding: .12rem .55rem; cursor: pointer;
   font-size: .72rem; font-weight: 600; color: var(--color-text-faint);
   transition: background-color .15s, border-color .15s, color .15s;
