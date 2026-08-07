@@ -227,71 +227,86 @@ main > section:last-of-type .section { padding-bottom: 4.6rem; }
 .tag-chip {
   display: inline-flex; align-items: baseline; gap: .35rem;
   background: var(--color-surface); border: 1px solid var(--color-border);
-  border-radius: 50px; padding: .3rem .75rem; cursor: pointer;
+  border-radius: 50px; padding: .3rem .8rem; cursor: pointer;
   font-size: .8rem; font-weight: 600; color: var(--color-text-muted);
   transition: background-color .15s, border-color .15s, color .15s;
 }
 .tag-chip:hover { border-color: var(--color-accent); color: var(--color-accent); }
 .tag-chip.on { background: var(--color-accent); border-color: var(--color-accent); color: #fff; }
-.tag-chip.on .tag-n { color: rgba(255,255,255,.7); }
+.tag-chip.on .tag-n { color: rgba(255, 255, 255, .72); }
 /* a hashtag that would return nothing on top of the current selection */
 .tag-chip.dim { opacity: .35; }
 .tag-n { font-size: .7rem; font-weight: 500; color: var(--color-text-faint); }
 .tag-clear {
-  background: none; border: 0; cursor: pointer; padding: .3rem .5rem;
-  font-size: .8rem; font-weight: 600; color: var(--color-link);
+  background: none; border: 0; cursor: pointer; padding: 0;
+  font-size: .82rem; font-weight: 600; color: var(--color-link);
   text-decoration: underline; text-underline-offset: 2px;
 }
-.tag-count { font-size: .85rem; color: var(--color-text-muted); margin: 0 0 1.2rem; }
+.tag-clear:hover { color: var(--color-link-hover); }
+.tag-count { font-size: .85rem; color: var(--color-text-muted); margin: 0 0 1.2rem; display: flex; align-items: baseline; gap: .8rem; flex-wrap: wrap; }
 
-/* hashtags printed on a publication, clickable */
-.pub-tags { margin-top: .45rem; display: flex; flex-wrap: wrap; gap: .35rem; }
+/* ------------------------------------------------------- publication cards */
+#research-list {
+  list-style: none; margin: 0; padding: 0; border-top: 0;
+  display: flex; flex-direction: column; gap: .7rem;
+}
+#research-list .pub-item {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border); border-radius: var(--radius);
+  padding: .95rem 1.15rem;
+  transition: border-color .18s, box-shadow .18s;
+}
+#research-list .pub-item:hover { border-color: var(--color-border-strong); box-shadow: var(--shadow); }
+#research-list .pub-item[hidden] { display: none !important; }
+
+.pub-head { display: flex; align-items: baseline; gap: .5rem; margin-bottom: .15rem; }
+.pub-year-lead { font-size: .78rem; font-weight: 700; color: var(--color-accent); letter-spacing: .04em; }
+.pub-kind {
+  font-size: .64rem; font-weight: 700; letter-spacing: .09em; text-transform: uppercase;
+  color: var(--color-text-faint);
+}
+.pub-title { font-family: var(--font-sans); font-size: .97rem; font-weight: 600; line-height: 1.4; margin: 0 0 .2rem; }
+.pub-title a { color: var(--color-text); text-decoration: none; }
+.pub-title a:hover { color: var(--color-accent); text-decoration: underline; }
+.pub-meta-line { font-size: .86rem; color: var(--color-text-muted); line-height: 1.45; }
+.pub-authors { color: var(--color-text-muted); }
+.pub-venue { font-style: italic; }
+.pub-year { color: var(--color-text-faint); }
+.pub-abstract { margin: .45rem 0 0; font-size: .87rem; line-height: 1.55; color: var(--color-text-muted); max-width: 78ch; }
+
+.pub-foot {
+  display: flex; flex-wrap: wrap; align-items: center; gap: .5rem 1rem;
+  margin-top: .7rem; padding-top: .6rem; border-top: 1px solid var(--color-border);
+}
+.pub-links { display: flex; flex-wrap: wrap; gap: .9rem; }
+.pub-links a { font-size: .79rem; font-weight: 600; text-decoration: none; border-bottom: 1px solid currentColor; padding-bottom: 1px; }
+.pub-tags { display: flex; flex-wrap: wrap; gap: .3rem; margin-left: auto; }
+/* the same pill as the filter bar, so a tag on a card reads as the same object */
 .pub-tag {
-  background: none; border: 0; padding: 0; cursor: pointer;
-  font-size: .76rem; font-weight: 600; color: var(--color-text-faint);
-  transition: color .15s;
+  background: var(--color-bg); border: 1px solid var(--color-border);
+  border-radius: 50px; padding: .12rem .55rem; cursor: pointer;
+  font-size: .72rem; font-weight: 600; color: var(--color-text-faint);
+  transition: background-color .15s, border-color .15s, color .15s;
 }
-.pub-tag:hover { color: var(--color-accent); }
+.pub-tag:hover { border-color: var(--color-accent); color: var(--color-accent); }
+/* lit up when this tag is one of the ones currently filtering the list */
+.pub-tag.on { background: var(--color-accent-light); border-color: var(--color-accent); color: var(--color-accent); }
 
-/* the year leads each row, so the chronology is scannable down the left */
-.pub-year-lead {
-  display: inline-block; min-width: 3.1rem;
-  font-size: .8rem; font-weight: 700; color: var(--color-text-faint);
-  letter-spacing: .02em;
+.pub-award {
+  display: inline-flex; align-items: center; gap: .3rem; margin-top: .45rem;
+  background: var(--color-gold-light); color: var(--color-gold);
+  font-size: .74rem; font-weight: 600; padding: .12rem .55rem; border-radius: 50px;
 }
+.pub-award::before { content: "\2726"; font-size: .7rem; }
+.view-citation { display: block; }
+.pub-list { list-style: none; margin: 0; padding: 0; }
 
-/* --------------------------------------------- dense citation list rows */
-.pub-list { border-top: 1px solid var(--color-border); list-style: none; margin: 0; padding: 0; counter-reset: pub; }
-.pub-item {
-  padding: .7rem 0; border-bottom: 1px solid var(--color-border);
-  font-size: .93rem; line-height: 1.45;
-}
-.pub-abstract {
-  margin: .35rem 0 0; font-size: .87rem; line-height: 1.5;
-  color: var(--color-text-muted); max-width: 72ch;
-}
-.pub-links { margin-top: .4rem; display: flex; flex-wrap: wrap; gap: .9rem; }
-.pub-links a {
-  font-size: .8rem; font-weight: 600; text-decoration: none;
-  border-bottom: 1px solid currentColor; padding-bottom: 1px;
-}
+.show-all-wrap { display: flex; justify-content: center; margin-top: 1.1rem; }
 
-/* ------------------------------------------- inline fold-away detail block */
-.fold { border: 1px solid var(--color-border); border-radius: var(--radius); background: var(--color-bg); margin: 1.5rem 0; }
-.band .fold { background: var(--color-surface); }
-.fold > summary {
-  list-style: none; cursor: pointer; padding: .8rem 1.1rem;
-  font-size: .82rem; font-weight: 700; letter-spacing: .05em; text-transform: uppercase;
-  color: var(--color-accent); display: flex; align-items: center; gap: .6rem;
-}
-.fold > summary::-webkit-details-marker { display: none; }
-.fold > summary::after { content: "+"; margin-left: auto; font-size: 1.1rem; font-weight: 400; letter-spacing: 0; }
-.fold[open] > summary::after { content: "\2013"; }
-.fold > summary:hover { background: var(--color-accent-light); }
-.fold > *:not(summary) { padding: 0 1.1rem; }
-.fold > *:last-child { padding-bottom: .9rem; }
-.fold h2 { font-size: 1.15rem; margin-top: 1.4rem; }
-.fold h2:first-of-type { margin-top: .6rem; }
+.empty-note { padding: 2rem 0; color: var(--color-text-muted); }
+
+.pub-list--plain { border-top: 1px solid var(--color-border); }
+.pub-list--plain .pub-item { padding: .6rem 0; border-bottom: 1px solid var(--color-border); font-size: .93rem; line-height: 1.45; }
 
 /* ------------------------------------------------------- edited volumes */
 .volume-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem; margin-bottom: 2rem; }
@@ -475,12 +490,8 @@ main > section:last-of-type .section { padding-bottom: 4.6rem; }
 
 @media (max-width: 640px) {
   body { font-size: 16px; }
-  .pub-year-lead { min-width: 0; margin-right: .4rem; }
-  #research-list .pub-meta-line,
-  #research-list .pub-abstract,
-  #research-list .pub-links,
-  #research-list .pub-tags,
-  #research-list .pub-award { margin-left: 0; }
+  .pub-tags { margin-left: 0; }
+  .pub-foot { gap: .5rem; }
   .hero-inner { grid-template-columns: 1fr; justify-items: center; text-align: center; gap: 1.6rem; }
   .hero-text h1 { font-size: 2rem; }
   .hero-intro { text-align: left; }

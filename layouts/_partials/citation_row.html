@@ -1,6 +1,6 @@
-{{/* One publication as a dense citation line. There are no per-paper pages, so
-     the title links to the published version. The hashtags are printed and are
-     also held as a data attribute for the filter to read. */}}
+{{/* One publication as a card. There are no per-paper pages, so the title links
+     to the published version. Hashtags are printed as chips and also held in a
+     data attribute for the filter to read. */}}
 {{ $types := .Params.publication_types | default slice }}
 {{ $kind := cond (in $types "book_chapter") "Chapter" "Article" }}
 {{ $tags := .Params.hashtags | default slice }}
@@ -19,27 +19,33 @@
 {{ end }}
 
 <li class="pub-item" data-hashtags="{{ delimit $tags " " }}">
-  <div class="pub-title">
+  <div class="pub-head">
     <span class="pub-year-lead">{{ .Date.Format "2006" }}</span>
-    {{- if $primary }}<a href="{{ if hasPrefix $primary "http" }}{{ $primary }}{{ else }}{{ $primary | relURL }}{{ end }}"{{ if hasPrefix $primary "http" }} rel="noopener"{{ end }}>{{ .Title }}</a>{{ else }}{{ .Title }}{{ end -}}
     <span class="pub-kind">{{ $kind }}</span>
   </div>
+  <h4 class="pub-title">
+    {{- if $primary }}<a href="{{ if hasPrefix $primary "http" }}{{ $primary }}{{ else }}{{ $primary | relURL }}{{ end }}"{{ if hasPrefix $primary "http" }} rel="noopener"{{ end }}>{{ .Title }}</a>{{ else }}{{ .Title }}{{ end -}}
+  </h4>
   <div class="pub-meta-line">
     <span class="pub-authors">{{ delimit (.Params.authors | default slice) ", " " and " }}</span>
     {{ with .Params.publication }}<span class="pub-venue">&middot; {{ . }}</span>{{ end }}
   </div>
   {{ with .Params.abstract }}<p class="pub-abstract">{{ . }}</p>{{ end }}
-  {{ with $rest }}
-    <div class="pub-links">
-      {{ range . }}
-        <a href="{{ if hasPrefix .url "http" }}{{ .url }}{{ else }}{{ .url | relURL }}{{ end }}"{{ if hasPrefix .url "http" }} rel="noopener"{{ end }}>{{ .name }}</a>
-      {{ end }}
-    </div>
-  {{ end }}
   {{ with .Params.award }}<div class="pub-award">{{ . }}</div>{{ end }}
-  {{ with $tags }}
-    <div class="pub-tags">
-      {{ range . }}<button type="button" class="pub-tag" data-tag="{{ . }}">#{{ . }}</button>{{ end }}
+  {{ if or $rest $tags }}
+    <div class="pub-foot">
+      {{ with $rest }}
+        <div class="pub-links">
+          {{ range . }}
+            <a href="{{ if hasPrefix .url "http" }}{{ .url }}{{ else }}{{ .url | relURL }}{{ end }}"{{ if hasPrefix .url "http" }} rel="noopener"{{ end }}>{{ .name }}</a>
+          {{ end }}
+        </div>
+      {{ end }}
+      {{ with $tags }}
+        <div class="pub-tags">
+          {{ range . }}<button type="button" class="pub-tag" data-tag="{{ . }}">#{{ . }}</button>{{ end }}
+        </div>
+      {{ end }}
     </div>
   {{ end }}
 </li>

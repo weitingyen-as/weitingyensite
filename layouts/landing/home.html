@@ -73,9 +73,8 @@
     {{ range $tagList }}
       <button type="button" class="tag-chip" data-tag="{{ .tag }}" aria-pressed="false">#{{ .tag }}<span class="tag-n">{{ .n }}</span></button>
     {{ end }}
-    <button type="button" class="tag-clear" id="tag-clear" hidden>Clear</button>
   </div>
-  <p class="tag-count" id="tag-count" aria-live="polite">{{ len $scholarship }} publications</p>
+  <p class="tag-count"><span id="tag-count" aria-live="polite">{{ len $scholarship }} publications</span><button type="button" class="tag-clear" id="tag-clear" hidden>Clear</button></p>
 
   {{/* Server-rendered in full, newest first: the list still reads with JS off. */}}
   <ol class="pub-list" id="research-list">
@@ -84,6 +83,9 @@
     {{ end }}
   </ol>
   <p class="empty-note" id="research-empty" hidden>No publication carries every hashtag you have selected.</p>
+  <div class="show-all-wrap">
+    <button type="button" class="btn btn-outline" id="show-all" hidden aria-expanded="false"></button>
+  </div>
 
   <p class="collab-note">Wei-Ting Yen's research is collaborative, and she welcomes new
   collaborators &mdash; especially those working on welfare state politics and political
@@ -98,7 +100,10 @@
   var count = document.getElementById('tag-count');
   var empty = document.getElementById('research-empty');
   var clear = document.getElementById('tag-clear');
+  var showAll = document.getElementById('show-all');
   var active = [];
+  var expanded = false;
+  var LIMIT = 6;
 
   function tagsOf(el) { return (el.dataset.hashtags || '').split(' ').filter(Boolean); }
 
@@ -108,9 +113,23 @@
       var t = tagsOf(el);
       // every selected hashtag must be present, so selections narrow the list
       var ok = active.every(function (a) { return t.indexOf(a) !== -1; });
-      el.hidden = !ok;
       if (ok) shown++;
+      // the list is long and growing, so only the most recent few show until asked
+      el.hidden = !ok || (!expanded && shown > LIMIT);
+
+      // highlight the hashtags on a card that are doing the filtering
+      Array.prototype.forEach.call(el.querySelectorAll('.pub-tag'), function (b) {
+        b.classList.toggle('on', active.indexOf(b.dataset.tag) !== -1);
+      });
     });
+
+    if (shown > LIMIT) {
+      showAll.hidden = false;
+      showAll.textContent = expanded ? 'Show fewer' : 'Show all ' + shown + ' publications';
+      showAll.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+    } else {
+      showAll.hidden = true;
+    }
 
     chips.forEach(function (c) {
       var on = active.indexOf(c.dataset.tag) !== -1;
@@ -147,6 +166,11 @@
     c.addEventListener('click', function () { toggle(c.dataset.tag); });
   });
   clear.addEventListener('click', function () { active = []; render(); });
+  showAll.addEventListener('click', function () {
+    expanded = !expanded;
+    render();
+    if (!expanded) document.getElementById('research-areas').scrollIntoView({ block: 'start' });
+  });
 
   // hashtags printed on each publication are clickable too
   document.getElementById('research-list').addEventListener('click', function (e) {
@@ -189,7 +213,7 @@
 
     {{ with $opeds }}
       <h3 id="commentary">Commentary and op-eds</h3>
-      <ol class="pub-list">
+      <ol class="pub-list pub-list--plain">
         {{ range sort . "Date" "desc" }}
           {{ $url := "" }}
           {{ range .Params.links }}{{ if not $url }}{{ $url = .url }}{{ end }}{{ end }}
