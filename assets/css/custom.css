@@ -220,9 +220,7 @@ main > section:last-of-type .section { padding-bottom: 4.6rem; }
 .btn-row { display: flex; flex-wrap: wrap; gap: .6rem; }
 
 /* ------------------------------------------------------------------ hero */
-/* Warm wash behind the portrait: the cool blue fought the red jacket. The rest
-   of the page keeps the institutional blue. */
-.hero { padding: 3.2rem 0 2.6rem; border-bottom: 1px solid var(--color-border); background: linear-gradient(180deg, #f3e3dc 0%, var(--color-bg) 78%); }
+.hero { padding: 3.2rem 0 2.6rem; border-bottom: 1px solid var(--color-border); background: var(--color-surface); }
 .hero-inner {
   max-width: var(--max-w); margin: 0 auto; padding: 0 1.4rem;
   display: grid; grid-template-columns: 200px 1fr; gap: 2.8rem; align-items: start;
