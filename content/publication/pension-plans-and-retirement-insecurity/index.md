@@ -4,6 +4,8 @@ date: 2018-01-01
 authors: ["Wei-Ting Yen"]
 publication_types: ["journal_article"]
 publication: "Aging International, 43(4): 438–463"
+venue: "Aging International"
+venue_detail: "43(4): 438–463"
 abstract: "How pension systems are designed shapes who ends up insecure in old age, with contributory schemes leaving workers with irregular careers exposed."
 links:
   - name: "Article (PDF)"

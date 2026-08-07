@@ -4,6 +4,8 @@ date: 2017-01-01
 authors: ["Fang-Yu Chen", "Wei-Ting Yen"]
 publication_types: ["journal_article"]
 publication: "Journal of Asian and African Studies, 52(8): 1193–1212"
+venue: "Journal of Asian and African Studies"
+venue_detail: "52(8): 1193–1212"
 abstract: "Support for Taiwan's 2014 Sunflower movement tracked nationalist sentiment more closely than economic self-interest."
 award: "S.C. Lee Graduate Research Paper Award, Michigan State University."
 links:

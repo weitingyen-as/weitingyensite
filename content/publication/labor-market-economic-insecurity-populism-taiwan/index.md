@@ -4,6 +4,8 @@ date: 2021-01-02
 authors: ["Wei-Ting Yen"]
 publication_types: ["journal_article"]
 publication: "Taiwan Journal of Democracy, 17(1): 63–91"
+venue: "Taiwan Journal of Democracy"
+venue_detail: "17(1): 63–91"
 abstract: "Labor market position shapes populist attitudes in Taiwan: it is insecurity about future income, rather than current income level, that predicts populist sentiment."
 links:
   - name: "Article (PDF)"

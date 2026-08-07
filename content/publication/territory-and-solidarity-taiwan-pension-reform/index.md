@@ -4,6 +4,8 @@ date: 2025-01-01
 authors: ["Wei-Ting Yen", "Ming-Jui Yeh"]
 publication_types: ["journal_article"]
 publication: "Journal of Social Policy, Early View"
+venue: "Journal of Social Policy"
+venue_detail: "Early View"
 abstract: "Welfare states rest on a bounded community of contributors. Taiwan's pension reform shows how contested territorial boundaries shape who citizens are willing to share risk with."
 links:
   - name: "Article (PDF)"

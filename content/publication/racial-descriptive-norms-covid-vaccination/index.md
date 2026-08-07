@@ -4,6 +4,8 @@ date: 2023-01-01
 authors: ["Marzia Oceno", "Wei-Ting Yen"]
 publication_types: ["journal_article"]
 publication: "Public Opinion Quarterly, 87(2): 415–426"
+venue: "Public Opinion Quarterly"
+venue_detail: "87(2): 415–426"
 abstract: "Telling Black Americans that other Black Americans intend to get vaccinated raises their own vaccination intentions, an effect that generic public-health messaging does not produce."
 links:
   - name: "Article (PDF)"

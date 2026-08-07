@@ -4,6 +4,8 @@ date: 2024-01-01
 authors: ["Li-Yin Liu", "Wei-Ting Yen"]
 publication_types: ["journal_article"]
 publication: "Policy & Politics, 52(3): 453–476"
+venue: "Policy & Politics"
+venue_detail: "52(3): 453–476"
 abstract: "Applying the Narrative Policy Framework to pandemic policy, this article asks why publics in democracies accept restrictions that curtail their own freedoms."
 links:
   - name: "Article (PDF)"

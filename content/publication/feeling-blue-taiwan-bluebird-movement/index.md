@@ -4,6 +4,8 @@ date: 2026-01-03
 authors: ["Lev Nachman", "Wei-Ting Yen", "Hannah June Kim"]
 publication_types: ["journal_article"]
 publication: "The China Quarterly, 265: 181–200"
+venue: "The China Quarterly"
+venue_detail: "265: 181–200"
 abstract: "Taiwan's 2024 Bluebird movement mobilised against a legislative reform package. Survey evidence shows how partisanship and evaluations of the legislature structured public support for both the protests and the reforms."
 links:
   - name: "Article (PDF)"

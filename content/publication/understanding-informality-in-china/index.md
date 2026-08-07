@@ -4,6 +4,9 @@ date: 2020-02-01
 authors: ["Yujeong Yang", "Wei-Ting Yen"]
 publication_types: ["book_chapter"]
 publication: "In Santiago López-Cariboni (ed), Political Economy of Informality in BRIC Countries, Chapter 9, 219–242. Singapore: World Scientific Publishing"
+venue_prefix: "In Santiago López-Cariboni (ed), "
+venue: "Political Economy of Informality in BRIC Countries"
+venue_detail: "Chapter 9, 219–242. Singapore: World Scientific Publishing"
 abstract: "China's informal employment is produced by its own institutions — the hukou system and segmented social insurance — which also make it hard to measure consistently."
 links:
   - name: "Article (PDF)"

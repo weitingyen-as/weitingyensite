@@ -4,6 +4,8 @@ date: 2020-01-01
 authors: ["Wei-Ting Yen"]
 publication_types: ["journal_article"]
 publication: "Asian Politics & Policy, 12(3): 455–468"
+venue: "Asian Politics & Policy"
+venue_detail: "12(3): 455–468"
 abstract: "Taiwan's early pandemic success drew on three inherited assets: a developmental state bureaucracy, a digital governance infrastructure, and dense state-society ties."
 award: "Second most-cited article in Asian Politics & Policy over the past three years (as of 2026)."
 links:

@@ -4,6 +4,9 @@ date: 2023-02-01
 authors: ["Wei-Ting Yen"]
 publication_types: ["book_chapter"]
 publication: "In Charity Butcher, Tavishi Bhasin, Elizabeth Gordon, and Maia Carter Hallward (eds), The Palgrave Handbook of Teaching and Research in Political Science, 339–348. Cham: Palgrave Macmillan"
+venue_prefix: "In Charity Butcher, Tavishi Bhasin, Elizabeth Gordon, and Maia Carter Hallward (eds), "
+venue: "The Palgrave Handbook of Teaching and Research in Political Science"
+venue_detail: "339–348. Cham: Palgrave Macmillan"
 abstract: "A practical account of folding an active research agenda into undergraduate teaching, drawn from courses on Asian political economy."
 links:
   - name: "Article (PDF)"

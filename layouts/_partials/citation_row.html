@@ -1,6 +1,6 @@
-{{/* One publication as a card. There are no per-paper pages, so the title links
-     to the published version. Hashtags are printed as chips and also held in a
-     data attribute for the filter to read. */}}
+{{/* One publication as a card, following the "Selected Articles" format of the
+     design the owner chose: year, title, then a single citation line with the
+     venue picked out in the accent colour. Links and hashtags follow. */}}
 {{ $types := .Params.publication_types | default slice }}
 {{ $kind := cond (in $types "book_chapter") "Chapter" "Article" }}
 {{ $tags := .Params.hashtags | default slice }}
@@ -24,20 +24,19 @@
     <span class="pub-kind">{{ $kind }}</span>
   </div>
   <h4 class="pub-title">
-    {{- if $primary }}<a href="{{ if hasPrefix $primary "http" }}{{ $primary }}{{ else }}{{ $primary | relURL }}{{ end }}"{{ if hasPrefix $primary "http" }} rel="noopener"{{ end }}>{{ .Title }}</a>{{ else }}{{ .Title }}{{ end -}}
+    {{- if $primary }}<a href="{{ if hasPrefix $primary "http" }}{{ $primary }}{{ else }}{{ $primary | relURL }}{{ end }}"{{ if hasPrefix $primary "http" }} target="_blank" rel="noopener"{{ end }}>{{ .Title }}</a>{{ else }}{{ .Title }}{{ end -}}
   </h4>
-  <div class="pub-meta-line">
-    <span class="pub-authors">{{ delimit (.Params.authors | default slice) ", " " and " }}</span>
-    {{ with .Params.publication }}<span class="pub-venue">&middot; {{ . }}</span>{{ end }}
-  </div>
-  {{ with .Params.abstract }}<p class="pub-abstract">{{ . }}</p>{{ end }}
-  {{ with .Params.award }}<div class="pub-award">{{ . }}</div>{{ end }}
+  <p class="pub-meta-line">
+    {{ delimit (.Params.authors | default slice) ", " " and " }}.
+    {{ with .Params.venue_prefix }}{{ . }}{{ end }}<span class="venue">{{ .Params.venue | default .Params.publication }}</span>{{ with .Params.venue_detail }} {{ . }}{{ end }}.
+  </p>
+  {{ with .Params.award }}<div class="pub-awards"><span class="award-badge">{{ . }}</span></div>{{ end }}
   {{ if or $rest $tags }}
     <div class="pub-foot">
       {{ with $rest }}
         <div class="pub-links">
           {{ range . }}
-            <a href="{{ if hasPrefix .url "http" }}{{ .url }}{{ else }}{{ .url | relURL }}{{ end }}"{{ if hasPrefix .url "http" }} rel="noopener"{{ end }}>{{ .name }}</a>
+            <a href="{{ if hasPrefix .url "http" }}{{ .url }}{{ else }}{{ .url | relURL }}{{ end }}"{{ if hasPrefix .url "http" }} target="_blank" rel="noopener"{{ end }}>{{ .name }}</a>
           {{ end }}
         </div>
       {{ end }}

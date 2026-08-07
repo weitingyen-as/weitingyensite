@@ -4,6 +4,8 @@ date: 2021-01-03
 authors: ["Wei-Ting Yen", "Kristine Kay", "Fang-Yu Chen"]
 publication_types: ["journal_article"]
 publication: "Journal of East Asian Studies, 21(1): 97–115"
+venue: "Journal of East Asian Studies"
+venue_detail: "21(1): 97–115"
 abstract: "Taiwanese trade preferences shift when the trading partner is China: national pride, not only material self-interest, drives opposition to closer economic ties."
 links:
   - name: "Article (PDF)"

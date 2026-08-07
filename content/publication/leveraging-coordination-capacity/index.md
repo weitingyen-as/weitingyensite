@@ -4,6 +4,8 @@ date: 2025-01-02
 authors: ["Wei-Ting Yen"]
 publication_types: ["journal_article"]
 publication: "Journal of East Asian Studies, 25(1): 1–20"
+venue: "Journal of East Asian Studies"
+venue_detail: "25(1): 1–20"
 abstract: "Asia's developmental states mobilised medical supplies quickly during COVID-19 by drawing on coordination capacity built for industrial policy rather than for public health."
 links:
   - name: "Article (PDF)"

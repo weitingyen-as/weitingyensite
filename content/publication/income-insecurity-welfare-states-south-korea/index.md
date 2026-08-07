@@ -4,6 +4,8 @@ date: 2022-01-02
 authors: ["Wei-Ting Yen"]
 publication_types: ["journal_article"]
 publication: "Social Science Quarterly, 103(3): 494–508"
+venue: "Social Science Quarterly"
+venue_detail: "103(3): 494–508"
 abstract: "Unstable earnings, not low earnings alone, keep South Korean workers out of the contributory pension system, leaving the social insurance foundation of a young democracy shaky."
 links:
   - name: "Article (PDF)"

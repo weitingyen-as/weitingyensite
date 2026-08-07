@@ -4,6 +4,8 @@ date: 2026-01-01
 authors: ["Jennifer Meyer", "Harriet Okatch", "Wei-Ting Yen", "Berwood Yost"]
 publication_types: ["journal_article"]
 publication: "Journal of Health Politics, Policy and Law, Early View"
+venue: "Journal of Health Politics, Policy and Law"
+venue_detail: "Early View"
 abstract: "A contingent valuation experiment testing how framing shapes public willingness to fund a local health department, fielded in the aftermath of the COVID-19 pandemic."
 links:
   - name: "Article (PDF)"

@@ -4,6 +4,8 @@ date: 2021-01-01
 authors: ["Wei-Ting Yen", "Li-Yin Liu"]
 publication_types: ["journal_article"]
 publication: "Global Policy, 12(4): 562–567"
+venue: "Global Policy"
+venue_detail: "12(4): 562–567"
 abstract: "Taiwan secured quarantine compliance by pairing enforcement with material support, building a compliance regime rather than relying on penalties alone."
 links:
   - name: "Article (PDF)"

@@ -4,6 +4,8 @@ date: 2026-01-02
 authors: ["Wei-Ting Yen", "Li-Yin Liu"]
 publication_types: ["journal_article"]
 publication: "Policy & Politics, Early View"
+venue: "Policy & Politics"
+venue_detail: "Early View"
 abstract: "Support for a universal basic income responds to how the policy is framed, but the effect of framing depends on the cultural worldviews respondents already hold."
 links:
   - name: "Article (PDF)"
