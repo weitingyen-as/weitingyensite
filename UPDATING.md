@@ -1,50 +1,57 @@
 # Updating this website
 
-This site rebuilds and republishes itself every time you save a change on GitHub.
-You never need to run anything on your own computer. Give it two or three minutes
-after saving, then reload <https://weitingyen-as.github.io/weitingyensite/>.
+The site is **one page**. Everything is on it, stacked in this order:
+
+**Hero** (photo, name, intro, C.V. and email buttons) → **About** → **Research**
+→ **Public Writing** → **Contact**
+
+It rebuilds and republishes itself every time you save a change on GitHub. You
+never need to run anything on your own computer. Give it two or three minutes,
+then reload <https://weitingyen-as.github.io/weitingyensite/>.
 
 Everything below is done in your browser at
 <https://github.com/weitingyen-as/weitingyensite>.
 
 ---
 
-## Before you start: read this once
+## Two rules that matter
 
-**Please review the People page.** The affiliations and external links on
-<https://weitingyen-as.github.io/weitingyensite/authors/> were assembled
-automatically: your co-authors were collected from the `authors:` lines on your
-papers and talks, and each person's link was found by web searching their name.
-**Nobody has checked these.** Name searches collide and university pages go stale,
-so it is possible that a link points at the wrong person entirely. Go through every
-card once and fix or delete anything wrong. Eight collaborators have no link at all
-because no page could be confidently matched — each of those files contains an HTML
-comment saying so.
-
-**Two folder rules that matter forever.**
-
-1. **Never rename a folder** under `content/publication/`, `content/talk/`, or
-   `content/authors/` once the site is live. The folder name *is* the web address,
-   and addresses get cited in other people's papers. If a title changes, edit the
-   `title:` line inside the file and leave the folder alone.
-2. **Never put a leading slash on a file link.** Write `files/paper.pdf`, not
+1. **Never put a leading slash on a file link.** Write `files/paper.pdf`, not
    `/files/paper.pdf`. The leading slash breaks the link on GitHub Pages.
+2. **Notes to yourself go in HTML comments.** Anything written as
+   `<!-- like this -->` is invisible to visitors. A few such notes are already in
+   the files flagging things worth checking — search the repository for
+   `NOTE FOR THE SITE OWNER` to find them.
 
-**Notes to yourself go in HTML comments.** Anything written as
-`<!-- like this -->` is invisible to visitors. Several such notes are already in
-the site flagging things worth your attention — search the repository for
-`NOTE FOR THE SITE OWNER` to find them.
+Folder names no longer appear in any web address, so renaming a folder is safe.
 
 ---
 
-## Add a paper
+## Where everything lives
 
-1. Upload the PDF to the `static/files/` folder
-   (**Add file → Upload files**). Name it something plain and permanent, like
-   `2027_journal-name_short-title.pdf`.
-2. Go to `content/publication/`, click **Add file → Create new file**, and type a
-   filename of the form `short-slug/index.md` — the slash creates the folder. The
-   slug becomes the web address, so keep it short, lowercase, and hyphenated.
+| What you want to change | File |
+|---|---|
+| Photo, name, job title, intro paragraph | `content/_index.md` |
+| The About narrative | `content/bio/_index.md` |
+| A publication, or its hashtags | `content/publication/<folder>/index.md` |
+| Who Governs Taiwan, the Mandarin post list | `content/public-engagement/_index.md` |
+| Email and address | `content/contact/_index.md` |
+| Menu items, site title | `hugo.yaml` |
+| Colours, spacing, card styling | `assets/css/custom.css` |
+| The C.V. PDF | `static/files/wei-ting-yen-cv.pdf` |
+| Your portrait | `static/images/wei-ting-yen.jpg` |
+
+---
+
+## Add a publication
+
+Journal articles and book chapters appear in **Research**, as cards, newest
+first, filtered by hashtag.
+
+1. Upload the PDF to `static/files/` (**Add file → Upload files**). Give it a
+   plain, permanent name like `2027_journal-name_short-title.pdf`.
+2. Go to `content/publication/`, click **Add file → Create new file**, and type
+   a filename of the form `short-slug/index.md` — the slash creates the folder.
 3. Paste this in and edit it:
 
 ```yaml
@@ -54,6 +61,8 @@ date: 2027-03-01
 authors: ["Wei-Ting Yen", "Co Author"]
 publication_types: ["journal_article"]
 publication: "Journal Name, 12(3): 45–67"
+venue: "Journal Name"
+venue_detail: "12(3): 45–67"
 abstract: "Two or three sentences describing what the paper shows."
 links:
   - name: "Article (PDF)"
@@ -61,145 +70,178 @@ links:
   - name: "Publisher's Version"
     url: "https://doi.org/10.1234/example"
 doi: "10.1234/example"
-tags: ["welfare state", "taiwan"]
+hashtags: ["WelfareState", "TaiwanPolitics"]
 ---
 ```
 
 4. Click **Commit changes**.
 
-**`publication_types`** decides which tab the paper lands on:
+### The fields, one at a time
 
-| Value | Tab |
+**`date`** puts the card in order. Only the year is displayed. If two papers
+share a year, the later date sorts first — so use `2027-01-01`, `2027-01-02`
+and so on to control the order within a year.
+
+**`publication_types`** decides which part of the page the item lands on:
+
+| Value | Where it appears |
 |---|---|
-| `journal_article` | Articles |
-| `book_chapter` | Chapters |
-| `book` | Books |
-| `review` | Reviews |
-| `report` | Reports |
-| `thesis` | Theses |
-| `op_ed` | Op-Eds |
+| `journal_article` | Research |
+| `book_chapter` | Research |
+| `op_ed` | Public Writing, under "Commentary and op-eds" |
+| `edited_volume` | Public Writing, as a card at the top |
 
-**`tags`** decide which research area the paper appears under on the homepage, and
-they feed the "See also" links at the bottom of every page. Use tags that already
-exist elsewhere on the site — you can see the full list at
-<https://weitingyen-as.github.io/weitingyensite/tags/>. A tag that matches one of
-the `subcategories` in `data/research_areas.json` puts the paper in that area.
+**`venue` and `venue_detail`** are what make the citation line read properly.
+`venue` is the journal or book title — it prints in the Academia Sinica blue.
+`venue_detail` is everything after it. **Don't put the year in `venue_detail`**;
+it already appears above the title.
 
-You do not have to do anything to make the paper show up on the homepage, in
-search, or in other papers' "See also" lists. That all happens on its own.
+For a **book chapter**, add `venue_prefix` for the editors:
 
-### Optional extras
+```yaml
+publication_types: ["book_chapter"]
+publication: "In A. Editor (ed), Book Title, Chapter 4, 55–70. City: Publisher"
+venue_prefix: "In A. Editor (ed), "
+venue: "Book Title"
+venue_detail: "Chapter 4, 55–70. City: Publisher"
+```
 
-- **A prize:** add `award: "S.C. Lee Best Paper Award, Michigan State University."`
-  and it appears as a small gold badge.
-- **A cover image:** upload a file named `featured.jpg` into the same folder as
-  `index.md` and it is picked up automatically.
-- **More links:** add as many `- name:` / `url:` pairs as you like. Name them for
-  what they are — "Online Appendix", "Replication Data" — never "click here".
-- **Force a "See also" link:** add `related_papers: ["other-folder-name"]`.
+`publication` is the full citation as one string. It is a fallback, used only if
+`venue` is missing — keep it accurate but it is `venue`/`venue_detail` that show.
+
+**`links`** become the small links in the card footer. The one named
+`Publisher's Version` is special: the **title links to it**, and it does not get
+its own footer link. Everything else appears in the footer. Name links for what
+they are — "Article (PDF)", "Online Appendix", "Replication Data" — never "click
+here". External links open in a new tab automatically.
+
+**`abstract`** is stored but **not currently displayed**. The cards were made
+compact so the list stays readable as it grows. The text is kept so it can be
+switched back on.
+
+**`award`** prints a gold badge under the citation:
+
+```yaml
+award: "S.C. Lee Graduate Research Paper Award, Michigan State University."
+```
 
 ---
 
-## Add a talk
+## Hashtags
 
-Same idea, in `content/talk/`. Create `some-slug/index.md`:
+Hashtags are the only way a reader filters your work, so they matter.
+
+- They are defined **only** in each publication's `hashtags:` list. There is no
+  separate list to maintain.
+- **To add a new hashtag**, just use it on a paper. It appears in the filter bar
+  by itself, with its count.
+- **To rename one**, change it on every paper that carries it. Miss one and you
+  get two chips.
+- **To retire one**, remove it from every paper. The chip disappears.
+- **Write them exactly**, in CamelCase with no spaces or `#`: `TaiwanPolitics`,
+  not `Taiwan Politics` or `#taiwanpolitics`. They are case-sensitive.
+- The chip bar orders itself by how many papers carry each tag, most first.
+
+The 14 in use: `PoliticalBehavior` `TaiwanPolitics` `COVID` `Identity`
+`EconomicInsecurity` `Framing` `DevelopmentalState` `SocialInsurance`
+`StateCapacity` `WelfareState` `IssueSecuritization` `Populism` `Teaching`
+`UniversalBasicIncome`
+
+Selecting more than one hashtag **narrows** — a paper must carry all of them.
+Tags that would leave nothing to show are greyed out rather than leading to an
+empty list.
+
+**A note on balance:** `PoliticalBehavior` and `TaiwanPolitics` are each on about
+half your papers. That works as a label but barely narrows anything as a filter.
+Worth watching as the list grows.
+
+---
+
+## Add an op-ed or a piece of commentary
+
+Same as a publication, in `content/publication/`, with `publication_types:
+["op_ed"]`. These need no `venue` fields and take no hashtags:
 
 ```yaml
 ---
-title: "Title of the Talk"
-date: 2027-05-14
+title: "Title of the Piece"
+date: 2027-04-18
 authors: ["Wei-Ting Yen"]
-publication_types: ["presentation"]
-event: "Department of Political Science, Some University"
-location: "Taipei, Taiwan"
-talk_role: "invited"
-talk_role_label: "Invited talk"
-publication: "Department of Political Science, Some University"
-tags: ["welfare state"]
+publication_types: ["op_ed"]
+publication: "Foreign Affairs"
+links:
+  - name: "Read at Foreign Affairs"
+    url: "https://www.foreignaffairs.com/..."
 ---
 ```
 
-`talk_role_label` is the small tag shown next to the title. Use `Invited talk`,
-`Panel`, or `Conference paper`.
+The whole entry links out to the outlet.
 
 ---
 
-## Add or fix a person
+## Edit the written sections
 
-Each person has a folder under `content/authors/`. To add one, create
-`their-name/index.md`:
+**About**, **Public Writing** and **Contact** are ordinary Markdown files. Edit
+them the way you would a document — headings with `##`, links as
+`[text](https://url)`.
 
-```yaml
----
-title: "Their Name"
-superuser: false
-user_groups: ["Collaborators"]
-role: "Assistant Professor of Political Science, Some University"
-website: "https://their-page.example.edu"
----
+To fold a long block away behind a click, wrap it like this — the Mandarin post
+list already uses it:
+
+```html
+<details class="fold">
+<summary>What the click-to-open label says</summary>
+
+...your Markdown, with a blank line above and below...
+
+</details>
 ```
 
-- `user_groups` is either `["Collaborators"]` or `["Students Advised"]`.
-- Leave `website` out entirely if you don't have a good link — the card just
-  shows their name and affiliation.
-- Add a photo by uploading `avatar.jpg` into the same folder. Without one they get
-  a neat monogram of their initials, which is a perfectly good default.
-
-Names on your papers link to these pages automatically when the spelling in the
-paper's `authors:` list matches the person's `title:` exactly. Diacritics and
-middle initials count.
+**The hero intro** is the `intro:` block in `content/_index.md`. Keep it to two
+to four sentences. It is deliberately different from the About narrative — don't
+let the two say the same thing.
 
 ---
 
-## Update your bio or C.V.
+## Replace the C.V.
 
-- **The bio page:** edit `content/bio/_index.md`. It is ordinary text with a few
-  simple tables; edit it the way you would a document.
-- **The C.V. PDF:** upload the new file over `static/files/wei-ting-yen-cv.pdf`,
-  keeping that exact filename. Every link to it then updates at once.
-- **The homepage introduction:** edit the `intro:` block in `content/_index.md`.
-  Keep it to two to four sentences — it is deliberately different from the bio
-  page, and the two should never say the same thing twice.
+Upload the new file over `static/files/wei-ting-yen-cv.pdf`, keeping that exact
+filename. The button in the hero then points at the new one. It opens in a new
+tab.
 
----
+## Replace the photo
 
-## Other pages
-
-| What you want to change | File to edit |
-|---|---|
-| Homepage intro, job title, photo | `content/_index.md` |
-| Bio, appointments, grants, honours | `content/bio/_index.md` |
-| Courses and advising | `content/teaching/_index.md` |
-| Who Governs Taiwan, public talks | `content/public-engagement/_index.md` |
-| Email and address | `content/contact/_index.md` |
-| Research area names and blurbs | `data/research_areas.json` |
-| Menu order, site title | `hugo.yaml` |
-| Button wording used across the site | `i18n/en.yaml` |
+Upload over `static/images/wei-ting-yen.jpg`. Square, about 720×720, under
+150 KB. It is displayed as a 200px circle.
 
 ---
 
 ## When something looks wrong
 
-Go to the **Actions** tab in the repository. Each save starts a run. A green tick
-means the site published; a red cross means the build stopped and the *previous*
-version of the site is still live, unharmed.
+Go to the **Actions** tab in the repository. Each save starts a run. A green
+tick means the site published; a red cross means the build stopped and the
+**previous version of the site is still live, unharmed**.
 
 Click the red run to see what happened. Almost always it is one of these:
 
-- A missing quotation mark or a stray `:` in the block between the `---` lines.
-- A date that isn't in `YYYY-MM-DD` form.
-- Two folders with the same name.
+- A missing quotation mark, or a stray `:` inside a value, in the block between
+  the `---` lines. Values with a colon in them must be quoted.
+- A date that isn't `YYYY-MM-DD`.
+- An indentation slip under `links:` — the `- name:` and `url:` lines must line
+  up with the ones above them.
 
 Fix the file and commit again; the site republishes itself.
 
+**If a change seems to have no effect**, do a hard reload (Cmd-Shift-R). If it
+still looks unchanged, check the Actions tab — the build may have failed.
+
 ---
 
-## Things that are automatic — don't maintain them by hand
+## Things that happen on their own
 
-- **"See also"** at the bottom of every paper and talk. It is computed at build
-  time from shared authors, shared tags, and overlapping title words. Add a paper
-  and the rest of the site links to it on its own.
-- **The homepage research areas**, including the item counts.
-- **Search.** The index is rebuilt on every publish.
-- **The Writings page tabs, filters, sorting, and citation download.**
-- **Cover images**, if a `featured.jpg` sits next to an `index.md`.
+- **The hashtag filter bar**, including which chips exist and their counts.
+- **Ordering** of publications, newest first.
+- **"Show all N publications"** — the list shows six until asked, and the button
+  counts whatever the current filter leaves.
+- **Search** (the magnifying glass, or Cmd-K), re-indexed on every publish.
+- **Deployment** on every save.

@@ -1,274 +1,323 @@
 # Website architecture playbook
 
-Written for whoever — person or AI assistant — maintains this site next. It records
-what the pieces are, why they were chosen, and which decisions are load-bearing.
+For whoever — person or AI assistant — maintains this site next. What the pieces
+are, why they were chosen, and which decisions are load-bearing.
 
-The owner-facing instructions are in [UPDATING.md](UPDATING.md). This file is the
+Owner-facing instructions are in [UPDATING.md](UPDATING.md). This is the
 engineering side.
 
 ---
 
-## 1. Stack
+## 1. What this site is
+
+A **single page**, served from `https://weitingyen-as.github.io/weitingyensite/`.
+There is exactly one HTML page plus a 404. Sections stack in this order:
+
+| Section | `id` | Source |
+|---|---|---|
+| Hero | — | `content/_index.md` front matter |
+| About | `#about` | `content/bio/_index.md` |
+| Research | `#research-areas` | `content/publication/*` (articles and chapters) |
+| Public Writing | `#public-writing` | `content/public-engagement/_index.md` + op-eds + edited volumes |
+| Contact | `#contact` | `content/contact/_index.md` |
+
+Menu entries are in-page anchors. There is no footer.
+
+`#research-areas` is a historical id — it was the accordion section before the
+hashtag rewrite. It stayed so that any link already shared still lands correctly.
+
+### The single-page mechanism
+
+Sub-pages remain **separate Markdown files** so they are pleasant to edit, but
+emit no URLs of their own. Each section index carries:
+
+```yaml
+cascade:
+  build:
+    render: never
+    list: always
+build:
+  render: never
+  list: always
+```
+
+`layouts/landing/home.html` pulls them in with `site.GetPage` and renders
+`.Content` inline. `list: always` keeps them in `site.RegularPages` so the
+publication query still finds them.
+
+**It is `build:`, not `_build:`.** The underscore form was removed in Hugo 0.145
+and now fails the build with an error rather than a warning.
+
+---
+
+## 2. Stack
 
 | Layer | Choice |
 |---|---|
 | Generator | Hugo **extended**, ≥ 0.148.2 (CI pins 0.164.0) |
-| Theme module | `github.com/HugoBlox/hugo-blox-builder/modules/blox-tailwind` v0.10.0, vendored into `_vendor/` |
+| Theme module | `blox-tailwind` v0.10.0, vendored in `_vendor/` |
 | Styling | One hand-written stylesheet, `assets/css/custom.css` |
-| Search | Pagefind 1.5, built in CI after Hugo, indexed against `public/` |
-| Hosting | GitHub Pages project site at `/weitingyensite/` |
-| CI | `.github/workflows/deploy.yml` — build → index → deploy on every push to `main` |
+| Search | Pagefind 1.5, built in CI after Hugo |
+| Hosting | GitHub Pages project site |
+| CI | `.github/workflows/deploy.yml` on push to `main` |
 
 **Hugo extended is required** and the version floor is real: Blox v0.10.0 refuses
-to load on anything below 0.148.2. The build instructions this site was made from
-suggested 0.147.0; that does not work.
+to load below 0.148.2.
 
-**Hugo ≥ 0.146 template layout.** Templates live at `layouts/single.html`,
-`layouts/list.html`, `layouts/_partials/…`, `layouts/_shortcodes/…` — *not* the old
-`layouts/_default/` and `layouts/partials/`. Blox itself uses `layouts/_partials/`;
-putting an override in `layouts/partials/` fails silently.
+**Hugo ≥ 0.146 template layout.** Templates live at `layouts/baseof.html`,
+`layouts/_partials/…`, `layouts/_shortcodes/…` — *not* the old
+`layouts/_default/` and `layouts/partials/`.
 
----
+### The deliberate departure from Blox
 
-## 2. The one deliberate departure from stock Blox
+**This site uses none of Blox's CSS or page templates.** `layouts/baseof.html` is
+a complete replacement shell that loads `custom.css` directly and never calls
+Blox's `_partials/css.html`.
 
-**This site does not use Blox's Tailwind CSS pipeline or its page templates.**
-`layouts/baseof.html` is a complete replacement shell that loads
-`assets/css/custom.css` directly and never calls Blox's `_partials/css.html`.
+Why: the owner chose <https://yawenlei.com/> as the visual model, and matching a
+specific design is far more reliable in ~400 lines of plain CSS than by fighting
+Tailwind utility classes emitted by someone else's blocks. It also means no
+Tailwind CLI at build time.
 
-Why: the owner chose <https://yawenlei.com/> as the visual model, and the
-instruction that a chosen reference design takes precedence over default styling is
-the strongest one in the brief. Matching that design — serif display headings on a
-warm off-white ground, a fixed slim navbar, a single institutional accent — is far
-more reliably done with ~500 lines of plain CSS than by fighting Tailwind utility
-classes emitted by someone else's blocks.
+The module is still imported and vendored so its helper partials stay available.
+If you ever wire up a Blox *visual* component you will need to add
+`{{ partial "css.html" . }}` to `baseof.html` and keep `@tailwindcss/cli` in
+`package.json` (it is already there for that reason).
 
-What this buys: no Tailwind CLI needed at build time, no Blox preflight overriding
-the palette, total control of the markup. What it costs: Blox partials that assume
-theme CSS classes will look unstyled if dropped in.
-
-The module is still imported and vendored, and Blox's helper partials are still
-available and used — `functions/get_featured_image.html` is called by
-`layouts/publication/single.html`. If you ever wire up a Blox *visual* component,
-you will need to include `{{ partial "css.html" . }}` in `baseof.html` and keep
-`@tailwindcss/cli` in `package.json` (it is already there for exactly this reason).
+Files that no longer exist because nothing renders them: `layouts/list.html`,
+`layouts/single.html`, `i18n/en.yaml`, `data/`. Adding a second page means
+writing a template for it deliberately.
 
 ---
 
-## 3. URLs are a contract
+## 3. Traps that cost real time here
 
-Academic pages get cited in work that outlives the website. Two rules protect that:
+Every one of these produced a **silently wrong result**, not a build error.
 
-- **`permalinks` uses `:contentbasename`, not `:slug`.** `:slug` falls back to the
-  *title*, so editing a title would silently move the page and break every existing
-  citation — and it collided outright here, because two talks share the title
-  "Territorial State Identity and Solidarity: An Experimental Approach". With
-  `:contentbasename` the folder name fixes the address permanently.
-- **Never rename a content folder.** Change `title:` freely; leave the directory.
+**Menu URLs are already resolved.** Hugo resolves `site.Menus.main` `.URL`
+against `baseURL`. Passing it through `relURL` again yields
+`/weitingyensite/weitingyensite/…` and 404s every navigation link. Use `.URL`
+raw. This is invisible on the dev server, whose baseURL has no subpath.
+
+**`jsonify` inside a `<script>` double-escapes.** Go applies JS-context escaping
+*on top of* jsonify's quoting, so `{{ $url | jsonify }}` became a string
+containing a quoted string and the Pagefind import failed. For a plain string,
+interpolate inside quotes: `var URL = "{{ "pagefind/pagefind.js" | relURL }}";`.
+For a JSON payload in `<script type="application/json">`, use `| jsonify | safeJS`.
+
+**Stale CSS rules win by source order.** Three iterations of the Research section
+left dead rules further down the stylesheet; `#research-list .pub-item { padding:
+.85rem 0 }` beat the card rule and the padding silently did nothing. When a style
+"doesn't work", grep the whole file for the selector before changing the value.
+
+**The dev server does not fingerprint assets.** An unfingerprinted
+`custom.css` gets cached by the browser and serves stale CSS through repeated
+edits. `baseof.html` therefore fingerprints in **every** environment, minifying
+only in production. Don't "simplify" that back.
+
+**The dev server writes to `public/`.** Running `hugo --gc --minify` while
+`hugo server` is up means the server overwrites the production build with
+localhost URLs. Stop the server before a build you intend to inspect. Deleting
+`resources/` under a running server also leaves its asset cache stale — restart it.
 
 ### Subpath safety
 
-This is a *project* Pages site served from `/weitingyensite/`, so a literal
-`/files/foo.pdf` resolves to the host root and 404s.
+The site is served from `/weitingyensite/`, so a literal `/files/foo.pdf`
+resolves to the host root and 404s.
 
-- In templates: `{{ "pagefind/pagefind.js" | relURL }}` — **no leading slash**.
-  `relURL "/x"` returns `/x` and escapes the base path; `relURL "x"` returns
-  `/weitingyensite/x`.
-- In front matter `links:`: write `url: "files/paper.pdf"`. The single template
-  passes anything not starting with `http` through `relURL`.
-- In Markdown body text: `{{</* staticrel "files/paper.pdf" */>}}`.
-
-### Two Go-template escaping traps that bit this build
-
-Both produced *silently broken* JavaScript, not build errors:
-
-1. `{{ $x | jsonify }}` inside a `<script>` gets Go's JS-context escaping applied
-   **on top of** jsonify's quoting, yielding `"\"/pagefind/pagefind.js\""` — a
-   string containing a quoted string. For a plain string, interpolate inside
-   quotes instead: `var URL = "{{ "pagefind/pagefind.js" | relURL }}";`
-2. For a JSON payload in `<script type="application/json">`, the same doubling
-   turns the object into a JSON *string*. Use `{{ $data | jsonify | safeJS }}`.
+- Templates: `{{ "files/x.pdf" | relURL }}` — **no leading slash**.
+  `relURL "/x"` returns `/x` and escapes the base path.
+- Front matter `links:`: write `url: "files/paper.pdf"`. The card template passes
+  anything not starting with `http` through `relURL`.
+- Markdown body: `{{</* staticrel "files/paper.pdf" */>}}`.
 
 ---
 
 ## 4. Content model
 
-Every item is a **leaf bundle**: a directory containing `index.md`, with its PDFs
-in `static/files/` and its cover at `featured.jpg` beside `index.md`.
+Everything lives in `content/publication/` as a leaf bundle — a directory
+containing `index.md`. PDFs go in `static/files/`.
 
-```
-content/
-  _index.md              type: landing — hero copy + photo live in front matter
-  publication/           papers, chapters, books, reviews, reports, theses, op-eds
-  talk/                  invited talks, panels, conference papers
-  software/              empty; layouts exist so the section works if ever used
-  authors/               one folder per co-author and advisee — this is /People/
-  bio/  teaching/  public-engagement/  contact/
-data/
-  research_areas.json          area names, blurbs, and the tags that belong to each
-  writings_legacy_map.json     optional per-slug tab override; currently empty
-  featured_publications.yaml   optional homepage spotlight; currently empty
-```
+`publication_types` is a small controlled vocabulary, and it is what routes an
+item to a section of the page:
 
-`publication_types` is a controlled vocabulary: `journal_article`, `book_chapter`,
-`book`, `review`, `report`, `thesis`, `op_ed`, `presentation`. It drives Writings-page
-tabs and "See also" labels. **It is never printed on an item's own page** — a reader
-looking at a paper does not need to be told it is a `journal_article`.
-
-`op_ed` is not in the upstream vocabulary; it was added because her commentary for
-*Foreign Affairs*, the *Washington Post*, and Brookings is a substantial body of work
-that belongs on the Writings page but must not be mixed in with refereed articles.
-
-### Taxonomies
-
-Only `tags` generates term pages. `categories` was unused, and `publication_types`
-term pages would have surfaced bare `journal_article` pages to readers. Tag pages
-also carry no `data-pagefind-body`, so search returns papers rather than keywords.
-
----
-
-## 5. "See also" — `layouts/_partials/related_finder.html`
-
-Runs at build time on every publication/talk/software page. Nothing is cached to
-disk, so adding an item re-links the whole site on the next build. **Do not replace
-this with a script that writes a `related_map.json`** — that file goes stale the
-first time someone adds a paper and forgets to re-run it.
-
-Priority order:
-
-1. Explicit front matter: `related_papers`, `related_talks`, `related_software`,
-   `related_datasets`, plus the singular legacy `related_paper` / `related_dataset`.
-2. `see_also:` entries — `{url, title}` external, `{section, slug}` internal.
-3. `dataverse_url`, or a Harvard Dataverse URL found in the abstract.
-4. Research-area siblings from `data/research_areas.json`.
-5. Scored backfill: **+2** per shared title token (stop words stripped, tokens under
-   3 characters dropped), **+1** per shared author (exact, or last-name match so
-   "Jonathan Katz" and "Jonathan N. Katz" count), **+2** per shared tag, **+1** for a
-   tag in the same research area. Threshold 4, relaxed to 2 when fewer than three
-   explicit picks exist.
-
-Capped at 8, sorted score then year. Titles are normalised to lowercase alphanumerics
-for deduplication. Labels come from `publication_types` first and the section name
-only as a fallback, since an item under `/publication/` may be a book or a dataset.
-Response/reply/comment papers pin their subject at the top; book editions sharing a
-base title cross-link.
-
----
-
-## 6. The Writings page — `layouts/publication/list.html`
-
-The most important page on the site, and the one with the most ways to go wrong.
-
-- **Every entry is server-rendered into the DOM.** JavaScript filters by toggling
-  `hidden`; it never creates content. With JS off the full list still reads.
-- **Every `<article class="pub-item">` carries `data-tab`, `data-year`,
-  `data-areas`, `data-rank`, `data-title`, `data-haystack`.** Every
-  `<button class="tab-btn">` carries a matching `data-tab` and has a real click
-  listener. Tabs that render but do nothing is the classic failure here — if you
-  touch this file, click every tab afterwards and watch the count change.
-- **"Newest first" sorts by year, then by type rank** (articles → chapters → books →
-  reviews → reports → theses → op-eds). Plain date ordering put four commentary
-  pieces above her journal articles at the top of the page, which misrepresents the
-  work. The server-side render order matches the JS sort so nothing jumps on load.
-- **Filter state lives in `location.hash`** (`#articles&area=…&year=…&q=…&sort=…`),
-  so a filtered view is shareable and the back button works. `hashchange` re-reads it.
-- **BibTeX export** serialises the visible rows from a JSON block rendered from the
-  same front matter, and picks the right field name per entry type (`journal`,
-  `booktitle`, `school`, `institution`, `publisher`). It keys off the folder name in
-  each row's link — another reason the permalink must be `:contentbasename`.
-
----
-
-## 7. Search — `layouts/_partials/search_modal.html`
-
-Pagefind, loaded as a modal overlay, `Cmd-K` / `Ctrl-K` to open, `Esc` to close,
-arrow keys through results. The ~200 KB WASM bundle is imported on first *open*,
-not on page load.
-
-The import is memoised as **one shared promise**. An earlier version used a
-`loading` boolean and returned `null` to any call that arrived mid-flight, so the
-first keystroke after opening the modal always fell through to the "search
-unavailable" branch. If you refactor this, keep the promise.
-
-If Pagefind cannot load, the modal falls back to a Google `site:` search rather than
-failing silently.
-
----
-
-## 8. Design system
-
-`assets/css/custom.css` holds the whole visual language as custom properties. The
-palette derives from the reference site's structure with Harvard crimson replaced by
-a desaturated slate drawn from Academia Sinica:
-
-| Token | Value | Use |
+| Value | Rendered in | Count |
 |---|---|---|
-| `--color-bg` | `#faf8f5` | page — warm off-white, never `#fff` |
-| `--color-surface` | `#ffffff` | cards, filter panel, search modal |
-| `--color-text` | `#23201d` | body — warm charcoal, never pure black |
-| `--color-text-muted` | `#6b645d` | metadata, author lines |
-| `--color-accent` / `--color-institution` | `#3d5a6c` | active tab rules, buttons, links |
-| `--color-link-hover` | `#8a5a2b` | warm umber on hover |
-| `--color-gold` | `#9a7238` | awards only |
-| `--color-border` | `#e6e1da` | 1px hairlines |
-| `--color-focus` | `#d4a96a` | `:focus-visible` outline |
+| `journal_article` | Research | 16 |
+| `book_chapter` | Research | 4 |
+| `op_ed` | Public Writing → Commentary | 23 |
+| `edited_volume` | Public Writing → cards at top | 2 |
 
-Colours mean things: accent = institution and interaction, gold = an award, muted
-grey = metadata. Don't reuse them for anything else.
+`op_ed` and `edited_volume` are not upstream Blox values. They exist because the
+owner draws a hard line between refereed scholarship and public-facing writing,
+and the page is built around that split.
 
-**Typography is a native system stack by design** — a serif family for headings
-(`Iowan Old Style`, Palatino, Georgia) and the OS sans for body. The reference site
-loads Inter and Noto Serif Display from Google Fonts; this site does not, because
-nothing required to render the site should depend on a third-party host that can go
-dark or start logging visitors. The typographic *structure* — serif display headings
-over a sans body — is preserved.
+### The citation line
 
-**Light mode is forced.** `.dark` is overridden back to light surfaces and the theme
-toggle is hidden.
+`venue` / `venue_detail` / `venue_prefix` exist so the journal or book title can
+be picked out in the accent colour, the way the reference design does it. They
+were split out of `publication`, which is retained as a fallback and as the full
+citation of record. Parsing them back out of one string is not viable — journal
+names contain commas.
 
-Layout invariants worth not breaking:
+The year is printed above the title, so it is deliberately **absent** from
+`venue_detail`. Adding it back produces a visible duplicate.
 
-- Homepage hero is **photo left, text right** on desktop; stacked and centred at
-  ≤640px. Not a centred avatar above the name — that reads as a social profile.
-- The navbar brand is her full name, uppercase, far left, always linking home.
-  Nav links flush right. Search is a bare magnifying glass, no label or border.
-  Header horizontal padding matches the content gutter.
-- `#research-areas` sits on the section *heading* with
-  `scroll-margin-top: calc(var(--nav-h) + 16px)`, so the nav anchor lands just below
-  the fixed bar instead of at the bottom of the page.
-- Year-filter rows are a flex row: `[checkbox] [label]`, pinned together.
-- Wide content scrolls inside its own container; the page body never scrolls
-  sideways.
+`abstract` is populated on every article and chapter but **not rendered**. It was
+dropped when the cards were compacted. Restoring it is one block in
+`layouts/_partials/citation_row.html`; if you do, make it click-to-expand rather
+than always-on, or the list becomes unscannable.
+
+Front matter that is **read**: `title`, `date`, `authors`, `publication_types`,
+`venue`, `venue_detail`, `venue_prefix`, `links`, `award`, `hashtags`,
+`publication` (fallback). Everything else — `doi`, `tags`, `abstract` — is stored
+only.
+
+---
+
+## 5. The Research section
+
+`layouts/landing/home.html` holds both the markup and the filter script.
+
+**Hashtags have no registry.** The chip bar is derived at build time by counting
+`hashtags:` across articles and chapters, ordered by frequency then alphabetically.
+Adding a tag to a paper is the only step. This is the single most important
+property of the design — there is no list to forget to update.
+
+**Filtering is intersection, not union.** Selecting several hashtags requires a
+paper to carry all of them, so combinations narrow. Chips that would return
+nothing on top of the current selection get `.dim` rather than leading to an
+empty list.
+
+**The list is server-rendered in full.** JavaScript only toggles `hidden`. With
+JS off, all 20 publications still read in order. Do not change this to
+client-side rendering.
+
+**Progressive disclosure.** `LIMIT = 6`. The button counts the *filtered* set and
+hides itself when the filter already brings the count under the limit.
+
+**State lives in `?tags=`, not the hash.** The hash is in use for section anchors;
+putting filter state there would make the nav links clear the filter. Query
+string via `history.replaceState` keeps both working and makes filtered views
+shareable.
+
+**Cards echo the reference design's "Selected Articles" format**: 1rem gaps,
+1.25/1.5rem padding, a resting shadow, and a 1px lift with an accent border on
+hover. Hashtags on a card use the same pill as the filter bar so the two read as
+the same object, and light up when they are the ones doing the filtering.
+
+---
+
+## 6. Design system
+
+`assets/css/custom.css` is the whole visual language. The palette is **Academia
+Sinica's institutional identity**, sampled from the specification printed on the
+emblem artwork rather than approximated:
+
+| Token | Value | Official spec | Role |
+|---|---|---|---|
+| `--color-sinica-blue` | `#005b94` | C100 M70 Y20 | primary / interactive |
+| `--color-sinica-blue-mid` | `#0082b4` | C80 M70 Y20 | section rules, focus ring |
+| `--color-sinica-khaki` | `#b8a887` | C30 M30 Y50 | topical labels |
+| `--color-sinica-cream` | `#d8d0bd` | C15 M15 Y25 | surfaces, rules |
+
+Every surface, border and text value is a tint of those four. Semantic tokens
+(`--color-accent`, `--color-link`, `--color-border`, …) point at them, so a
+palette change is confined to `:root`.
+
+**Colours mean things.** Blue = clickable or institutional. Khaki = a topic
+label, never interactive-looking. Gold-family = an award. Don't reuse them.
+
+**The hero is the one deliberate exception.** Its gradient is a warm blush
+(`#f3e3dc`), not the institutional blue: the owner's portrait has a red jacket
+and the cool blue fought it. Everything below the hero is blue. If you "fix" this
+for consistency, you will be reverting a considered decision.
+
+**Typography is a native system stack** — serif for headings, OS sans for body.
+The reference site loads Inter and Noto Serif Display from Google Fonts; this one
+does not, because nothing needed to render the site should depend on a
+third-party host that can go dark or log visitors. The typographic *structure* is
+preserved.
+
+**Light mode is forced.** `.dark` is overridden back to light surfaces.
+
+Layout invariants:
+
+- Hero is **photo left, text right** on desktop, stacked and centred at ≤640px.
+- Navbar brand is her full name, uppercase, far left, always linking to `/`.
+  Search is a bare magnifying glass.
+- Every section id carries `scroll-margin-top: calc(var(--nav-h) + 16px)` so
+  anchors land below the fixed bar.
+- Wide content scrolls inside its own container; the body never scrolls sideways.
 - `prefers-reduced-motion` strips transforms and transitions.
 
+Contrast, checked: accent on background 6.8:1, white on accent 7.2:1, body
+14.4:1, muted 5.7:1, khaki labels 4.6:1 on their own tint. All clear WCAG AA.
+
 ---
 
-## 9. Editorial rules that were applied
+## 7. Deployment
 
-- **The homepage intro and the bio page are deliberately different text.** Never
-  paste one into the other.
-- **No process commentary ships.** Nothing on any rendered page says where content
-  came from or how the site was built. Notes to the owner are HTML comments,
-  searchable as `NOTE FOR THE SITE OWNER`.
-- **No filler subtitles.** A section either gets a genuinely useful one-liner in her
-  voice or no subtitle at all.
-- **Her wording is preserved.** Where the legacy site and the C.V. disagreed, the
-  C.V. won (it is newer) and the discrepancy was flagged in a comment rather than
-  silently resolved — see `content/publication/reform-without-transformation/`.
-- **Understated tone.** Awards are stated flatly, once, with no intensifiers.
+`.github/workflows/deploy.yml`: checkout → Hugo extended → `npm ci` → build with
+`--baseURL` from `actions/configure-pages` → `npx pagefind --site public` →
+upload → deploy. Pagefind must run **after** Hugo and against `public/`.
+
+`_vendor/` and `go.sum` are both committed. Without `go.sum`, module verification
+fails in CI.
+
+**Not yet done:** the repository has no remote push configured on the author's
+machine, and GitHub Pages has not been enabled. Pages must be set to build from
+**GitHub Actions**, not from a branch.
+
+---
+
+## 8. Editorial rules that were applied
+
+- **Hero intro and About are deliberately different text.** Never paste one into
+  the other.
+- **No process commentary ships.** Nothing on the page says where content came
+  from. Notes to the owner are HTML comments, searchable as
+  `NOTE FOR THE SITE OWNER`.
+- **No filler subtitles.** A section gets a useful one-liner or none. Research
+  and Contact have none by the owner's choice.
+- **Her wording is preserved**, including "political behaviors" over the more
+  usual singular, and the hashtag spellings.
+- **Understated tone.** Awards stated flatly, once, no intensifiers.
+
+---
+
+## 9. What is deliberately absent
+
+Removed at the owner's direction over successive passes. Each is recoverable from
+git history; none should be reinstated without asking.
+
+| Gone | Notes |
+|---|---|
+| Teaching section | courses and advising remain on the C.V. |
+| Presentations | 46 invited talks and conference papers |
+| Writings page | the filterable multi-tab index; hashtags replaced it |
+| Per-publication pages | citations link straight to the publisher |
+| People / collaborators | 14 co-author cards, and a closing invitation line |
+| Site footer | copyright line went with it |
+| Appointments, grants, honours | folded into the C.V. PDF only |
+| Book review, 2 editor-reviewed pieces, World Bank report, both theses | "articles and book chapters" only |
+| "See also" cross-linking | had no per-paper page left to sit on |
+| Taxonomies and permalinks | nowhere for a term page to lead |
 
 ---
 
 ## 10. Known gaps
 
-- **No `featured.jpg` cover images.** Journal and book covers were meant to be
-  fetched during the build; the publishers involved (Cambridge, books.com.tw, eslite)
-  serve bot-blocked pages to automated requests. Layouts handle their absence
-  gracefully. Republishing publisher cover art is also the owner's call to make.
-- **The People page links are unverified guesses** from web search, and eight
-  collaborators have no link at all. Flagged in `UPDATING.md` and in per-file
-  comments.
-- **Four 2026 op-eds have no URL** because the C.V. printed the word "Link" rather
-  than the address. Flagged in each file.
-- **`content/software/` is empty.** The layouts exist and the section is absent from
-  the nav; drop a leaf bundle in and add a menu entry if that changes.
+- **No cover images.** Journal and book covers were meant to be fetched at build
+  time; Cambridge, books.com.tw and eslite all serve bot-blocked pages to
+  automated requests. Republishing publisher cover art is the owner's call anyway.
+- **Four 2026 op-eds have no URL** — the C.V. printed the word "Link" rather than
+  an address. Flagged in each file.
+- **`reform-without-transformation`** is on the legacy site but not in the C.V.,
+  and has no DOI or link, so its title is not clickable. Its citation details are
+  flagged for confirmation.
+- **Two hashtags are very broad.** `PoliticalBehavior` and `TaiwanPolitics` each
+  cover about half the corpus, which limits their value as filters.
+- **PDF self-archiving is unverified.** The hosted PDFs are publisher-typeset
+  versions. Most journals permit author self-archiving; a few restrict it to
+  accepted manuscripts. Worth checking against the agreements before launch.
