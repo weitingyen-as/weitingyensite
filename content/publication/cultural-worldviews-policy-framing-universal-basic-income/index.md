@@ -13,8 +13,7 @@ links:
   - name: "Popular Science Version"
     url: "https://policyandpoliticsblog.com/"
 doi: "10.1332/03055736Y2026D000000093"
-tags: ["universal basic income", "policy framing", "public opinion", "welfare state", "survey experiments"]
-research_area: "insecurity-and-welfare-states"
+hashtags: ["Framing", "WelfareState", "UniversalBasicIncome", "PoliticalBehavior", "TaiwanPolitics"]
 ---
 
 <!-- NOTE FOR THE SITE OWNER: Popular-science version appeared on the Policy & Politics journal blog; the exact post URL was not on the C.V. Replace the link above with the direct post when available. -->

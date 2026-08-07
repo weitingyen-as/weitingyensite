@@ -11,6 +11,5 @@ links:
   - name: "Publisher's Version"
     url: "https://doi.org/10.1111/gove.12695"
 doi: "10.1111/gove.12695"
-tags: ["state capacity", "covid-19", "asia", "crisis governance", "public health"]
-research_area: "pandemic-governance"
+hashtags: ["COVID", "StateCapacity", "DevelopmentalState"]
 ---

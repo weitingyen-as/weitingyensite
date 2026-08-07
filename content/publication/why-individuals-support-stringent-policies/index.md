@@ -11,10 +11,8 @@ links:
   - name: "Publisher's Version"
     url: "https://doi.org/10.1332/030557324X17049690476008"
   - name: "Popular Science Version"
-    url: "https://policyandpoliticsblog.com/"
+    url: "https://policyandpoliticsblog.com/2024/09/11/why-do-individuals-in-democratic-societies-support-stringent-policies-a-narrative-policy-framework-analysis/"
 doi: "10.1332/030557324X17049690476008"
-tags: ["policy framing", "covid-19", "public opinion", "narrative policy framework", "compliance"]
-research_area: "pandemic-governance"
+hashtags: ["PoliticalBehavior", "COVID", "IssueSecuritization", "TaiwanPolitics"]
 ---
 
-<!-- NOTE FOR THE SITE OWNER: Popular-science version appeared on the Policy & Politics journal blog; the exact post URL was not on the C.V. -->

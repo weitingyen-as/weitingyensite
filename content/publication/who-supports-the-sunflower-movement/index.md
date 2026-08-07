@@ -16,6 +16,5 @@ links:
   - name: "Online Appendix"
     url: "https://weitingyen.com/wp-content/uploads/2014/12/online-appendix.pdf"
 doi: "10.1177/0021909616645372"
-tags: ["taiwan", "social movements", "national identity", "public opinion", "cross-strait relations"]
-research_area: "identity-and-political-behaviors"
+hashtags: ["Identity", "PoliticalBehavior", "TaiwanPolitics"]
 ---

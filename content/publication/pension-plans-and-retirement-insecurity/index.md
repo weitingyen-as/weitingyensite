@@ -13,6 +13,5 @@ links:
   - name: "Read-Only Version"
     url: "https://rdcu.be/1qYv"
 doi: "10.1007/s12126-018-9326-x"
-tags: ["pensions", "economic insecurity", "welfare state", "aging", "social insurance"]
-research_area: "insecurity-and-welfare-states"
+hashtags: ["SocialInsurance", "EconomicInsecurity"]
 ---

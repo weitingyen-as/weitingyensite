@@ -11,6 +11,5 @@ links:
   - name: "Publisher's Version"
     url: "https://doi.org/10.1017/S0305741025101756"
 doi: "10.1017/S0305741025101756"
-tags: ["taiwan", "social movements", "public opinion", "legislature", "partisanship"]
-research_area: "taiwan-politics"
+hashtags: ["Identity", "PoliticalBehavior", "TaiwanPolitics"]
 ---

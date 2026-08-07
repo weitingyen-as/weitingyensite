@@ -11,6 +11,5 @@ links:
   - name: "Publisher's Version"
     url: "https://doi.org/10.1017/jea.2025.3"
 doi: "10.1017/jea.2025.3"
-tags: ["covid-19", "state capacity", "developmental state", "east asia", "crisis governance"]
-research_area: "pandemic-governance"
+hashtags: ["COVID", "DevelopmentalState", "StateCapacity"]
 ---

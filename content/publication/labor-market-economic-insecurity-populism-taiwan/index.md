@@ -12,6 +12,5 @@ links:
     url: "http://www.tfd.org.tw/export/sites/tfd/files/publication/journal/161-190-Labor-Market-Economic-Insecurity-and-Populism-in-Taiwanpdf.pdf"
   - name: "Popular Science Version"
     url: "https://taiwaninsight.org/2021/01/06/the-labor-market-economic-insecurity-and-populism-in-taiwan/"
-tags: ["economic insecurity", "populism", "labor market", "taiwan", "public opinion"]
-research_area: "insecurity-and-welfare-states"
+hashtags: ["EconomicInsecurity", "TaiwanPolitics", "PoliticalBehavior", "Populism"]
 ---

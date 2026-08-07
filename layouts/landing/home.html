@@ -52,36 +52,39 @@
 </section>
 {{ end }}
 
-{{/* ------------------------------------------------------- research areas */}}
+{{/* ---------------------------------------------------- research + hashtags */}}
+{{ $scholarship = sort $scholarship "Date" "desc" }}
+
+{{/* hashtag list, most-used first, so the big topics lead */}}
+{{ $counts := dict }}
+{{ range $scholarship }}
+  {{ range (.Params.hashtags | default slice) }}
+    {{ $counts = merge $counts (dict . (add (int (index $counts . | default 0)) 1)) }}
+  {{ end }}
+{{ end }}
+{{ $tagList := slice }}
+{{ range $t, $n := $counts }}{{ $tagList = $tagList | append (dict "tag" $t "n" $n) }}{{ end }}
+{{ $tagList = sort (sort $tagList "tag" "asc") "n" "desc" }}
+
 <section class="wrap section" id="research-areas">
   <div class="section-rule"></div>
   <h2 class="section-title">Research</h2>
 
-  {{/* Each paper names one area in its own front matter, so nothing appears twice. */}}
-  {{ range hugo.Data.research_areas.areas }}
-    {{ $area := . }}
-    {{ $id := .id }}
-    {{ $matched := slice }}
-    {{ range $scholarship }}
-      {{ if eq (.Params.research_area | default "others") $id }}{{ $matched = $matched | append . }}{{ end }}
+  <div class="tagbar" id="tagbar" role="group" aria-label="Filter by hashtag">
+    {{ range $tagList }}
+      <button type="button" class="tag-chip" data-tag="{{ .tag }}" aria-pressed="false">#{{ .tag }}<span class="tag-n">{{ .n }}</span></button>
     {{ end }}
-    {{ $matched = sort $matched "Date" "desc" }}
+    <button type="button" class="tag-clear" id="tag-clear" hidden>Clear</button>
+  </div>
+  <p class="tag-count" id="tag-count" aria-live="polite">{{ len $scholarship }} publications</p>
 
-    {{ if $matched }}
-    <details class="area">
-      <summary>
-        {{ $area.name }}
-        <span class="area-count">{{ len $matched }} item{{ if ne (len $matched) 1 }}s{{ end }}</span>
-      </summary>
-      <div class="area-body">
-        {{ with $area.blurb }}<p class="area-blurb">{{ . }}</p>{{ end }}
-        <ol class="pub-list">
-          {{ range $matched }}{{ partial "citation_row.html" . }}{{ end }}
-        </ol>
-      </div>
-    </details>
+  {{/* Server-rendered in full, newest first: the list still reads with JS off. */}}
+  <ol class="pub-list" id="research-list">
+    {{ range $scholarship }}
+      {{ partial "citation_row.html" . }}
     {{ end }}
-  {{ end }}
+  </ol>
+  <p class="empty-note" id="research-empty" hidden>No publication carries every hashtag you have selected.</p>
 
   {{/* Collaborators, derived from the authors: fields on the work above, so a new
        paper brings its co-authors along without anyone maintaining a list. */}}
@@ -107,6 +110,79 @@
     </div>
   {{ end }}
 </section>
+
+<script>
+(function () {
+  var bar   = document.getElementById('tagbar');
+  var chips = Array.prototype.slice.call(bar.querySelectorAll('.tag-chip'));
+  var items = Array.prototype.slice.call(document.querySelectorAll('#research-list .pub-item'));
+  var count = document.getElementById('tag-count');
+  var empty = document.getElementById('research-empty');
+  var clear = document.getElementById('tag-clear');
+  var active = [];
+
+  function tagsOf(el) { return (el.dataset.hashtags || '').split(' ').filter(Boolean); }
+
+  function render() {
+    var shown = 0;
+    items.forEach(function (el) {
+      var t = tagsOf(el);
+      // every selected hashtag must be present, so selections narrow the list
+      var ok = active.every(function (a) { return t.indexOf(a) !== -1; });
+      el.hidden = !ok;
+      if (ok) shown++;
+    });
+
+    chips.forEach(function (c) {
+      var on = active.indexOf(c.dataset.tag) !== -1;
+      c.classList.toggle('on', on);
+      c.setAttribute('aria-pressed', on ? 'true' : 'false');
+    });
+    // mark chips that would return nothing on top of the current selection
+    chips.forEach(function (c) {
+      if (active.indexOf(c.dataset.tag) !== -1) { c.classList.remove('dim'); return; }
+      var n = items.filter(function (el) {
+        var t = tagsOf(el);
+        return t.indexOf(c.dataset.tag) !== -1 && active.every(function (a) { return t.indexOf(a) !== -1; });
+      }).length;
+      c.classList.toggle('dim', n === 0);
+    });
+
+    count.textContent = active.length
+      ? shown + ' of ' + items.length + ' publications  ·  ' + active.map(function (a) { return '#' + a; }).join(' + ')
+      : items.length + ' publications';
+    empty.hidden = shown !== 0;
+    clear.hidden = active.length === 0;
+
+    var url = location.pathname + (active.length ? '?tags=' + active.join(',') : '') + location.hash;
+    history.replaceState(null, '', url);
+  }
+
+  function toggle(tag) {
+    var i = active.indexOf(tag);
+    if (i === -1) active.push(tag); else active.splice(i, 1);
+    render();
+  }
+
+  chips.forEach(function (c) {
+    c.addEventListener('click', function () { toggle(c.dataset.tag); });
+  });
+  clear.addEventListener('click', function () { active = []; render(); });
+
+  // hashtags printed on each publication are clickable too
+  document.getElementById('research-list').addEventListener('click', function (e) {
+    var el = e.target.closest('.pub-tag');
+    if (!el) return;
+    e.preventDefault();
+    toggle(el.dataset.tag);
+  });
+
+  var known = chips.map(function (c) { return c.dataset.tag; });
+  var q = new URLSearchParams(location.search).get('tags');
+  if (q) active = q.split(',').filter(function (t) { return known.indexOf(t) !== -1; });
+  render();
+})();
+</script>
 
 {{/* --------------------------------------------------------- public writing */}}
 <section class="band" id="public-writing">

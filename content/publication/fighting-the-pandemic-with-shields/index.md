@@ -11,6 +11,5 @@ links:
   - name: "Publisher's Version"
     url: "https://doi.org/10.1177/00219096221137684"
 doi: "10.1177/00219096221137684"
-tags: ["covid-19", "taiwan", "securitization", "developmental state", "crisis governance"]
-research_area: "pandemic-governance"
+hashtags: ["IssueSecuritization", "TaiwanPolitics", "COVID"]
 ---

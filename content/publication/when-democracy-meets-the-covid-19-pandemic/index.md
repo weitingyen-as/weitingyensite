@@ -11,6 +11,5 @@ links:
   - name: "Publisher's Version"
     url: "https://doi.org/10.4324/9781003314592"
 doi: "10.4324/9781003314592"
-tags: ["covid-19", "taiwan", "democracy", "crisis governance"]
-research_area: "pandemic-governance"
+hashtags: ["COVID", "TaiwanPolitics"]
 ---

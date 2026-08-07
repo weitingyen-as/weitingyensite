@@ -11,6 +11,5 @@ links:
   - name: "Publisher's Version"
     url: "https://doi.org/10.1142/9789811202315_0009"
 doi: "10.1142/9789811202315_0009"
-tags: ["informality", "labor market", "china", "measurement", "welfare state"]
-research_area: "insecurity-and-welfare-states"
+hashtags: ["EconomicInsecurity"]
 ---

@@ -13,6 +13,5 @@ links:
   - name: "Online Appendix"
     url: "https://weitingyen.com/wp-content/uploads/2020/09/jeas_final_appendix.docx"
 doi: "10.1017/jea.2020.29"
-tags: ["trade preferences", "cross-strait relations", "national identity", "taiwan", "survey experiments"]
-research_area: "identity-and-political-behaviors"
+hashtags: ["PoliticalBehavior", "Identity", "Framing"]
 ---
