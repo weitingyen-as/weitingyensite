@@ -5,6 +5,7 @@ authors: ["Lev Nachman", "Wei-Ting Yen"]
 publication_types: ["op_ed"]
 publication: "Brookings Institution"
 tags: ["taiwan", "cross-strait relations", "public opinion", "national identity"]
+links:
+  - name: "Read at Brookings Institution"
+    url: "https://www.brookings.edu/articles/will-taiwanese-accept-xi-jinpings-version-of-one-china/"
 ---
-
-<!-- NOTE FOR THE SITE OWNER: No URL for this piece was on the C.V. Add the Brookings link. -->
