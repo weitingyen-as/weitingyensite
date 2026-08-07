@@ -356,12 +356,19 @@ main > section:last-of-type .section { padding-bottom: 4.6rem; }
 .fold > *:last-child { padding-bottom: .9rem; }
 
 /* ------------------------------------------- public writing: text + covers */
-.pw-layout { display: grid; grid-template-columns: 1fr 210px; gap: 2.6rem; align-items: start; }
-.pw-covers { display: flex; flex-direction: column; gap: 1.1rem; }
+/* The block is held to 680px and the covers to 110px so the stacked pair
+   finishes level with the bottom of the prose beside it. */
+.pw-layout {
+  display: grid; grid-template-columns: minmax(0, 1fr) 110px;
+  gap: 2.2rem; align-items: start; max-width: 680px;
+}
+.pw-layout .prose { max-width: none; }
+.pw-covers { display: flex; flex-direction: column; gap: .625rem; }
 .pw-covers img {
   width: 100%; height: auto; border-radius: var(--radius-sm);
-  box-shadow: var(--shadow-lg); transition: transform .2s;
+  box-shadow: var(--shadow); transition: transform .2s, box-shadow .2s;
 }
+.pw-covers a:hover img { box-shadow: var(--shadow-lg); }
 .pw-covers a:hover img { transform: translateY(-2px); }
 
 /* --------------------------------------------------------- search modal */
@@ -417,10 +424,10 @@ main > section:last-of-type .section { padding-bottom: 4.6rem; }
   .nav-right { gap: .7rem; }
 }
 
-@media (max-width: 900px) {
-  .pw-layout { grid-template-columns: 1fr; gap: 1.6rem; }
-  .pw-covers { flex-direction: row; justify-content: flex-start; }
-  .pw-covers img { max-width: 180px; }
+@media (max-width: 700px) {
+  .pw-layout { grid-template-columns: 1fr; gap: 1.4rem; max-width: none; }
+  .pw-covers { flex-direction: row; justify-content: flex-start; gap: .8rem; }
+  .pw-covers a { flex: 0 0 110px; }
 }
 
 @media (max-width: 640px) {
