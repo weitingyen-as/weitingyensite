@@ -1,9 +1,6 @@
 ---
 title: "Bio & C.V."
 date: 2026-08-06
-links:
-  - name: "Curriculum Vitae (PDF)"
-    url: "files/wei-ting-yen-cv.pdf"
 cascade:
   build:
     render: never
@@ -58,72 +55,6 @@ She is also a co-founder and co-editor of
 political science research in plain Mandarin to a general audience, and has
 co-edited two of its volumes.
 
-<details class="fold">
-<summary>Appointments, education, grants, honours and service</summary>
-
-## Appointments
-
-| | |
-|---|---|
-| 2024– | Assistant Research Fellow, Institute of Political Science, Academia Sinica |
-| 2019–2024 | Assistant Professor, Government Department, Franklin & Marshall College |
-| 2017–2019 | Predoctoral Fellow, Political Science Department, Denison University |
-
-## Other affiliations
-
-| | |
-|---|---|
-| 2025 | Visiting Fellow, Oxford School of Global and Area Studies, University of Oxford |
-| 2023–2025 | Public Intellectuals Program Fellow, National Committee on U.S.-China Relations |
-| 2022–2023 | Visiting Scholar, Institute of Political Science, Academia Sinica |
-| 2021– | Associate Editor for Policy Reviews, *Asian Politics & Policy* |
-
-## Education
-
-| | |
-|---|---|
-| 2018 | Ph.D., Political Science, The Ohio State University |
-| 2011 | M.A., East Asian Studies, Yale University |
-| 2010 | M.A., Political Science, National Taiwan University |
-| 2007 | B.A., Economics and Political Science, National Taiwan University |
-
-## Grants
-
-- National Science and Technology Council New Investigator Research Grant, 2026–2028 (NSTC 115-2410-H-001-063-SS2)
-- Academia Sinica Grand Challenge Program Seed Grant, 2025–2026 (AS-GCS-115-H04)
-- Schier Research Fund, Government Department, Franklin & Marshall College, 2020 and 2024
-- Committee on Grants, Franklin & Marshall College, 2019, 2021, 2022, 2023
-- Community Response Fund, Center for Sustained Engagement with Lancaster, Franklin & Marshall College, 2020 (shared with Jessica Cox, Emily Marshall, Jennifer Meyer, and Harriet Okatch)
-- Mershon Center for International Security Studies Grant, The Ohio State University, 2013
-
-## Honors
-
-- Public Intellectuals Program Fellow, Cohort VIII, National Committee on U.S.-China Relations, 2023–2025
-- Taiwan Scholarship Program, Global Taiwan Institute, 2023
-- Mellon High-Impact Emerging Scholars Fellowship, Franklin & Marshall College, 2019–2021
-- John Heinz Dissertation Award, Honorable Mention, National Academy of Social Insurance, 2019
-- Chiang Ching-Kuo Foundation Dissertation Fellowship, 2016
-- S.C. Lee Best Paper Competition for Graduate Students, Michigan State University, 2016
-- Henry Luce Foundation Travel Award, Southeast Asia Research Group, 2015–2017
-- Taiwanese Government Scholarship for Overseas Studies, 2010–2012
-
-## Service
-
-She is Deputy Coordinator of the American Political Science Association's Conference
-Group on Taiwan Studies (2024–2026) and served on the Board of Directors of the
-North America Taiwan Studies Association from 2020 to 2024. At Academia Sinica she
-sits on the Arts and Culture Promotion Committee and the Dormitory Management
-Committee. She reviews for journals including the *American Political Science
-Review*, *Governance*, *Political Behavior*, *Journal of East Asian Studies*,
-*Journal of Health Politics, Policy and Law*, and *Asian Survey*.
-
-Outside the academy she has been a policy consultant to the Awakening Foundation
-since 2020, and previously worked with the World Bank Group as a short-term
-consultant on the I-SAF impact evaluation and as Co-Principal Investigator of the
-Voice and Action Project impact evaluation in Cambodia.
-
-</details>
-
-<!-- NOTE FOR THE SITE OWNER: this page is a condensed version of your C.V. The full
-     C.V. PDF is linked at the top and is the complete record. When you update the C.V.,
-     replace static/files/wei-ting-yen-cv.pdf and edit anything here that changed. -->
+<!-- NOTE FOR THE SITE OWNER: appointments, education, grants, honours and service
+     are no longer on the site — the C.V. PDF is the complete record. To update it,
+     replace static/files/wei-ting-yen-cv.pdf, keeping that filename. -->
