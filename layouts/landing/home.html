@@ -208,25 +208,50 @@
     </div>
 
     {{ with $opeds }}
-      <details class="fold" id="commentary">
-        <summary>Commentary and op-eds <span class="fold-n">{{ len . }}</span></summary>
-        <ol class="pub-list pub-list--plain">
-          {{ range sort . "Date" "desc" }}
-            {{ $url := "" }}
-            {{ range .Params.links }}{{ if not $url }}{{ $url = .url }}{{ end }}{{ end }}
-            <li class="pub-item">
-              <div class="pub-title">
-                {{ if $url }}<a href="{{ $url }}" target="_blank" rel="noopener">{{ .Title }}</a>{{ else }}{{ .Title }}{{ end }}
-              </div>
-              <div class="pub-meta-line">
-                <span class="pub-authors">{{ delimit (.Params.authors | default slice) ", " " and " }}</span>
-                <span class="pub-venue">&middot; {{ .Params.publication }}</span>
-                <span class="pub-year">&middot; {{ .Date.Format "Jan 2, 2006" }}</span>
-              </div>
-            </li>
-          {{ end }}
-        </ol>
-      </details>
+      <h3 class="collab-heading" id="commentary">Commentary and op-eds</h3>
+      <ol class="pub-list pub-list--plain" id="oped-list">
+        {{ range sort . "Date" "desc" }}
+          {{ $url := "" }}
+          {{ range .Params.links }}{{ if not $url }}{{ $url = .url }}{{ end }}{{ end }}
+          <li class="pub-item">
+            <div class="pub-title">
+              {{ if $url }}<a href="{{ $url }}" target="_blank" rel="noopener">{{ .Title }}</a>{{ else }}{{ .Title }}{{ end }}
+            </div>
+            <div class="pub-meta-line">
+              <span class="pub-authors">{{ delimit (.Params.authors | default slice) ", " " and " }}</span>
+              <span class="pub-venue">&middot; {{ .Params.publication }}</span>
+              <span class="pub-year">&middot; {{ .Date.Format "Jan 2, 2006" }}</span>
+            </div>
+          </li>
+        {{ end }}
+      </ol>
+      <div class="show-all-wrap">
+        <button type="button" class="btn btn-outline" id="show-all-opeds" aria-expanded="false"
+                aria-controls="oped-list">Show all {{ len . }} pieces</button>
+      </div>
+
+      <script>
+      (function () {
+        var items = Array.prototype.slice.call(document.querySelectorAll('#oped-list .pub-item'));
+        var btn   = document.getElementById('show-all-opeds');
+        var LIMIT = 3, expanded = false;
+        function render() {
+          items.forEach(function (el, i) { el.hidden = !expanded && i >= LIMIT; });
+          btn.textContent = expanded ? 'Show fewer' : 'Show all ' + items.length + ' pieces';
+          btn.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+        }
+        if (items.length > LIMIT) {
+          btn.addEventListener('click', function () {
+            expanded = !expanded;
+            render();
+            if (!expanded) document.getElementById('commentary').scrollIntoView({ block: 'start' });
+          });
+          render();
+        } else {
+          btn.hidden = true;
+        }
+      })();
+      </script>
     {{ end }}
   </div>
 </section>
