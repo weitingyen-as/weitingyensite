@@ -356,12 +356,36 @@ main > section:last-of-type .section { padding-bottom: 4.6rem; }
 .fold > *:not(summary) { padding: 0 1.1rem; }
 .fold > *:last-child { padding-bottom: .9rem; }
 
+/* --------------------------------------------------- commentary as cells */
+/* Deliberately unlike the publication cards above: smaller, tinted rather than
+   white, no shadow, and several to a row — so the two blocks read differently. */
+.oped-grid {
+  list-style: none; margin: 1.1rem 0 0; padding: 0;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: .7rem;
+}
+.oped-cell {
+  background: var(--color-bg); border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm); padding: .8rem .95rem;
+  display: flex; flex-direction: column; gap: .2rem;
+  transition: border-color .18s, background-color .18s;
+}
+.oped-cell[hidden] { display: none !important; }
+.oped-cell:hover { border-color: var(--color-accent); background: var(--color-surface); }
+.oped-outlet {
+  font-size: .66rem; font-weight: 700; letter-spacing: .07em; text-transform: uppercase;
+  color: var(--color-accent);
+}
+.oped-title { font-size: .88rem; font-weight: 600; line-height: 1.4; }
+.oped-title a { color: var(--color-text); text-decoration: none; }
+.oped-title a:hover { color: var(--color-accent); text-decoration: underline; }
+.oped-meta { font-size: .75rem; color: var(--color-text-muted); line-height: 1.4; margin-top: auto; padding-top: .25rem; }
+
 /* ------------------------------------------- public writing: text + covers */
 /* Covers on the left, text on the right, spanning the section's full width so
    the block lines up with the boxes above and below it. */
 .pw-layout {
   display: grid; grid-template-columns: 110px minmax(0, 1fr);
-  gap: 2.2rem; align-items: start;
+  gap: 2.2rem; align-items: center;
 }
 .pw-layout .prose { max-width: none; }
 .pw-covers { display: flex; flex-direction: column; gap: .625rem; }

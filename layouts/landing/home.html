@@ -193,6 +193,7 @@
     US&ndash;Taiwan&ndash;China relations, and brings political science research to
     Mandarin-speaking readers.</p>
 
+    <h3 class="collab-heading">Who Governs Taiwan (菜市場政治學)</h3>
     <div class="pw-layout">
       <div class="pw-covers">
         <a href="https://www.books.com.tw/products/0010797101" target="_blank" rel="noopener">
@@ -209,18 +210,17 @@
 
     {{ with $opeds }}
       <h3 class="collab-heading" id="commentary">Commentary and op-eds</h3>
-      <ol class="pub-list pub-list--plain" id="oped-list">
+      <ol class="oped-grid" id="oped-list">
         {{ range sort . "Date" "desc" }}
           {{ $url := "" }}
           {{ range .Params.links }}{{ if not $url }}{{ $url = .url }}{{ end }}{{ end }}
-          <li class="pub-item">
-            <div class="pub-title">
+          <li class="oped-cell">
+            <div class="oped-outlet">{{ .Params.publication }}</div>
+            <div class="oped-title">
               {{ if $url }}<a href="{{ $url }}" target="_blank" rel="noopener">{{ .Title }}</a>{{ else }}{{ .Title }}{{ end }}
             </div>
-            <div class="pub-meta-line">
-              <span class="pub-authors">{{ delimit (.Params.authors | default slice) ", " " and " }}</span>
-              <span class="pub-venue">&middot; {{ .Params.publication }}</span>
-              <span class="pub-year">&middot; {{ .Date.Format "Jan 2, 2006" }}</span>
+            <div class="oped-meta">
+              {{ delimit (.Params.authors | default slice) ", " " and " }} &middot; {{ .Date.Format "Jan 2, 2006" }}
             </div>
           </li>
         {{ end }}
@@ -232,7 +232,7 @@
 
       <script>
       (function () {
-        var items = Array.prototype.slice.call(document.querySelectorAll('#oped-list .pub-item'));
+        var items = Array.prototype.slice.call(document.querySelectorAll('#oped-list .oped-cell'));
         var btn   = document.getElementById('show-all-opeds');
         var LIMIT = 3, expanded = false;
         function render() {
