@@ -8,37 +8,38 @@
 
 :root {
   /* surfaces — warm, never pure white */
-  --color-bg:            #faf8f5;
+  --color-bg:            #faf6f0;
   --color-surface:       #ffffff;
-  --color-surface-alt:   #f3efe9;
+  --color-surface-alt:   #f4ebdf;
 
   /* text */
-  --color-text:          #23201d;
-  --color-text-muted:    #6b645d;
-  --color-text-faint:    #8a827a;
+  --color-text:          #241f1b;
+  --color-text-muted:    #6b625a;
+  --color-text-faint:    #8d8378;
 
-  /* institution accent, used sparingly */
-  --color-accent:        #3d5a6c;
-  --color-accent-hover:  #2c4351;
-  --color-accent-light:  #eaeff2;
-  --color-institution:   #3d5a6c;
+  /* accent — a deep brick red, the same structural role Harvard crimson plays
+     on the design this site is modelled on */
+  --color-accent:        #9c3d2e;
+  --color-accent-hover:  #7d2f22;
+  --color-accent-light:  #f8e9e4;
+  --color-institution:   #9c3d2e;
 
   /* links */
-  --color-link:          #3d5a6c;
-  --color-link-hover:    #8a5a2b;
+  --color-link:          #9c3d2e;
+  --color-link-hover:    #7d2f22;
 
   /* secondary highlight */
-  --color-gold:          #9a7238;
-  --color-gold-light:    #f8f2e6;
+  --color-gold:          #846229;
+  --color-gold-light:    #f9f1de;
 
-  --color-border:        #e6e1da;
-  --color-border-strong: #d6cfc4;
+  --color-border:        #e9dfd1;
+  --color-border-strong: #d9ccb8;
   --color-focus:         #d4a96a;
 
   --radius:      8px;
   --radius-sm:   4px;
-  --shadow:      0 1px 3px rgba(35, 32, 29, .05), 0 1px 2px rgba(35, 32, 29, .03);
-  --shadow-lg:   0 8px 30px rgba(35, 32, 29, .07);
+  --shadow:      0 1px 3px rgba(36, 31, 27, .06), 0 1px 2px rgba(36, 31, 27, .04);
+  --shadow-lg:   0 8px 30px rgba(36, 31, 27, .09);
 
   --max-w:       1060px;
   --nav-h:       60px;
@@ -155,7 +156,7 @@ main { min-height: 60vh; }
 .breadcrumb a:hover { color: var(--color-accent); text-decoration: underline; }
 .breadcrumb span[aria-hidden] { padding: 0 .4rem; color: var(--color-border-strong); }
 
-.section-rule { width: 40px; height: 3px; background: var(--color-accent); border-radius: 2px; margin-bottom: .8rem; }
+.section-rule { width: 44px; height: 3px; background: var(--color-accent); border-radius: 2px; margin-bottom: .85rem; }
 .page-title { font-size: 2rem; margin-bottom: .3rem; }
 .page-sub { color: var(--color-text-muted); font-size: .95rem; margin-bottom: 2rem; }
 
@@ -164,7 +165,7 @@ main { min-height: 60vh; }
 .section { padding: 3.6rem 0; }
 /* the page ends on the last section, so let it breathe at the bottom */
 main > section:last-of-type .section { padding-bottom: 4.6rem; }
-.band { background: var(--color-surface); border-top: 1px solid var(--color-border); border-bottom: 1px solid var(--color-border); }
+.band { background: var(--color-surface-alt); border-top: 1px solid var(--color-border); border-bottom: 1px solid var(--color-border); }
 .section-title { font-size: 1.85rem; margin: 0 0 .3rem; }
 .section-sub { color: var(--color-text-muted); font-size: .95rem; margin-bottom: 1.8rem; max-width: 68ch; }
 /* every anchor target clears the fixed navbar */
@@ -206,7 +207,7 @@ main > section:last-of-type .section { padding-bottom: 4.6rem; }
 .btn-row { display: flex; flex-wrap: wrap; gap: .6rem; }
 
 /* ------------------------------------------------------------------ hero */
-.hero { padding: 3.2rem 0 2.6rem; border-bottom: 1px solid var(--color-border); background: linear-gradient(180deg, var(--color-surface-alt) 0%, var(--color-bg) 100%); }
+.hero { padding: 3.2rem 0 2.6rem; border-bottom: 1px solid var(--color-border); background: linear-gradient(180deg, #f3e3dc 0%, var(--color-bg) 78%); }
 .hero-inner {
   max-width: var(--max-w); margin: 0 auto; padding: 0 1.4rem;
   display: grid; grid-template-columns: 200px 1fr; gap: 2.8rem; align-items: start;
@@ -295,12 +296,13 @@ main > section:last-of-type .section { padding-bottom: 4.6rem; }
 .pub-tags { display: flex; flex-wrap: wrap; gap: .3rem; margin-left: auto; }
 /* the same pill as the filter bar, so a tag on a card reads as the same object */
 .pub-tag {
-  background: var(--color-bg); border: 1px solid var(--color-border);
+  background: var(--color-gold-light); border: 1px solid #ede0c4;
   border-radius: 50px; padding: .12rem .55rem; cursor: pointer;
   font-size: .72rem; font-weight: 600; color: var(--color-text-faint);
   transition: background-color .15s, border-color .15s, color .15s;
 }
-.pub-tag:hover { border-color: var(--color-accent); color: var(--color-accent); }
+.pub-tag { color: var(--color-gold); }
+.pub-tag:hover { border-color: var(--color-accent); background: var(--color-accent-light); color: var(--color-accent); }
 /* lit up when this tag is one of the ones currently filtering the list */
 .pub-tag.on { background: var(--color-accent-light); border-color: var(--color-accent); color: var(--color-accent); }
 
