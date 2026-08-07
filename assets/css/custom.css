@@ -356,10 +356,11 @@ main > section:last-of-type .section { padding-bottom: 4.6rem; }
 .fold > *:last-child { padding-bottom: .9rem; }
 
 /* ------------------------------------------- public writing: text + covers */
-/* The block is held to 680px and the covers to 110px so the stacked pair
-   finishes level with the bottom of the prose beside it. */
+/* Covers on the left, text on the right. The block is held to 680px and the
+   covers to 110px so the stacked pair finishes level with the bottom of the
+   prose beside it. */
 .pw-layout {
-  display: grid; grid-template-columns: minmax(0, 1fr) 110px;
+  display: grid; grid-template-columns: 110px minmax(0, 1fr);
   gap: 2.2rem; align-items: start; max-width: 680px;
 }
 .pw-layout .prose { max-width: none; }
