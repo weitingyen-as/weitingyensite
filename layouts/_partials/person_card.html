@@ -1,6 +1,0 @@
-<div class="person">
-  <div class="person-name">
-    {{- with .Params.website }}<a href="{{ . }}" rel="noopener">{{ $.Title }}</a>{{ else }}{{ .Title }}{{ end -}}
-  </div>
-  {{ with .Params.role }}<div class="person-role">{{ . }}</div>{{ end }}
-</div>

@@ -2,7 +2,6 @@
 {{ $bio     := site.GetPage "/bio" }}
 {{ $public  := site.GetPage "/public-engagement" }}
 {{ $contact := site.GetPage "/contact" }}
-{{ $people  := site.GetPage "/authors" }}
 {{ $pubs    := where site.RegularPages "Section" "publication" }}
 
 {{/* Scholarship shown in the research areas; everything else is public-facing. */}}
@@ -86,29 +85,9 @@
   </ol>
   <p class="empty-note" id="research-empty" hidden>No publication carries every hashtag you have selected.</p>
 
-  {{/* Collaborators, derived from the authors: fields on the work above, so a new
-       paper brings its co-authors along without anyone maintaining a list. */}}
-  {{ $names := slice }}
-  {{ range $scholarship }}
-    {{ range (.Params.authors | default slice) }}
-      {{ if and (ne . site.Params.author) (not (in $names .)) }}{{ $names = $names | append . }}{{ end }}
-    {{ end }}
-  {{ end }}
-  {{ with $names }}
-    <h3 class="collab-heading" id="collaborators">Collaborators</h3>
-    <div class="people-grid">
-      {{ range sort . }}
-        {{ $name := . }}
-        {{ $profile := false }}
-        {{ with $people }}{{ range .Pages }}{{ if eq .Title $name }}{{ $profile = . }}{{ end }}{{ end }}{{ end }}
-        {{ if $profile }}
-          {{ partial "person_card.html" $profile }}
-        {{ else }}
-          <div class="person"><div class="person-name">{{ $name }}</div></div>
-        {{ end }}
-      {{ end }}
-    </div>
-  {{ end }}
+  <p class="collab-note">Wei-Ting Yen's research is collaborative, and she welcomes new
+  collaborators &mdash; especially those working on welfare state politics and political
+  behaviors.</p>
 </section>
 
 <script>
