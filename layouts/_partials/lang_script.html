@@ -1,0 +1,24 @@
+<script>
+(function () {
+  var KEY = 'wty-lang';
+  function apply(lang) {
+    document.querySelectorAll('[data-lang]').forEach(function (el) {
+      el.hidden = el.dataset.lang !== lang;
+    });
+    document.querySelectorAll('.lang-tab').forEach(function (b) {
+      var on = b.dataset.setLang === lang;
+      b.classList.toggle('is-on', on);
+      b.setAttribute('aria-pressed', on ? 'true' : 'false');
+    });
+    try { localStorage.setItem(KEY, lang); } catch (e) {}
+  }
+  document.addEventListener('click', function (e) {
+    var b = e.target.closest('.lang-tab');
+    if (b) apply(b.dataset.setLang);
+  });
+  var saved;
+  try { saved = localStorage.getItem(KEY); } catch (e) {}
+  if (!saved && (navigator.language || '').toLowerCase().indexOf('zh') === 0) saved = 'zh';
+  if (saved === 'zh') apply('zh');
+})();
+</script>

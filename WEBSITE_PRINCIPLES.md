@@ -16,7 +16,7 @@ There is exactly one HTML page plus a 404. Sections stack in this order:
 | Section | `id` | Source |
 |---|---|---|
 | Hero | — | `content/_index.md` front matter |
-| About | `#about` | `content/bio/_index.md` |
+| About | `#about` | `content/bio/_index.md` + `content/bio-zh/_index.md` |
 | Research | `#research-areas` | `content/publication/*` (articles and chapters) |
 | Public Writing | `#public-writing` | `content/public-engagement/_index.md` + op-eds + edited volumes |
 | Contact | `#contact` | `content/contact/_index.md` |
@@ -273,6 +273,14 @@ machine, and GitHub Pages has not been enabled. Pages must be set to build from
 
 ## 8. Editorial rules that were applied
 
+- **Bilingual by duplication, not by Hugo's i18n.** English and Mandarin bios are
+  four separate hand-written texts (`intro` / `intro_zh` in `content/_index.md`,
+  `content/bio/_index.md` / `content/bio-zh/_index.md`). Both are rendered into the
+  page and one is hidden with the `hidden` attribute; `layouts/_partials/lang_script.html`
+  flips every `[data-lang]` block at once, so the two switches cannot disagree.
+  Hugo's multilingual mode was not used — it would mean two builds and two URLs for
+  four paragraphs of text. Choice persists in `localStorage`, and a `zh-*`
+  `navigator.language` opens on Mandarin.
 - **Hero intro and About are deliberately different text.** Never paste one into
   the other.
 - **No process commentary ships.** Nothing on the page says where content came

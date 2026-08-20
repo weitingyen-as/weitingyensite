@@ -1,5 +1,6 @@
 {{ define "main" }}
 {{ $bio     := site.GetPage "/bio" }}
+{{ $bioZh   := site.GetPage "/bio-zh" }}
 {{ $public  := site.GetPage "/public-engagement" }}
 {{ $contact := site.GetPage "/contact" }}
 {{ $pubs    := where site.RegularPages "Section" "publication" }}
@@ -31,7 +32,11 @@
       <h1>{{ site.Params.author }}</h1>
       <p class="hero-role">{{ .Params.role }}</p>
       <p class="hero-inst">{{ .Params.institution }}</p>
-      <div class="hero-intro">{{ .Params.intro | markdownify }}</div>
+      {{ partial "lang_tabs.html" "hero" }}
+      <div class="hero-intro">
+        <div data-lang="en">{{ .Params.intro | markdownify }}</div>
+        {{ with .Params.intro_zh }}<div data-lang="zh" lang="zh-Hant" hidden>{{ . | markdownify }}</div>{{ end }}
+      </div>
       <div class="btn-row">
         <a class="btn btn-primary" href="{{ "files/wei-ting-yen-cv.pdf" | relURL }}" target="_blank" rel="noopener">Curriculum Vitae (PDF)</a>
         <a class="btn btn-outline" href="mailto:{{ site.Params.email }}">Email: {{ site.Params.email }}</a>
@@ -46,7 +51,9 @@
   <div class="wrap section">
     <div class="section-rule"></div>
     <h2 class="section-title">About</h2>
-    <div class="prose">{{ .Content }}</div>
+    {{ partial "lang_tabs.html" "about" }}
+    <div class="prose" data-lang="en">{{ .Content }}</div>
+    {{ with $bioZh }}<div class="prose" data-lang="zh" lang="zh-Hant" hidden>{{ .Content }}</div>{{ end }}
   </div>
 </section>
 {{ end }}

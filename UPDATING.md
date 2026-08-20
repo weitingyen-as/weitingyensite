@@ -31,8 +31,9 @@ Folder names no longer appear in any web address, so renaming a folder is safe.
 
 | What you want to change | File |
 |---|---|
-| Photo, name, job title, intro paragraph | `content/_index.md` |
-| The About narrative | `content/bio/_index.md` |
+| Photo, name, job title, short bio (English and 中文) | `content/_index.md` |
+| The About bio, English | `content/bio/_index.md` |
+| The About bio, 中文 | `content/bio-zh/_index.md` |
 | A publication, or its hashtags | `content/publication/<folder>/index.md` |
 | Who Governs Taiwan, the Mandarin post list | `content/public-engagement/_index.md` |
 | Email and address | `content/contact/_index.md` |
@@ -195,6 +196,25 @@ list already uses it:
 
 </details>
 ```
+
+## The two languages
+
+Both bios appear in English and Mandarin, with an **English / 中文** switch above
+each. The two switches move together, so a reader never gets an English hero over
+a Mandarin About. A visitor whose browser is set to Chinese lands on 中文; after
+that the site remembers whichever they last chose.
+
+Four pieces of text, and **each language is edited separately** — nothing is
+translated automatically:
+
+| | English | 中文 |
+|---|---|---|
+| Short bio (hero) | `intro:` in `content/_index.md` | `intro_zh:` in the same file |
+| Full bio (About) | `content/bio/_index.md` | `content/bio-zh/_index.md` |
+
+When you change one, change its counterpart, or the two languages will drift
+apart. If you ever want a section to be English-only, delete the Mandarin side
+and the switch stops appearing for it.
 
 **The hero intro** is the `intro:` block in `content/_index.md`. Keep it to two
 to four sentences. It is deliberately different from the About narrative — don't
