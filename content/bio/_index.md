@@ -10,10 +10,11 @@ build:
   list: always
 ---
 
-Hi, I am an Assistant Research Fellow at the Institute of Political Science,
-Academia Sinica, and currently serve as an Associate Editor of *Asian Politics &
-Policy*. Previously, I was an Assistant Professor in the Department of Government at
-Franklin & Marshall College in the United States.
+Hi, I am an Assistant Research Fellow at the
+[Institute of Political Science, Academia Sinica](https://www.ipsas.sinica.edu.tw/en/%E7%A0%94%E7%A9%B6%E4%BA%BA%E5%93%A1/%E9%A1%8F%E7%B6%AD%E5%A9%B7/), and currently serve as an
+Associate Editor of [*Asian Politics & Policy*](https://onlinelibrary.wiley.com/journal/19430787). Previously, I was an Assistant
+Professor in the Department of Government at
+[Franklin & Marshall College](https://www.fandm.edu/) in the United States.
 
 I am a comparative political economist studying how individuals and governments
 respond to uncertainty, and how these responses shape the political foundations of
@@ -51,9 +52,9 @@ science research accessible to a general audience in Mandarin. I have also co-ed
 two of its volumes. For more information, please see the
 [Public Writing](#public-writing) section below.
 
-I hold a Ph.D. in Political Science from The Ohio State University, an M.A. in East
-Asian Studies from Yale University, and an M.A. in Political Science and a B.A. in
-Economics and Political Science from National Taiwan University.
+I hold a Ph.D. in Political Science from [The Ohio State University](https://www.osu.edu/), an M.A. in
+East Asian Studies from [Yale University](https://www.yale.edu/), and an M.A. in Political Science and a
+B.A. in Economics and Political Science from [National Taiwan University](https://www.ntu.edu.tw/english/).
 
 <!-- NOTE FOR THE SITE OWNER: this is your own full bio text (August 2026), verbatim
      apart from italicised journal titles and two added links: Research and Public
