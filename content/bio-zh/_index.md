@@ -10,16 +10,23 @@ build:
   list: always
 ---
 
-顏維婷為中央研究院政治學研究所助研究員，曾任美國富蘭克林與馬歇爾學院政府系助理教授。她的研究領域涵蓋亞洲的民主治理、比較政治經濟學與福利國家發展，近期研究聚焦於經濟不安全感的政治影響，以及領土認同與社會團結的形成基礎；研究成果發表於 The China Quarterly、Governance、Public Opinion Quarterly、Journal of Social Policy、Journal of East Asian Studies、Policy & Politics 等國際期刊。
+我目前是中央研究院政治學研究所助研究員，並擔任 Asian Politics & Policy 副主編。在此之前，我曾任美國 Franklin & Marshall College 政府學系助理教授。
 
-她的第一條研究主軸探問：在 COVID-19 的極端不確定下，何以部分國家仍能維持有效治理。透過亞洲各國的比較分析，她指出關鍵既不在政體類型，也不在強制能力，而在於行政能力與汲取能力——具備這兩者的政府得以及早部署，並動用更多元的政策工具。延伸的研究提出「產業協調能力」，解釋為何國家能力相近的國家會動員截然不同的資源：台灣透過既有的機械與紡織業網絡擴大口罩產能，南韓藉由大型企業集團與生技產業生產檢測試劑，新加坡則運用全球製藥連結取得疫苗。第三條線索追問危機敘事何以成立，指出病毒的「安全化」不僅需要政治菁英的論述，也需要民眾的接受；而安全化敘事只會提高民眾對該敘事所明確涵蓋之措施的支持。
+我的研究領域是比較政治經濟學，主要關注個人與政府如何因應不確定性（uncertainty），以及這些因應方式如何形塑公共政策與民主治理的政治基礎。我的研究探討經濟不安全感、地緣政治不確定性與危機如何影響政策偏好與制度行為。研究主要聚焦亞洲，並以台灣作為重要案例，藉此回應比較政治經濟領域更廣泛的理論與實證辯論。我的學術研究發表於 Public Opinion Quarterly、Governance、The China Quarterly、Journal of Social Policy、Journal of East Asian Studies、Policy & Politics 等國際期刊。更多資訊請參閱下方[「研究」](#research-areas)頁面。
 
-她的第二條研究主軸關注人們如何在不確定中形成政策偏好。她指出「所得不安全感」是年輕民主國家提撥制年金參與率偏低的微觀機制：不穩定的收入縮短了個人的時間視野，與社會保險的長期邏輯相互扞格，使勞工即使明知制度能保障未來風險，仍選擇不加入。循此，她轉向非提撥制的替代方案，發現在美國，全民基本收入的支持度取決於政策框架與政黨線索；而在尚未政治化的台灣，則取決於更深層的文化世界觀。另一條研究提出「領土國家認同」（Territorial State Identity）的概念——即個人對國家疆界能否延續的預期——並證明其對福利體制支持的影響獨立於民族主義之外，從而將以領土固定為前提的福利國家理論，延伸至主權爭議未決的處境。
+我目前的研究聚焦於兩項新興的不確定性來源——與中國發生軍事衝突的可能性，以及人工智慧（AI）所帶來的勞動市場轉型——如何重塑台灣及其他國家福利國家的政治與發展。
 
-貫穿兩條主軸的共同發現是：物質自利很少是故事的全貌。當貿易對象是中國時，國族情感會削弱經濟利益的吸引力；人們對自身群體意向的認知，會改變其接種疫苗的意願；而占台灣選民三到四成的中間選民，雖會受政黨框架影響，對不民主作為的容忍度卻明顯低於政黨支持者。
+在研究方法上，我採取多元方法取徑，結合問卷與聯合分析實驗（conjoint experiments）、大樣本追蹤資料分析，以及質性研究方法。
 
-作為公共知識分子，顏維婷長期關注台灣的民主治理，以及台灣民眾對美國、中國與兩岸關係（美中台三方）的看法。她是美中關係全國委員會（NCUSCR）公共知識分子計畫成員，並曾擔任美國國務院台灣國內政治顧問；分析文章刊登於布魯金斯研究院（Brookings Institution）、《外交事務》（Foreign Affairs）與《外交政策》（Foreign Policy）等平台，並經常接受國際媒體採訪，包括《紐約時報》、《華盛頓郵報》與《華爾街日報》等。她同時擔任國際期刊 Asian Politics & Policy 副編輯。她於美國俄亥俄州立大學取得政治學博士學位，並於耶魯大學取得東亞研究碩士學位。
+我的學術研究曾獲 Mellon Foundation、National Academy of Social Insurance、Global Taiwan Institute、蔣經國國際學術交流基金會，以及台灣國家科學及技術委員會等機構的獎項與研究獎助。
 
-<!-- NOTE FOR THE SITE OWNER: 第一段與最後一段為您 顏維婷_個人簡介_Bio.docx 中的
-     中文（完整版），逐字保留。中間三段由 2026 年 5 月的研究成果報告改寫而成。
+除了學術研究之外，我也積極參與公共討論，特別致力於將台灣的觀點帶入國際社會對美中台三方關係的討論。我是 National Committee on U.S.-China Relations「Public Intellectuals Program」的學者，並曾就台灣國內政治議題向美國國務院提供政策諮詢。我的分析文章曾刊登於 Brookings Institution、Foreign Affairs、Foreign Policy 等國際政策與媒體平台，也經常接受國際媒體訪問，包括 The New York Times、The Washington Post 與 The Wall Street Journal。
+
+我也是 [Who Governs Taiwan（菜市場政治學）](https://whogovernstw.org/) 的共同創辦人與共同主編。這是一個面向大眾的知識平台，致力於以中文讓政治學研究更容易被一般讀者理解與接觸。我也曾共同編輯其中兩本出版著作。更多資訊請參閱下方[「公共寫作」](#public-writing)頁面。
+
+我取得美國 The Ohio State University 政治學博士、Yale University 東亞研究碩士，以及國立台灣大學政治學碩士與經濟學、政治學雙學士學位。
+
+<!-- NOTE FOR THE SITE OWNER: 此為您 2026 年 8 月提供的中文完整版簡介，逐字保留，
+     僅加入三個連結：「研究」與「公共寫作」連到本頁下方的 #research-areas 與
+     #public-writing，Who Governs Taiwan 連到 whogovernstw.org。
      英文版在 content/bio/_index.md — 兩邊都要一起更新。 -->

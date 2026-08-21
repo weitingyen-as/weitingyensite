@@ -10,60 +10,56 @@ build:
   list: always
 ---
 
-Wei-Ting Yen is an Assistant Research Fellow at the Institute of Political Science,
-Academia Sinica. Previously, she was an Assistant Professor in the Government
-Department at Franklin & Marshall College. She studies democratic governance,
-comparative political economy, and welfare state development in Asia, with current
-work on the political consequences of economic insecurity and the foundations of
-territorial identity and social solidarity. Her research has appeared in *The China
-Quarterly*, *Governance*, *Public Opinion Quarterly*, *Journal of Social Policy*,
-*Journal of East Asian Studies*, and *Policy & Politics*, among others.
+Hi, I am an Assistant Research Fellow at the Institute of Political Science,
+Academia Sinica, and currently serve as an Associate Editor of *Asian Politics &
+Policy*. Previously, I was an Assistant Professor in the Department of Government at
+Franklin & Marshall College in the United States.
 
-Her first research agenda asks what allowed some states to govern well under the
-extreme uncertainty of COVID-19. Comparing cases across Asia, she finds that it was
-administrative and extractive capacity — not coercive capacity, and not regime type —
-that let governments act preemptively and reach for a wider range of policy
-instruments. A related strand introduces industrial coordination capacity to explain
-why states of similar capacity mobilised different resources: Taiwan scaled up masks
-through existing machinery and textile networks, South Korea produced tests through
-its conglomerates and biotech sector, Singapore secured vaccines through global
-pharmaceutical ties. A third asks what makes a crisis narrative hold, showing that
-securitizing a virus requires public acceptance as well as elite rhetoric, and that
-such narratives raise support only for the measures they explicitly cover.
+I am a comparative political economist studying how individuals and governments
+respond to uncertainty, and how these responses shape the political foundations of
+public policy and democratic governance. My research examines how economic
+insecurity, geopolitical uncertainty, and crises affect policy preferences and
+institutional behavior. I focus primarily on Asia, with Taiwan as a key case through
+which I engage broader debates in comparative political economy. My academic work has
+appeared in *Public Opinion Quarterly*, *Governance*, *The China Quarterly*, *Journal
+of Social Policy*, *Journal of East Asian Studies*, and *Policy & Politics*, among
+others. For more information, please see the [Research](#research-areas) section
+below.
 
-Her second agenda concerns how people form policy preferences under uncertainty. She
-identifies income insecurity as a micro-level reason contributory pension systems stay
-thin in young democracies: unstable earnings shorten time horizons and sit badly with
-the long-run logic of social insurance, so workers opt out even where the programme
-would protect them. That question leads on to non-contributory alternatives, where she
-finds support for a basic income turns on framing and partisan cues in the United
-States, and on deeper cultural worldviews in Taiwan, where the policy is not yet
-politicised. A further strand introduces Territorial State Identity — what people
-expect about the durability of their state's borders — and shows that it shapes
-welfare support independently of nationalism, extending a body of theory built on the
-assumption of fixed territory to places where sovereignty is contested.
+My current research focuses on how two emerging sources of uncertainty — the prospect
+of military conflict with China and AI-driven transformations of the labor market —
+are reshaping the politics and development of welfare states in Taiwan and beyond.
 
-Running through both agendas is a common finding: material self-interest is rarely the
-whole story. National attachment dampens the pull of economic gain when the proposed
-trading partner is China. What people believe others in their own group intend to do
-moves their willingness to be vaccinated. And Taiwan's independent voters — some thirty
-to forty per cent of the electorate — prove responsive to partisan framing while holding
-a markedly lower tolerance for undemocratic practice than partisans do.
+Methodologically, I take a multi-method approach, combining survey and conjoint
+experiments, large-N panel data analysis, and qualitative methods.
 
-As a public intellectual, Dr. Yen focuses on Taiwan's democratic governance and
-Taiwanese public opinion toward the United States, China, and cross-Strait
-relations. She is a Public Intellectuals Program Fellow at the National Committee
-on U.S.-China Relations and has advised the U.S. Department of State on Taiwan's
-domestic politics. Her analysis appears in the Brookings Institution, *Foreign
-Affairs*, and *Foreign Policy*, and she is frequently interviewed by international
-media, including the *New York Times*, the *Washington Post*, and the *Wall Street
-Journal*. She also serves as Associate Editor for *Asian Politics & Policy*. She
-holds a Ph.D. in Political Science from The Ohio State University and an M.A. in
-East Asian Studies from Yale University.
+My scholarship has received awards and fellowship support from the Mellon Foundation,
+the National Academy of Social Insurance, the Global Taiwan Institute, the Chiang
+Ching-kuo Foundation, and Taiwan's National Science and Technology Council, among
+other institutions.
 
-<!-- NOTE FOR THE SITE OWNER: the first and last paragraphs are the English (Full)
-     bio from your own 顏維婷_個人簡介_Bio.docx, verbatim apart from italicised
-     journal titles. The three middle paragraphs were written from your May 2026
-     research statement (Research_Statement_英文). The Mandarin version lives in
-     content/bio-zh/_index.md — edit both when something changes. The short
-     versions shown in the hero are intro / intro_zh in content/_index.md. -->
+Beyond my academic research, I am actively engaged in public discourse, with a
+particular focus on bringing Taiwanese perspectives to international discussions of
+U.S.&ndash;China&ndash;Taiwan relations. I am a Public Intellectuals Program Fellow at
+the National Committee on U.S.-China Relations and have advised the U.S. Department of
+State on Taiwan's domestic politics. My analysis has appeared in the Brookings
+Institution, *Foreign Affairs*, and *Foreign Policy*, among other outlets, and I am
+frequently interviewed by international media, including *The New York Times*, *The
+Washington Post*, and *The Wall Street Journal*.
+
+I am also a co-founder and co-editor of
+[*Who Governs Taiwan*](https://whogovernstw.org/) (菜市場政治學), a public-facing
+platform that makes political science research accessible to a general audience in
+Mandarin. I have also co-edited two of its volumes. For more information, please see
+the [Public Writing](#public-writing) section below.
+
+I hold a Ph.D. in Political Science from The Ohio State University, an M.A. in East
+Asian Studies from Yale University, and an M.A. in Political Science and a B.A. in
+Economics and Political Science from National Taiwan University.
+
+<!-- NOTE FOR THE SITE OWNER: this is your own full bio text (August 2026), verbatim
+     apart from italicised journal titles and three added links: Research and Public
+     Writing point at the sections further down this page (#research-areas and
+     #public-writing), and Who Governs Taiwan points at whogovernstw.org. The Mandarin
+     version lives in content/bio-zh/_index.md — edit both when something changes. The
+     short versions shown in the hero are intro / intro_zh in content/_index.md. -->
