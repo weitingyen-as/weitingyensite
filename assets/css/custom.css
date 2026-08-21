@@ -179,7 +179,8 @@ main { min-height: 60vh; }
    read as part of the page's vocabulary rather than as buttons. */
 /* Bio on the left, the cards stacked in a narrower column on the right --
    the 2:1 split and 3rem gutter the design model uses. */
-.about-layout { display: grid; grid-template-columns: 2fr 1fr; gap: 3rem; align-items: start; }
+/* Cards ride level with the middle of the bio rather than its first line. */
+.about-layout { display: grid; grid-template-columns: 2.5fr 0.5fr; gap: 3rem; align-items: center; }
 .profile-links { display: flex; flex-direction: column; gap: .8rem; }
 .profile-card {
   display: block; background: var(--color-surface);
@@ -192,16 +193,11 @@ main { min-height: 60vh; }
   border-color: var(--color-accent); transform: translateY(-1px);
   box-shadow: var(--shadow-lg);
 }
-.profile-card .section-rule { margin-bottom: .7rem; }
 .profile-card-title {
   display: block; font-family: var(--font-sans); font-size: .97rem;
   font-weight: 600; color: var(--color-text); line-height: 1.4;
 }
 .profile-card:hover .profile-card-title { color: var(--color-accent); }
-.profile-card-sub {
-  display: block; font-size: .82rem; color: var(--color-text-muted);
-  margin-top: .2rem;
-}
 
 .page-title { font-size: 2rem; margin-bottom: .3rem; }
 .page-sub { color: var(--color-text-muted); font-size: .95rem; margin-bottom: 2rem; }
