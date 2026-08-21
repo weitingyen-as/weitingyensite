@@ -179,25 +179,28 @@ main { min-height: 60vh; }
    read as part of the page's vocabulary rather than as buttons. */
 /* Bio on the left, the cards stacked in a narrower column on the right --
    the 2:1 split and 3rem gutter the design model uses. */
-/* Cards ride level with the middle of the bio rather than its first line. */
-.about-layout { display: grid; grid-template-columns: 2.5fr 0.5fr; gap: 3rem; align-items: center; }
+/* Cards ride level with the middle of the bio rather than its first line.
+   max-content sizes the card column to the longest label instead of a fixed
+   ratio, so the labels stay on one line whatever font the visitor falls back
+   to -- a hand-tuned fr value only holds on the machine it was measured on. */
+.about-layout { display: grid; grid-template-columns: minmax(0, 1fr) max-content;
+  gap: 3rem; align-items: center; }
 .profile-links { display: flex; flex-direction: column; gap: .8rem; }
 .profile-card {
-  display: block; background: var(--color-surface);
-  border: 1px solid var(--color-border); border-radius: 10px;
+  display: block; background: var(--color-accent);
+  border: 1px solid var(--color-accent); border-radius: 10px;
   padding: 1rem 1.25rem; text-decoration: none;
   box-shadow: var(--shadow);
-  transition: border-color .2s, transform .2s, box-shadow .2s;
+  transition: background-color .2s, border-color .2s, transform .2s, box-shadow .2s;
 }
 .profile-card:hover, .profile-card:focus-visible {
-  border-color: var(--color-accent); transform: translateY(-1px);
-  box-shadow: var(--shadow-lg);
+  background: var(--color-accent-hover); border-color: var(--color-accent-hover);
+  transform: translateY(-1px); box-shadow: var(--shadow-lg);
 }
 .profile-card-title {
   display: block; font-family: var(--font-sans); font-size: .97rem;
-  font-weight: 600; color: var(--color-text); line-height: 1.4;
+  font-weight: 600; color: #fff; line-height: 1.4; white-space: nowrap;
 }
-.profile-card:hover .profile-card-title { color: var(--color-accent); }
 
 .page-title { font-size: 2rem; margin-bottom: .3rem; }
 .page-sub { color: var(--color-text-muted); font-size: .95rem; margin-bottom: 2rem; }
