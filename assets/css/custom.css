@@ -195,6 +195,11 @@ main > section:last-of-type .section { padding-bottom: 4.6rem; }
 
 /* ---------------------------------------------------------------- prose */
 .prose { max-width: 72ch; }
+/* These sections run their body copy edge to edge, so every block down the
+   page shares the same left and right edges as the section headings and the
+   research cards. Public Writing is the exception: its covers take the first
+   column, so only its right edge lines up. */
+#about .prose, #opportunity .prose, #contact .prose { max-width: none; }
 .prose p { margin-bottom: 1.25em; }
 .prose ul, .prose ol { margin: 0 0 1.25em 1.25em; padding: 0; }
 .prose li { margin-bottom: .35em; }
@@ -227,9 +232,6 @@ main > section:last-of-type .section { padding-bottom: 4.6rem; }
 .btn-outline { background: var(--color-surface); color: var(--color-text); border-color: var(--color-border-strong); }
 .btn-outline:hover { border-color: var(--color-accent); color: var(--color-accent); }
 .btn-row { display: flex; flex-wrap: wrap; gap: .6rem; }
-/* Opportunity: prose runs the full section width like About, and the two
-   document buttons sit right under it. */
-#opportunity .prose { max-width: none; }
 #opportunity .btn-row { margin-top: .4rem; }
 
 /* ------------------------------------------------------------------ hero */
@@ -432,10 +434,6 @@ main > section:last-of-type .section { padding-bottom: 4.6rem; }
   gap: var(--rail-gap); align-items: center;
 }
 .pw-layout .prose { max-width: none; }
-/* About spans the section box edge to edge: flush left with the section rule
-   and heading, flush right with the Public Writing text and the research
-   cards. No rail indent -- nothing sits in that column here. */
-#about .prose { max-width: none; }
 .pw-covers { display: flex; flex-direction: column; gap: .625rem; }
 .pw-covers img {
   width: 100%; height: auto; border-radius: var(--radius-sm);
