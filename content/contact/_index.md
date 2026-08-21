@@ -11,6 +11,11 @@ build:
 
 ---
 
+I am always happy to connect with journalists, students, researchers, and potential
+collaborators interested in Taiwan politics, East Asian politics, comparative
+political economy, and welfare politics. Please feel free to reach out about
+research collaborations, speaking invitations, or student advising.
+
 **Email:** [wyen@as.edu.tw](mailto:wyen@as.edu.tw)
 
 **Post:**
@@ -19,6 +24,3 @@ Institute of Political Science, Academia Sinica
 Taipei 115201, Taiwan
 
 **Institute page:** [Institute of Political Science, Academia Sinica](https://www.ipsas.sinica.edu.tw/en/)
-
-I am glad to hear from journalists, students, researchers, and potential
-collaborators working on Taiwan politics, East Asian politics, or welfare politics.
