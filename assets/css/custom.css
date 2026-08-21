@@ -175,7 +175,11 @@ main { min-height: 60vh; }
 
 /* --------------------------------------------- stacked single-page sections */
 /* Alternating bands give each stacked section an edge without a hard rule. */
-.section { padding: 3.6rem 0; }
+/* Long-hand on purpose: most sections are <div class="wrap section">, and the
+   shorthand here would zero the horizontal gutter .wrap sets, leaving every
+   section flush against the window on narrow screens and 22px out of line with
+   the hero on wide ones. */
+.section { padding-top: 3.6rem; padding-bottom: 3.6rem; }
 /* the page ends on the last section, so let it breathe at the bottom */
 main > section:last-of-type .section { padding-bottom: 4.6rem; }
 .band { background: var(--color-surface-alt); border-top: 1px solid var(--color-border); border-bottom: 1px solid var(--color-border); }
