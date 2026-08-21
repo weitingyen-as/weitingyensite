@@ -382,6 +382,16 @@ main > section:last-of-type .section { padding-bottom: 4.6rem; }
 .fold > *:not(summary) { padding: 0 1.1rem; }
 .fold > *:last-child { padding-bottom: .9rem; }
 
+/* ------------------------------------------- sub-headings within a section */
+.collab-heading { font-size: 1.15rem; margin: 2.2rem 0 .9rem; }
+.collab-heading:first-of-type { margin-top: 1.6rem; }
+/* Clear separation between the two halves of Public Writing, with a hairline so
+   the break reads as deliberate rather than as a gap. */
+.collab-heading.pw-second {
+  margin-top: 4.4rem; padding-top: 2.6rem;
+  border-top: 1px solid var(--color-border-strong);
+}
+
 /* --------------------------------------------------- commentary as cells */
 /* Deliberately unlike the publication cards above: smaller, tinted rather than
    white, no shadow, and several to a row — so the two blocks read differently. */
