@@ -1,11 +1,11 @@
 ---
 title: "Territory and Solidarity: Evidence from Taiwan's Pension Policy Reform"
-date: 2025-01-01
+date: 2026-01-04
 authors: ["Wei-Ting Yen", "Ming-Jui Yeh"]
 publication_types: ["journal_article"]
-publication: "Journal of Social Policy, Early View"
+publication: "Journal of Social Policy, 55(3): 790–807"
 venue: "Journal of Social Policy"
-venue_detail: "Early View"
+venue_detail: "55(3): 790–807"
 abstract: "Welfare states rest on a bounded community of contributors. Taiwan's pension reform shows how contested territorial boundaries shape who citizens are willing to share risk with."
 links:
   - name: "Article (PDF)"
