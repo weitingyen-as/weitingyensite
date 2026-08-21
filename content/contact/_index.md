@@ -25,4 +25,4 @@ Taipei 115201, Taiwan
 
 **Institute page:** [Institute of Political Science, Academia Sinica](https://www.ipsas.sinica.edu.tw/en/)
 
-**LinkedIn:** [linkedin.com/feed](https://www.linkedin.com/feed/)
+**LinkedIn:** [linkedin.com/in/wei-ting-yen](https://www.linkedin.com/in/wei-ting-yen-201707370/)
