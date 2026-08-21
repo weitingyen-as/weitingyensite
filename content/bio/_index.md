@@ -45,21 +45,19 @@ the National Committee on U.S.-China Relations and have advised the U.S. Departm
 State on Taiwan's domestic politics. My analysis has appeared in the Brookings
 Institution, *Foreign Affairs*, and *Foreign Policy*, among other outlets, and I am
 frequently interviewed by international media, including *The New York Times*, *The
-Washington Post*, and *The Wall Street Journal*.
-
-I am also a co-founder and co-editor of
-[*Who Governs Taiwan*](https://whogovernstw.org/) (菜市場政治學), a public-facing
-platform that makes political science research accessible to a general audience in
-Mandarin. I have also co-edited two of its volumes. For more information, please see
-the [Public Writing](#public-writing) section below.
+Washington Post*, and *The Wall Street Journal*. I am also a co-founder and co-editor
+of *Who Governs Taiwan* (菜市場政治學), a public-facing platform that makes political
+science research accessible to a general audience in Mandarin. I have also co-edited
+two of its volumes. For more information, please see the
+[Public Writing](#public-writing) section below.
 
 I hold a Ph.D. in Political Science from The Ohio State University, an M.A. in East
 Asian Studies from Yale University, and an M.A. in Political Science and a B.A. in
 Economics and Political Science from National Taiwan University.
 
 <!-- NOTE FOR THE SITE OWNER: this is your own full bio text (August 2026), verbatim
-     apart from italicised journal titles and three added links: Research and Public
+     apart from italicised journal titles and two added links: Research and Public
      Writing point at the sections further down this page (#research-areas and
-     #public-writing), and Who Governs Taiwan points at whogovernstw.org. The Mandarin
+     #public-writing). The Mandarin
      version lives in content/bio-zh/_index.md — edit both when something changes. The
      short versions shown in the hero are intro / intro_zh in content/_index.md. -->

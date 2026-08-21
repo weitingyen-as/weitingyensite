@@ -10,7 +10,7 @@ build:
   list: always
 ---
 
-Wei-Ting Yen is a co-founder and co-editor of
+I am a co-founder and co-editor of
 [*Who Governs Taiwan*](https://whogovernstw.org/), a Mandarin-language site that
 explains political science research in plain language for readers in the
 Chinese-speaking world. The project has also produced two edited volumes:
@@ -22,4 +22,4 @@ Chinese-speaking world. The project has also produced two edited volumes:
 
 You can also follow the project on
 [social media](https://linktr.ee/whogovernstw), or read
-[her author archive](http://whogovernstw.org/category/wei-ting-yen/).
+[my author archive](http://whogovernstw.org/category/wei-ting-yen/).

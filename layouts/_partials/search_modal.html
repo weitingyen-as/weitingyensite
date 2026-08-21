@@ -85,7 +85,7 @@
 
     var pf = await ensurePagefind();
     if (!pf) {
-      hint.innerHTML = 'Search is unavailable on this page. <a href="' + fallback(q) + '" rel="nofollow">Search with Google instead</a>.';
+      hint.innerHTML = 'Search is unavailable on this page. <a href="' + fallback(q) + '" target="_blank" rel="noopener nofollow">Search with Google instead</a>.';
       return;
     }
 

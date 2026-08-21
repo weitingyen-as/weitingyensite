@@ -54,6 +54,10 @@
   --shadow-lg:   0 8px 30px rgba(35, 38, 43, .10);
 
   --max-w:       1060px;
+  /* The Public Writing covers column, shared with the About text so the two
+     body blocks start and end on the same lines. Change it in one place. */
+  --rail:        110px;
+  --rail-gap:    2.2rem;
   --nav-h:       60px;
 
   --font-serif: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, "Times New Roman", serif;
@@ -420,10 +424,13 @@ main > section:last-of-type .section { padding-bottom: 4.6rem; }
 /* Covers on the left, text on the right, spanning the section's full width so
    the block lines up with the boxes above and below it. */
 .pw-layout {
-  display: grid; grid-template-columns: 110px minmax(0, 1fr);
-  gap: 2.2rem; align-items: center;
+  display: grid; grid-template-columns: var(--rail) minmax(0, 1fr);
+  gap: var(--rail-gap); align-items: center;
 }
 .pw-layout .prose { max-width: none; }
+/* About runs in that same column: indented past the rail, full width to the
+   right, so its paragraphs line up with the Public Writing paragraphs. */
+#about .prose { max-width: none; margin-left: calc(var(--rail) + var(--rail-gap)); }
 .pw-covers { display: flex; flex-direction: column; gap: .625rem; }
 .pw-covers img {
   width: 100%; height: auto; border-radius: var(--radius-sm);
@@ -487,6 +494,7 @@ main > section:last-of-type .section { padding-bottom: 4.6rem; }
 
 @media (max-width: 700px) {
   .pw-layout { grid-template-columns: 1fr; gap: 1.4rem; max-width: none; }
+  #about .prose { margin-left: 0; }
   .pw-covers { flex-direction: row; justify-content: flex-start; gap: .8rem; }
   .pw-covers a { flex: 0 0 110px; }
 }

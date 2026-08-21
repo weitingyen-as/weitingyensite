@@ -1,0 +1,7 @@
+{{- /* Every link written in Markdown opens in a new tab, so a reader never loses
+       their place on the page. Two exceptions that a new tab would only break:
+       in-page anchors (#research-areas and friends), and mailto: links, which
+       hand off to a mail client and would otherwise leave a blank tab behind. */ -}}
+{{- $d := .Destination -}}
+{{- $new := not (or (hasPrefix $d "#") (hasPrefix $d "mailto:")) -}}
+<a href="{{ $d | safeURL }}"{{ with .Title }} title="{{ . }}"{{ end }}{{ if $new }} target="_blank" rel="noopener"{{ end }}>{{ .Text | safeHTML }}</a>

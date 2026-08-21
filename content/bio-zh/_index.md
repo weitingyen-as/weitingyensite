@@ -20,13 +20,11 @@ build:
 
 我的學術研究曾獲 Mellon Foundation、National Academy of Social Insurance、Global Taiwan Institute、蔣經國國際學術交流基金會，以及台灣國家科學及技術委員會等機構的獎項與研究獎助。
 
-除了學術研究之外，我也積極參與公共討論，特別致力於將台灣的觀點帶入國際社會對美中台三方關係的討論。我是 National Committee on U.S.-China Relations「Public Intellectuals Program」的學者，並曾就台灣國內政治議題向美國國務院提供政策諮詢。我的分析文章曾刊登於 Brookings Institution、Foreign Affairs、Foreign Policy 等國際政策與媒體平台，也經常接受國際媒體訪問，包括 The New York Times、The Washington Post 與 The Wall Street Journal。
-
-我也是 [Who Governs Taiwan（菜市場政治學）](https://whogovernstw.org/) 的共同創辦人與共同主編。這是一個面向大眾的知識平台，致力於以中文讓政治學研究更容易被一般讀者理解與接觸。我也曾共同編輯其中兩本出版著作。更多資訊請參閱下方[「公共寫作」](#public-writing)頁面。
+除了學術研究之外，我也積極參與公共討論，特別致力於將台灣的觀點帶入國際社會對美中台三方關係的討論。我是 National Committee on U.S.-China Relations「Public Intellectuals Program」的學者，並曾就台灣國內政治議題向美國國務院提供政策諮詢。我的分析文章曾刊登於 Brookings Institution、Foreign Affairs、Foreign Policy 等國際政策與媒體平台，也經常接受國際媒體訪問，包括 The New York Times、The Washington Post 與 The Wall Street Journal。我也是 Who Governs Taiwan（菜市場政治學）的共同創辦人與共同主編，這是一個面向大眾的知識平台，致力於以中文讓政治學研究更容易被一般讀者理解與接觸；我也曾共同編輯其中兩本出版著作。更多資訊請參閱下方[「公共寫作」](#public-writing)頁面。
 
 我取得美國 The Ohio State University 政治學博士、Yale University 東亞研究碩士，以及國立台灣大學政治學碩士與經濟學、政治學雙學士學位。
 
 <!-- NOTE FOR THE SITE OWNER: 此為您 2026 年 8 月提供的中文完整版簡介，逐字保留，
-     僅加入三個連結：「研究」與「公共寫作」連到本頁下方的 #research-areas 與
-     #public-writing，Who Governs Taiwan 連到 whogovernstw.org。
+     僅加入兩個連結：「研究」與「公共寫作」連到本頁下方的 #research-areas 與
+     #public-writing。
      英文版在 content/bio/_index.md — 兩邊都要一起更新。 -->
