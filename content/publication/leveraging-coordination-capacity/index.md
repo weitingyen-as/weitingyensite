@@ -12,6 +12,8 @@ links:
     url: "files/2025_jeas_leveraging-coordination-capacity.pdf"
   - name: "Publisher's Version"
     url: "https://doi.org/10.1017/jea.2025.3"
+  - name: "Public Lecture (Video)"
+    url: "https://www.youtube.com/watch?v=umnTufCxALY"
 doi: "10.1017/jea.2025.3"
 hashtags: ["COVID", "DevelopmentalState", "StateCapacity"]
 ---
