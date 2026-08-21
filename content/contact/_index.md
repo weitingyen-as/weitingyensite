@@ -21,4 +21,4 @@ Taipei 115201, Taiwan
 **Institute page:** [Institute of Political Science, Academia Sinica](https://www.ipsas.sinica.edu.tw/en/)
 
 I am glad to hear from journalists, students, researchers, and potential
-collaborators working on Taiwanese and East Asian politics.
+collaborators working on Taiwan politics, East Asian politics, or welfare politics.
