@@ -55,6 +55,20 @@
     {{ partial "lang_tabs.html" "about" }}
     <div class="prose" data-lang="en">{{ .Content }}</div>
     {{ with $bioZh }}<div class="prose" data-lang="zh" lang="zh-Hant" hidden>{{ .Content }}</div>{{ end }}
+
+    {{/* Not inside a data-lang block: both cards read the same either way. */}}
+    <div class="profile-links">
+      <a class="profile-card" href="https://www.ipsas.sinica.edu.tw/en/%E7%A0%94%E7%A9%B6%E4%BA%BA%E5%93%A1/%E9%A1%8F%E7%B6%AD%E5%A9%B7/" target="_blank" rel="noopener">
+        <div class="section-rule"></div>
+        <span class="profile-card-title">Academia Sinica Faculty Page</span>
+        <span class="profile-card-sub">Institute of Political Science</span>
+      </a>
+      <a class="profile-card" href="https://scholar.google.com/citations?user=GvEUFGoAAAAJ&amp;hl=zh-TW" target="_blank" rel="noopener">
+        <div class="section-rule"></div>
+        <span class="profile-card-title">Google Scholar</span>
+        <span class="profile-card-sub">Citations and full publication list</span>
+      </a>
+    </div>
   </div>
 </section>
 {{ end }}
