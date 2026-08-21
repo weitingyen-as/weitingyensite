@@ -428,9 +428,10 @@ main > section:last-of-type .section { padding-bottom: 4.6rem; }
   gap: var(--rail-gap); align-items: center;
 }
 .pw-layout .prose { max-width: none; }
-/* About runs in that same column: indented past the rail, full width to the
-   right, so its paragraphs line up with the Public Writing paragraphs. */
-#about .prose { max-width: none; margin-left: calc(var(--rail) + var(--rail-gap)); }
+/* About spans the section box edge to edge: flush left with the section rule
+   and heading, flush right with the Public Writing text and the research
+   cards. No rail indent -- nothing sits in that column here. */
+#about .prose { max-width: none; }
 .pw-covers { display: flex; flex-direction: column; gap: .625rem; }
 .pw-covers img {
   width: 100%; height: auto; border-radius: var(--radius-sm);
@@ -494,7 +495,6 @@ main > section:last-of-type .section { padding-bottom: 4.6rem; }
 
 @media (max-width: 700px) {
   .pw-layout { grid-template-columns: 1fr; gap: 1.4rem; max-width: none; }
-  #about .prose { margin-left: 0; }
   .pw-covers { flex-direction: row; justify-content: flex-start; gap: .8rem; }
   .pw-covers a { flex: 0 0 110px; }
 }
