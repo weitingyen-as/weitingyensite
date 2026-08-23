@@ -39,7 +39,7 @@
         {{ with .Params.intro_zh }}<div data-lang="zh" lang="zh-Hant" hidden>{{ . | markdownify }}</div>{{ end }}
       </div>
       <div class="btn-row">
-        <a class="btn btn-download" href="{{ "files/wei-ting-yen-cv.pdf" | relURL }}" target="_blank" rel="noopener">Curriculum Vitae (PDF)</a>
+        <a class="btn btn-primary" href="{{ "files/wei-ting-yen-cv.pdf" | relURL }}" target="_blank" rel="noopener">Curriculum Vitae (PDF)</a>
         <a class="btn btn-outline" href="mailto:{{ site.Params.email }}">Email: {{ site.Params.email }}</a>
       </div>
     </div>
@@ -272,8 +272,8 @@
   <h2 class="section-title">Opportunity</h2>
   <div class="prose">{{ .Content }}</div>
   <div class="btn-row">
-    <a class="btn btn-download" href="{{ "files/ra-recruitment-en.pdf" | relURL }}" target="_blank" rel="noopener">Recruitment Information (English, PDF)</a>
-    <a class="btn btn-download" href="{{ "files/ra-recruitment-zh.pdf" | relURL }}" target="_blank" rel="noopener">研究助理招募說明（中文，PDF）</a>
+    <a class="btn btn-primary" href="{{ "files/ra-recruitment-en.pdf" | relURL }}" target="_blank" rel="noopener">Recruitment Information (English, PDF)</a>
+    <a class="btn btn-primary" href="{{ "files/ra-recruitment-zh.pdf" | relURL }}" target="_blank" rel="noopener">研究助理招募說明（中文，PDF）</a>
   </div>
 </section>
 {{ end }}

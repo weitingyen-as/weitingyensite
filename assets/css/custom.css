@@ -41,11 +41,6 @@
   --color-link-hover:    #00446f;
 
   /* khaki, for hashtags and awards */
-  /* Deep crimson marks the buttons that hand over a file. Not CSS 'crimson'
-     (#DC143C): white on that is 5.0:1, and it reads far brighter than the
-     rest of the palette. White on this is 10.4:1. */
-  --color-crimson:       #7e1526;
-  --color-crimson-hover: #5f101d;
   --color-gold:          #786d58;
   --color-gold-light:    #f0ece2;
 
@@ -234,10 +229,6 @@ main > section:last-of-type .section { padding-bottom: 4.6rem; }
 }
 .btn-primary { background: var(--color-accent); color: #fff; }
 .btn-primary:hover { background: var(--color-accent-hover); color: #fff; transform: translateY(-1px); }
-/* Downloads (C.V., the recruitment documents) -- blue stays on the in-page
-   expand buttons, so colour tells you which ones leave the page with a file. */
-.btn-download { background: var(--color-crimson); color: #fff; }
-.btn-download:hover { background: var(--color-crimson-hover); color: #fff; transform: translateY(-1px); }
 .btn-outline { background: var(--color-surface); color: var(--color-text); border-color: var(--color-border-strong); }
 .btn-outline:hover { border-color: var(--color-accent); color: var(--color-accent); }
 .btn-row { display: flex; flex-wrap: wrap; gap: .6rem; }
