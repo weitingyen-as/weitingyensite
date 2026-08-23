@@ -20,9 +20,9 @@ research collaborations, speaking invitations, or student advising.
 
 **LinkedIn:** [linkedin.com/in/wei-ting-yen](https://www.linkedin.com/in/wei-ting-yen-201707370/)
 
-**Post:**
-Institute of Political Science, Academia Sinica
-128 Academia Road, Section 2, Nangang District
+**Post:**<br>
+Institute of Political Science, Academia Sinica<br>
+128 Academia Road, Section 2, Nangang District<br>
 Taipei 115201, Taiwan
 
 **Institute page:** [Institute of Political Science, Academia Sinica](https://www.ipsas.sinica.edu.tw/en/)

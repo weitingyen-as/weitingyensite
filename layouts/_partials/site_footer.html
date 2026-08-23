@@ -1,0 +1,17 @@
+<footer class="site-footer">
+  <div class="wrap footer-inner">
+    <div class="footer-id">
+      <p class="footer-name">{{ site.Params.author }}</p>
+      <p class="footer-inst">{{ site.Params.institution }}</p>
+    </div>
+    <nav class="footer-links" aria-label="Elsewhere">
+      <a href="mailto:{{ site.Params.email }}">{{ site.Params.email }}</a>
+      <a href="https://scholar.google.com/citations?user=GvEUFGoAAAAJ&amp;hl" target="_blank" rel="noopener">Google Scholar</a>
+      <a href="https://www.linkedin.com/in/wei-ting-yen-201707370/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://www.ipsas.sinica.edu.tw/en/%E7%A0%94%E7%A9%B6%E4%BA%BA%E5%93%A1/%E9%A1%8F%E7%B6%AD%E5%A9%B7/" target="_blank" rel="noopener">Faculty page</a>
+    </nav>
+  </div>
+  <div class="wrap footer-base">
+    <p>&copy; {{ now.Year }} {{ site.Params.author }}</p>
+  </div>
+</footer>
