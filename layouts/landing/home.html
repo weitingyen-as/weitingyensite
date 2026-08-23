@@ -285,6 +285,52 @@
     <div class="section-rule"></div>
     <h2 class="section-title">Contact</h2>
     <div class="prose">{{ .Content }}</div>
+
+    {{/* Three across, each the whole card clickable. Icons are inline so they
+         inherit the link colour and need no extra request. */}}
+    <div class="contact-links">
+      <a class="contact-link" href="mailto:{{ site.Params.email }}">
+        <span class="contact-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2.5" y="4.5" width="19" height="15" rx="2"/><path d="m3 6 9 6.5L21 6"/>
+          </svg>
+        </span>
+        <span class="contact-text">
+          <span class="contact-label">Email</span>
+          <span class="contact-value">{{ site.Params.email }}</span>
+        </span>
+      </a>
+      <a class="contact-link" href="{{ .Params.scholar_url }}" target="_blank" rel="noopener">
+        <span class="contact-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 4 1.5 9.5 12 15l10.5-5.5L12 4Z"/><path d="M5.5 11.7V16c0 1.9 2.9 3.4 6.5 3.4s6.5-1.5 6.5-3.4v-4.3"/><path d="M22 9.5v5"/>
+          </svg>
+        </span>
+        <span class="contact-text">
+          <span class="contact-label">Google Scholar</span>
+          <span class="contact-value">Citations and publications</span>
+        </span>
+      </a>
+      <a class="contact-link" href="{{ .Params.linkedin_url }}" target="_blank" rel="noopener">
+        <span class="contact-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2.5" y="2.5" width="19" height="19" rx="3"/><path d="M7.4 10.5v6.2M7.4 7.6v.05"/><path d="M11.6 16.7v-6.2M11.6 13.2c0-1.5 1-2.7 2.5-2.7s2.5 1.2 2.5 2.7v3.5"/>
+          </svg>
+        </span>
+        <span class="contact-text">
+          <span class="contact-label">LinkedIn</span>
+          <span class="contact-value">{{ .Params.linkedin_handle }}</span>
+        </span>
+      </a>
+    </div>
+
+    <div class="contact-post">
+      <p class="contact-post-label">Post</p>
+      <address>
+        {{ range $i, $line := .Params.address }}{{ if $i }}<br>{{ end }}{{ $line }}{{ end }}
+      </address>
+      <p class="contact-post-page"><a href="{{ .Params.institute_url }}" target="_blank" rel="noopener">{{ .Params.institute_name }}</a></p>
+    </div>
   </div>
 </section>
 {{ end }}

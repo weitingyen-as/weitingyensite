@@ -451,6 +451,41 @@ main > section:last-of-type .section { padding-bottom: 4.6rem; }
 .pw-covers a:hover img { box-shadow: var(--shadow-lg); }
 .pw-covers a:hover img { transform: translateY(-2px); }
 
+/* -------------------------------------------------------------- contact */
+/* Three cards across; the whole card is the link, not just the text. */
+.contact-links {
+  display: grid; grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.4rem; margin: 1.6rem 0 2rem;
+}
+/* No card around them -- just the icon and the words, the whole thing clickable. */
+.contact-link {
+  display: flex; align-items: center; gap: .7rem; text-decoration: none;
+}
+.contact-icon {
+  flex: none; display: grid; place-items: center;
+  width: 34px; height: 34px; border-radius: 50%;
+  background: var(--color-accent-light); color: var(--color-accent);
+  transition: background-color .2s, color .2s;
+}
+.contact-link:hover .contact-icon, .contact-link:focus-visible .contact-icon {
+  background: var(--color-accent); color: #fff;
+}
+.contact-icon svg { width: 19px; height: 19px; }
+.contact-text { display: flex; flex-direction: column; min-width: 0; }
+.contact-label { font-size: .9rem; font-weight: 600; color: var(--color-text); line-height: 1.35; }
+.contact-link:hover .contact-label { color: var(--color-accent); text-decoration: underline; }
+.contact-value {
+  font-size: .78rem; color: var(--color-text-muted);
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.contact-post-label {
+  font-size: .72rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+  color: var(--color-text-faint); margin-bottom: .35rem;
+}
+.contact-post address { font-style: normal; line-height: 1.7; }
+.contact-post-page { margin-top: .5rem; }
+@media (max-width: 760px) { .contact-links { grid-template-columns: 1fr; } }
+
 /* --------------------------------------------------------------- footer */
 /* A single dark strip closing the page -- it used to stop dead after Contact. */
 .site-footer { background: var(--color-accent-hover); color: #a8c2d4; }
