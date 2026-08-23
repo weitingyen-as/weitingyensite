@@ -264,8 +264,10 @@ main > section:last-of-type .section { padding-bottom: 4.6rem; }
   color: var(--color-text-muted); transition: background-color .15s, color .15s;
 }
 .lang-tab + .lang-tab { border-left: 1px solid var(--color-border-strong); }
-.lang-tab:hover { color: var(--color-accent); }
-.lang-tab.is-on { background: var(--color-accent); color: #fff; }
+/* Charcoal, not the accent blue: this is a chrome control, and in blue it
+   competed with the buttons that actually do something. */
+.lang-tab:hover { color: var(--color-text); }
+.lang-tab.is-on { background: var(--color-text); color: #fff; }
 
 /* Traditional Chinese sits better in a CJK face than the Latin system stack */
 [lang="zh-Hant"] {
