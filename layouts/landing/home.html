@@ -322,15 +322,19 @@
           <span class="contact-value">{{ .Params.linkedin_handle }}</span>
         </span>
       </a>
+      <a class="contact-link" href="{{ .Params.faculty_url }}" target="_blank" rel="noopener">
+        <span class="contact-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 3 2.5 8h19L12 3Z"/><path d="M4.5 8v10M9.5 8v10M14.5 8v10M19.5 8v10"/><path d="M2 21h20"/>
+          </svg>
+        </span>
+        <span class="contact-text">
+          <span class="contact-label">Faculty Page</span>
+          <span class="contact-value">Academia Sinica</span>
+        </span>
+      </a>
     </div>
 
-    <div class="contact-post">
-      <p class="contact-post-label">Post</p>
-      <address>
-        {{ range $i, $line := .Params.address }}{{ if $i }}<br>{{ end }}{{ $line }}{{ end }}
-      </address>
-      <p class="contact-post-page"><a href="{{ .Params.institute_url }}" target="_blank" rel="noopener">{{ .Params.institute_name }}</a></p>
-    </div>
   </div>
 </section>
 {{ end }}

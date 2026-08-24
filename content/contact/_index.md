@@ -1,13 +1,8 @@
 ---
 title: "Contact"
 date: 2026-08-06
-address:
-  - "Institute of Political Science, Academia Sinica"
-  - "128 Academia Road, Section 2, Nangang District"
-  - "Taipei 115201, Taiwan"
-institute_name: "Institute of Political Science, Academia Sinica"
-institute_url: "https://www.ipsas.sinica.edu.tw/en/"
 scholar_url: "https://scholar.google.com/citations?user=GvEUFGoAAAAJ&hl"
+faculty_url: "https://www.ipsas.sinica.edu.tw/en/%E7%A0%94%E7%A9%B6%E4%BA%BA%E5%93%A1/%E9%A1%8F%E7%B6%AD%E5%A9%B7/"
 linkedin_url: "https://www.linkedin.com/in/wei-ting-yen-201707370/"
 linkedin_handle: "linkedin.com/in/wei-ting-yen"
 cascade:
