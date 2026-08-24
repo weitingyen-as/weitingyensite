@@ -14,7 +14,7 @@ build:
   list: always
 ---
 
-I am always happy to connect with journalists, students, researchers, and potential
+I am happy to connect with journalists, students, researchers, and potential
 collaborators interested in Taiwan politics, East Asian politics, comparative
-political economy, and welfare politics. Please feel free to reach out about
+political economy, or welfare politics. Please feel free to reach out about
 research collaborations, speaking invitations, or student advising.
