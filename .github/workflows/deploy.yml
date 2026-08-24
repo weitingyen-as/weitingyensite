@@ -50,6 +50,10 @@ jobs:
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v5
+        with:
+          # Create the Pages site if it does not exist yet. Without this the
+          # first run fails here and every later step is skipped.
+          enablement: true
 
       - name: Build with Hugo
         env:
