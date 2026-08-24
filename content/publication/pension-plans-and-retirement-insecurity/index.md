@@ -13,5 +13,5 @@ links:
   - name: "Publisher's Version"
     url: "https://doi.org/10.1007/s12126-018-9326-x"
 doi: "10.1007/s12126-018-9326-x"
-hashtags: ["SocialInsurance", "EconomicInsecurity"]
+hashtags: ["SocialInsurance", "EconomicInsecurity", "WelfareState"]
 ---
