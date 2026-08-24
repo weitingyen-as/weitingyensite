@@ -75,7 +75,7 @@ menu:
     - name: Public Writing
       url: "/#public-writing"
       weight: 30
-    - name: Opportunity
+    - name: For Students
       url: "/#opportunity"
       weight: 40
     - name: Contact

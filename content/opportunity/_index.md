@@ -1,5 +1,5 @@
 ---
-title: "Opportunity"
+title: "For Students"
 date: 2026-08-22
 cascade:
   build:
