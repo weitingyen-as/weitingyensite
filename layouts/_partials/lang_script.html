@@ -16,9 +16,12 @@
     var b = e.target.closest('.lang-tab');
     if (b) apply(b.dataset.setLang);
   });
+  /* English is what a first-time visitor sees, whatever their browser locale.
+     The site's audience is international, and guessing from navigator.language
+     opened the page in Mandarin for anyone on a zh system. Only an explicit
+     click on 中文 is remembered. */
   var saved;
   try { saved = localStorage.getItem(KEY); } catch (e) {}
-  if (!saved && (navigator.language || '').toLowerCase().indexOf('zh') === 0) saved = 'zh';
   if (saved === 'zh') apply('zh');
 })();
 </script>
