@@ -20,6 +20,11 @@
   <link rel="icon" type="image/png" sizes="32x32" href="{{ "favicon-32x32.png" | relURL }}">
   <link rel="apple-touch-icon" href="{{ "apple-touch-icon.png" | relURL }}">
 
+  {{/* Cookieless analytics; see the partial. Gated to production because Hugo
+       does not gate analytics itself, and local previews would otherwise
+       report page views into the same property. */}}
+  {{ if hugo.IsProduction }}{{ partial "analytics.html" . }}{{ end }}
+
   {{ with resources.Get "css/custom.css" }}
     {{/* Fingerprint in every environment: an unfingerprinted stylesheet gets cached
          by the browser during local preview and silently serves stale CSS. */}}

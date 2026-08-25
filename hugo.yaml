@@ -11,6 +11,10 @@ enableGitInfo: false
 summaryLength: 30
 timeout: 300s
 
+services:
+  googleAnalytics:
+    ID: "G-W56N723PG9"
+
 outputs:
   home: [HTML, RSS, JSON]
 
