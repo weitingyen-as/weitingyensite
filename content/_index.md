@@ -6,7 +6,7 @@ institution: "Institute of Political Science, Academia Sinica"
 photo: "images/wei-ting-yen.jpg"
 photo_alt: "Portrait of Wei-Ting Yen, Institute of Political Science, Academia Sinica"
 intro: |
-  I am a political economist at the Institute of Political Science, Academia Sinica. My research focuses on comparative political economy, democratic governance, and welfare state development in Asia. Beyond my academic research, I am actively engaged in public discourse, bringing Taiwanese perspectives to international discussions of U.S.–China–Taiwan relations. I regularly contribute commentary and analysis to international media and policy outlets.
+  I am a political economist whose research focuses primarily on Asia, with Taiwan as a key case through which I engage broader debates in comparative political economy. Beyond my academic research, I am passionate about bringing Taiwanese perspectives to international discussions of U.S.–China–Taiwan relations and other global issues.
 intro_zh: |
-  我是中央研究院政治學研究所的政治經濟學者，研究領域涵蓋比較政治經濟、民主治理，以及亞洲福利國家的發展。除了學術研究之外，我也積極參與公共討論，致力於為美中台三方關係的國際討論帶入台灣觀點，並定期於國際媒體及政策分析平台發表評論與分析。
+  我是一名政治經濟學者，研究主要聚焦於亞洲，並以台灣作為重要案例，藉此探討比較政治經濟學中的廣泛議題與辯論。除了學術研究之外，我也致力於將台灣的觀點帶入國際討論，尤其是有關美中台關係及其他全球議題的對話之中。
 ---
