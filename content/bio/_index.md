@@ -11,54 +11,47 @@ build:
 ---
 
 Hi, I am an Assistant Research Fellow at the
-[Institute of Political Science, Academia Sinica](https://www.ipsas.sinica.edu.tw/en/%E7%A0%94%E7%A9%B6%E4%BA%BA%E5%93%A1/%E9%A1%8F%E7%B6%AD%E5%A9%B7/), and currently serve as an
-Associate Editor of [*Asian Politics & Policy*](https://onlinelibrary.wiley.com/journal/19430787). Previously, I was an Assistant
-Professor in the Department of Government at
+[Institute of Political Science, Academia Sinica](https://www.ipsas.sinica.edu.tw/en/%E7%A0%94%E7%A9%B6%E4%BA%BA%E5%93%A1/%E9%A1%8F%E7%B6%AD%E5%A9%B7/)
+and an Associate Editor of
+*[Asian Politics & Policy](https://onlinelibrary.wiley.com/journal/19430787)*.
+Previously, I was an Assistant Professor of Government at
 [Franklin & Marshall College](https://www.fandm.edu/) in the United States.
 
 I am a comparative political economist studying how individuals and governments
-respond to uncertainty, and how these responses shape the political foundations of
-public policy and democratic governance. My research examines how economic
-insecurity, geopolitical uncertainty, and crises affect policy preferences and
-institutional behavior. I focus primarily on Asia, with Taiwan as a key case through
-which I engage broader debates in comparative political economy. My academic work has
-appeared in *Public Opinion Quarterly*, *Governance*, *The China Quarterly*, *Journal
-of Social Policy*, *Journal of East Asian Studies*, and *Policy & Politics*, among
-others. For more information, please see the [Research](#research-areas) section
-below.
+respond to uncertainty, and how these responses shape public policy and democratic
+governance. My research examines economic insecurity, geopolitical uncertainty, and
+crises, with a primary focus on Asia and Taiwan. My current projects explore how the
+prospect of military conflict with China and AI-driven changes in the labor market are
+reshaping the politics of welfare states.
 
-My current research focuses on how two emerging sources of uncertainty — the prospect
-of military conflict with China and AI-driven transformations of the labor market —
-are reshaping the politics and development of welfare states in Taiwan and beyond.
+My research uses multi-methods approaches. My work has appeared in *Public Opinion
+Quarterly*, *Governance*, *The China Quarterly*, *Journal of Social Policy*, and other
+journals, and has received support from the Mellon Foundation, Chiang Ching-kuo
+Foundation, and Taiwan's National Science and Technology Council, among others. See
+[Research](#research-areas) for more.
 
-Methodologically, I take a multi-method approach, combining survey and conjoint
-experiments, large-N panel data analysis, and qualitative methods.
+Beyond academia, I bring Taiwanese perspectives to international discussions of
+U.S.&ndash;China&ndash;Taiwan relations and other global issues. I am a Public
+Intellectuals Program Fellow at the National Committee on U.S.-China Relations and have
+advised the U.S. Department of State on Taiwan's domestic politics. My analysis has
+appeared in the Brookings Institution, *Foreign Affairs*, and *Foreign Policy*, and I
+have been interviewed by *The New York Times*, *The Washington Post*, *The Wall Street
+Journal*, and other international media.
 
-My scholarship has received awards and fellowship support from the Mellon Foundation,
-the National Academy of Social Insurance, the Global Taiwan Institute, the Chiang
-Ching-kuo Foundation, and Taiwan's National Science and Technology Council, among
-other institutions.
+I am also a co-founder and co-editor of *Who Governs Taiwan* (菜市場政治學), a Mandarin
+platform that makes political science research accessible to a broader public. See
+[Public Writing](#public-writing) for more.
 
-Beyond my academic research, I am actively engaged in public discourse, with a
-particular focus on bringing Taiwanese perspectives to international discussions of
-U.S.&ndash;China&ndash;Taiwan relations. I am a Public Intellectuals Program Fellow at
-the National Committee on U.S.-China Relations and have advised the U.S. Department of
-State on Taiwan's domestic politics. My analysis has appeared in the Brookings
-Institution, *Foreign Affairs*, and *Foreign Policy*, among other outlets, and I am
-frequently interviewed by international media, including *The New York Times*, *The
-Washington Post*, and *The Wall Street Journal*. I am also a co-founder and co-editor
-of *Who Governs Taiwan* (菜市場政治學), a public-facing platform that makes political
-science research accessible to a general audience in Mandarin. I have also co-edited
-two of its volumes. For more information, please see the
-[Public Writing](#public-writing) section below.
+I hold a Ph.D. in Political Science from [The Ohio State University](https://www.osu.edu/),
+an M.A. in East Asian Studies from [Yale University](https://www.yale.edu/), and an M.A.
+in Political Science and a B.A. in Economics and Political Science from
+[National Taiwan University](https://www.ntu.edu.tw/english/).
 
-I hold a Ph.D. in Political Science from [The Ohio State University](https://www.osu.edu/), an M.A. in
-East Asian Studies from [Yale University](https://www.yale.edu/), and an M.A. in Political Science and a
-B.A. in Economics and Political Science from [National Taiwan University](https://www.ntu.edu.tw/english/).
-
-<!-- NOTE FOR THE SITE OWNER: this is your own full bio text (August 2026), verbatim
-     apart from italicised journal titles and two added links: Research and Public
-     Writing point at the sections further down this page (#research-areas and
-     #public-writing). The Mandarin
-     version lives in content/bio-zh/_index.md — edit both when something changes. The
-     short versions shown in the hero are intro / intro_zh in content/_index.md. -->
+<!-- NOTE FOR THE SITE OWNER: your own text (August 2026), verbatim apart from two
+     link changes. You supplied the Research and Public Writing links as full
+     https://weitingyen-as.github.io/... URLs; they are written here as the bare
+     fragments #research-areas and #public-writing so they scroll down this page.
+     Written in full they would have opened a second browser tab and reloaded the
+     whole site, because the Markdown link render hook sends every non-fragment
+     link to target="_blank". The Mandarin version lives in
+     content/bio-zh/_index.md -- edit both when something changes. -->
