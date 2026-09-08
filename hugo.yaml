@@ -11,10 +11,6 @@ enableGitInfo: false
 summaryLength: 30
 timeout: 300s
 
-services:
-  googleAnalytics:
-    ID: "G-W56N723PG9"
-
 outputs:
   home: [HTML, RSS, JSON]
 
@@ -32,6 +28,9 @@ taxonomies: {}
 
 params:
   # Owner identity — used by the hero, structured data and the footer.
+  # GoatCounter site code -- the subdomain chosen at goatcounter.com.
+  # Empty means no analytics script is emitted at all.
+  goatcounter: "weitingyen"
   author: "Wei-Ting Yen"
   short_name: "Wei-Ting Yen"
   institution: "Institute of Political Science, Academia Sinica"

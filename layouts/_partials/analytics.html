@@ -1,40 +1,16 @@
-{{- /* Cookieless GA4, via Consent Mode.
+{{- /* GoatCounter: cookieless analytics that still reports.
 
-   VERIFIED IN A BROWSER, because the obvious approach silently fails:
-   gtag('config', ..., {client_storage: 'none'}) is a Universal Analytics
-   option that GA4 ignores -- the page still received _ga and _ga_<id> cookies.
+   Replaces GA4. Cookieless GA4 was collecting page views but leaving the
+   reports empty: with analytics_storage denied, GA4 only surfaces that traffic
+   through consent-mode behavioural modelling, which needs a large volume of
+   consent-GRANTED traffic to model from. There was none, so nothing appeared.
 
-   The mechanism GA4 actually honours is a consent default of
-   analytics_storage: 'denied', pushed BEFORE the config call. GA4 then sends
-   cookieless pings: page views are recorded, nothing is stored on the device,
-   and no persistent identifier follows the visitor. The cost is that every
-   page view looks like a new visitor, so "users" and "returning visitors" in
-   the GA dashboard are not meaningful. Page views, referrers, pages per
-   session and geography still are.
+   GoatCounter has no such mode. It sets no cookies, stores no personal data
+   and needs no consent banner, and every visit still shows in the dashboard.
 
-   The ad_* denials switch off advertising, remarketing and demographics.
-   IP anonymisation is not set: GA4 does it unconditionally, and the old
-   anonymize_ip parameter is ignored, so passing it would only mislead.
-
-   Do Not Track is honoured, as in Hugo's own template: nothing runs at all. */ -}}
-{{- with site.Config.Services.GoogleAnalytics.ID -}}
-<script async src="https://www.googletagmanager.com/gtag/js?id={{ . }}"></script>
-<script>
-  var dnt = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
-  if (dnt !== '1' && dnt !== 'yes') {
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){ dataLayer.push(arguments); }
-    gtag('consent', 'default', {
-      analytics_storage: 'denied',
-      ad_storage: 'denied',
-      ad_user_data: 'denied',
-      ad_personalization: 'denied'
-    });
-    gtag('js', new Date());
-    gtag('config', '{{ . }}', {
-      allow_google_signals: false,
-      allow_ad_personalization_signals: false
-    });
-  }
-</script>
+   Set the site code in hugo.yaml as params.goatcounter (the subdomain you
+   chose at goatcounter.com). Empty means no script is emitted. */ -}}
+{{- with site.Params.goatcounter -}}
+<script data-goatcounter="https://{{ . }}.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
 {{- end -}}
