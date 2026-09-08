@@ -15,8 +15,8 @@ links:
     url: "https://doi.org/10.1177/0021909616645372"
   - name: "Replication Data"
     url: "https://www.dropbox.com/sh/lpaoxcla3n74kpr/AABvm8ldbOGGaAU0m1gzPq_va?dl=0"
-  - name: "Online Appendix"
-    url: "https://weitingyen.com/wp-content/uploads/2014/12/online-appendix.pdf"
+  - name: "Online Appendix (PDF)"
+    url: "files/2017_jaas_who-supports-the-sunflower-movement_appendix.pdf"
 doi: "10.1177/0021909616645372"
 hashtags: ["Identity", "PoliticalBehavior", "TaiwanPolitics"]
 ---

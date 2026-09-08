@@ -12,8 +12,8 @@ links:
     url: "files/2021_jeas_is-trading-with-china-different_preprint.pdf"
   - name: "Publisher's Version"
     url: "https://doi.org/10.1017/jea.2020.29"
-  - name: "Online Appendix"
-    url: "https://weitingyen.com/wp-content/uploads/2020/09/jeas_final_appendix.docx"
+  - name: "Online Appendix (DOCX)"
+    url: "files/2021_jeas_is-trading-with-china-different_appendix.docx"
 doi: "10.1017/jea.2020.29"
 hashtags: ["PoliticalBehavior", "Identity", "Framing"]
 ---

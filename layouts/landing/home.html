@@ -211,7 +211,7 @@
           <li class="oped-cell">
             <div class="oped-outlet">{{ .Params.publication }}</div>
             <div class="oped-title">
-              {{ if $url }}<a href="{{ $url }}" target="_blank" rel="noopener">{{ .Title }}</a>{{ else }}{{ .Title }}{{ end }}
+              {{ if $url }}<a href="{{ if hasPrefix $url "http" }}{{ $url }}{{ else }}{{ $url | relURL }}{{ end }}" target="_blank" rel="noopener">{{ .Title }}</a>{{ else }}{{ .Title }}{{ end }}
             </div>
             <div class="oped-meta">
               {{ delimit (.Params.authors | default slice) ", " " and " }} &middot; {{ .Date.Format "Jan 2, 2006" }}
