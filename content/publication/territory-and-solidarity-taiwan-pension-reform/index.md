@@ -15,7 +15,7 @@ links:
   - name: "Popular Science Version"
     url: "https://www.cambridge.org/core/blog/tag/journal-of-social-policy/"
 doi: "10.1017/S0047279425101086"
-hashtags: ["WelfareState", "PoliticalBehavior", "Identity", "SocialInsurance", "TaiwanPolitics"]
+hashtags: ["WelfareState", "PoliticalBehavior", "Identity", "SocialInsurance", "TaiwanPolitics", "Solidarity"]
 ---
 
 <!-- NOTE FOR THE SITE OWNER: Popular-science version appeared on the Journal of Social Policy blog; the exact post URL was not on the C.V. -->

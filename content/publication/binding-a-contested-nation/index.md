@@ -13,5 +13,5 @@ links:
   - name: "Publisher's Version"
     url: "https://doi.org/10.1111/nana.70124"
 doi: "10.1111/nana.70124"
-hashtags: ["TaiwanPolitics", "PoliticalBehavior", "Identity", "Solidarity"]
+hashtags: ["TaiwanPolitics", "PoliticalBehavior", "Identity", "Solidarity", "WelfareState"]
 ---
